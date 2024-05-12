@@ -94,9 +94,6 @@ GEM
     erubi (1.12.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    hpricot (0.8.6)
-    html2slim-ruby3 (0.2.1)
-      hpricot
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.1)
@@ -269,7 +266,6 @@ DEPENDENCIES
   bootsnap
   debug
   error_highlight (>= 0.4.0)
-  html2slim-ruby3 (~> 0.2.1)
   importmap-rails
   pg (~> 1.1)
   puma (>= 5.0)
