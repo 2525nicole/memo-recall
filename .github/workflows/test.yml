@@ -28,6 +28,7 @@ jobs:
         with:
           ruby-version: 3.1.2
           bundler-cache: true
+
       - name: Install Bundler
         run: gem install bundler:2.3.20
 
@@ -42,10 +43,10 @@ jobs:
           npm install
           bundle install
 
-      - name: Set up database schema
+      - name: Set up database
         run: |
           bin/rails db:create
-          bin/rails db:schema:load
+          bin/rails db:migrate
 
       - name: Run tests
         run: bundle exec rspec
