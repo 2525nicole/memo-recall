@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:11-alpine
+        image: postgres:14.12-alpine
         ports:
           - "5432:5432"
         env:
@@ -26,13 +26,9 @@ jobs:
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1.2
           bundler-cache: true
 
-      - name: Install Bundler
-        run: gem install bundler:2.3.20
-
-      - name: Install Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "18"
@@ -44,9 +40,7 @@ jobs:
           bundle install
 
       - name: Set up database
-        run: |
-          bin/rails db:create
-          bin/rails db:migrate
+        run: bin/rails db:schema:load
 
       - name: Run tests
         run: bundle exec rspec
