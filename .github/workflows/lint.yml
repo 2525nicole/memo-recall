@@ -1,0 +1,40 @@
+name: "Lint"
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: |
+          npm install
+          bundle install
+
+      - name: rubocop
+        run: bundle exec rubocop
+
+      - name: slim-lint
+        run: bundle exec slim-lint app/views
+
+      - name: eslint
+        run:  npx eslint ./app/javascript
+
+      - name: prettier
+        run: npx prettier --check ./app/javascript
