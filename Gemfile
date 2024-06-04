@@ -37,7 +37,8 @@ gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-
+gem "devise"
+gem 'devise-i18n'
 gem "slim-rails"
 
 group :development, :test do
