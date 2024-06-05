@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :memory do
-    content { "MyText" }
+    content { 'MyText' }
     category_id { 1 }
     user { nil }
   end
