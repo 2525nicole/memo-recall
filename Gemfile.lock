@@ -113,6 +113,9 @@ GEM
       activesupport (>= 6.1)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
+    i18n_generators (2.2.2)
+      activerecord (>= 3.0.0)
+      railties (>= 3.0.0)
     importmap-rails (2.0.1)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -339,6 +342,7 @@ DEPENDENCIES
   devise
   devise-i18n
   factory_bot_rails
+  i18n_generators
   importmap-rails
   letter_opener_web (~> 3.0)
   pg (~> 1.1)
