@@ -1,26 +1,26 @@
 ja:
   activerecord:
     models:
-      category: カテゴリー  #g
-      memory: メモリ  #g
-      user: ユーザー  #g
+      category: カテゴリー #g
+      memory: 思い出 #g
+      user: ユーザー #g
 
     attributes:
       category:
-        memories: 思い出  #g
-        name: 名前  #g
-        user: :activerecord.models.user  #g
+        memories: 思い出 #g
+        name: 名前 #g
+        user: :activerecord.models.user #g
 
       memory:
-        category: :activerecord.models.category  #g
-        content: コンテンツ  #g
-        user: :activerecord.models.user  #g
+        category: :activerecord.models.category #g
+        content: 内容 #g
+        user: :activerecord.models.user #g
 
       user:
-        categories: カテゴリー  #g
-        email: Eメール  #g
-        encrypted_password: 暗号化パスワード  #g
-        memories: 思い出  #g
-        remember_created_at: ログイン記憶時刻  #g
-        reset_password_sent_at: パスワードリセット送信時刻  #g
-        reset_password_token: パスワードリセット用トークン  #g
+        categories: カテゴリー #g
+        email: Eメール #g
+        encrypted_password: 暗号化パスワード #g
+        memories: 思い出 #g
+        remember_created_at: ログイン記憶時刻 #g
+        reset_password_sent_at: パスワードリセット送信時刻 #g
+        reset_password_token: パスワードリセット用トークン #g
