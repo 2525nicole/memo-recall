@@ -14,9 +14,10 @@ class CategoriesController < ApplicationController
   def edit; end
 
   def create
+    
     @category = Category.new(category_params)
     if @category.save
-      redirect_to @category, notice: 'Category was successfully created.'
+      redirect_to categories_path, notice: 'Category was successfully created.'
     else
       render :new
     end
@@ -24,7 +25,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to @category, notice: 'Category was successfully updated.'
+      redirect_to categories_path, notice: 'Category was successfully updated.'
     else
       render :edit
     end
@@ -32,7 +33,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    redirect_to categories_url, notice: 'Category was successfully destroyed.'
+    redirect_to categories_path, notice: 'Category was successfully destroyed.'
   end
 
   private
