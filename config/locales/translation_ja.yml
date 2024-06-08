@@ -7,14 +7,11 @@ ja:
 
     attributes:
       category:
-        memories: 思い出 #g
-        name: 名前 #g
-        user: :activerecord.models.user #g
+        name: カテゴリー名 #g
 
       memory:
         category: :activerecord.models.category #g
         content: 内容 #g
-        user: :activerecord.models.user #g
 
       user:
         categories: カテゴリー #g
@@ -24,3 +21,22 @@ ja:
         remember_created_at: ログイン記憶時刻 #g
         reset_password_sent_at: パスワードリセット送信時刻 #g
         reset_password_token: パスワードリセット用トークン #g
+    action:
+      index: 一覧
+      new: 新規登録
+      edit: 編集
+      destroy:
+        category: 削除する
+        memory: 手放す（削除する）
+        memories_by_category: このカテゴリーの思い出をまとめて手放す（削除する）
+
+    views:
+      show:
+    notice:
+      create:
+        category: "カテゴリーを作成しました。"
+        memory: "思い出を記録しました。"
+      destroy:
+        category: "カテゴリーを削除しました。"
+        memory: "思い出を手放しました。"
+      update: "%{model}を更新しました。"
