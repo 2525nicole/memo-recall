@@ -24,19 +24,17 @@ ja:
     action:
       index: 一覧
       new: 新規登録
-      edit: 編集
+      edit: 編集する
       destroy:
         category: 削除する
         memory: 手放す（削除する）
-        memories_by_category: このカテゴリーの思い出をまとめて手放す（削除する）
+        memories_by_category: "このカテゴリーの思い出を<br />まとめて手放す（削除する）"
 
-    views:
-      show:
-    notice:
-      create:
-        category: "カテゴリーを作成しました。"
-        memory: "思い出を記録しました。"
-      destroy:
-        category: "カテゴリーを削除しました。"
-        memory: "思い出を手放しました。"
-      update: "%{model}を更新しました。"
+  notice:
+    create:
+      category: "カテゴリーを作成しました。"
+      memory: "思い出を記録しました。"
+    destroy:
+      category: "カテゴリーを削除しました。"
+      memory: "思い出を手放しました。"
+    update: "%{model}を更新しました。"

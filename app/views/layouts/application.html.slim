@@ -9,8 +9,9 @@ html
     = stylesheet_link_tag 'tailwind', 'inter-font', 'data-turbo-track': 'reload'
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_importmap_tags
-  body
-    main.container.mx-auto.mt-28.px-5.flex
-    p.notice = notice
-    p.alert = alert
-    = yield
+  body.flex.flex-col.min-h-screen
+    - if flash.notice.present?
+      .notification.w-screen.bg-cyan-100.border-cyan-500.text-cyan-700.p-4 = flash.notice
+    main.container.m-auto
+      .my-2.mx-3
+        = yield

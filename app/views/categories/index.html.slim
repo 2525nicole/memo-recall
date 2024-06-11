@@ -1,20 +1,27 @@
-h1 Categories
+h1.text-xl.font-bold.text-center.mb-10
+  | カテゴリーの一覧
+  p.text-sm.font-normal.mt-3.mb-8
+    | このページではカテゴリー名の編集や削除ができます。
+  p.text-sm.font-normal.mt-3.mb-8
+    / TODO:はてなアイコンを追加する
+    | '?'カテゴリーについてもっと詳しく知る
 
-table
-  thead
-    tr
-      th Name
-      th User
-      th colspan="3" Actions
-  tbody
+  - if @categories.exists?
     - @categories.each do |category|
-      tr
-        td= category.name
-        td= category.user.email
-        td= link_to 'Show', category
-        td= link_to 'Edit', edit_category_path(category)
-        td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
-
-br
-
-= link_to 'New Category', new_category_path
+      .flex.items-center.justify-between.font-normal.mt-5.text-m
+        .text-left
+          = category.name
+        .text-right
+          = "#{category.memories.count}件"
+      .flex.justify-center.items-center.space-x-4.mt-2.text-xs
+        = button_to t('activerecord.action.edit'), edit_category_path(category), method: :get, class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-3 rounded'
+        = button_to t('activerecord.action.destroy.category'),
+          category, method: :delete, data: { turbo_confirm: sanitize("カテゴリー「#{category.name}」を削除しますか？\n紐づけられている#{category.memories.count}件の思い出は「カテゴリー登録なし」になります。") }, class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-3 rounded'
+        br
+        = button_to t('activerecord.action.destroy.memories_by_category').html_safe,
+          category, method: :delete, data: { turbo_confirm: sanitize("カテゴリー「#{category.name}」に紐づく#{category.memories.count}件の思い出を手放しますか？\n手放した思い出は一覧から削除されます。") }, class: 'text-left bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-3 rounded'
+  - else
+    .text-center.m-5.font-normal.text-m
+      | カテゴリーがありません。
+  .font-normal.text-sm.mt-20
+    = link_to 'カテゴリーを登録する', new_category_path, class: 'text-lg bg-sky-300 hover:bg-sky-400 text-white font-bold py-3 px-5 rounded'
