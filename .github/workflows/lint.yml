@@ -31,9 +31,7 @@ jobs:
         run: bundle exec rubocop
 
       - name: slim-lint
-        run: bundle exec slim-lint app/views
-        env:
-          SLIM_LINT_CONFIG: config/slim_lint.yml
+        run: bundle exec slim-lint app/views -c config/slim_lint.yml
 
       - name: eslint
         run:  npx eslint ./app/javascript
