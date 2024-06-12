@@ -35,6 +35,8 @@ jobs:
 
       - name: eslint
         run:  npx eslint ./app/javascript
+        env:
+          SLIM_LINT_CONFIG: config/slim_lint.yml
 
       - name: prettier
         run: npx prettier --check ./app/javascript
