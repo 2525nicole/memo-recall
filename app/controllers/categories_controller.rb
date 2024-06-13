@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[edit update destroy]
+  before_action :set_category, only: %i[edit update destroy destroy_with_memories]
 
   def index
     @categories = Category.all
@@ -36,6 +36,12 @@ class CategoriesController < ApplicationController
     redirect_to categories_path, notice: t('notice.destroy.category')
   end
 
+  def destroy_with_memories
+    @category.memories.destroy_all
+    @category.destroy
+    redirect_to memories_path, notice 'カテゴリーとカテゴリーに紐づく思い出一覧を手放しました。'
+  end
+
   private
 
   def set_category
@@ -43,6 +49,6 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:name, :user_id)
+    params.require(:category).permit(:name)
   end
 end
