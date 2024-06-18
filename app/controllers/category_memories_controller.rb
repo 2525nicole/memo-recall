@@ -1,8 +1,13 @@
+# frozen_string_literal: true
+
 class CategoryMemoriesController < ApplicationController
   before_action :set_category
 
   def index
-    @memories = @category.memories
+    @q = @category.memories.ransack(params[:q])
+    @q.sorts = 'created_at desc' if @q.sorts.blank?
+
+    @memories = @q.result
   end
 
   private

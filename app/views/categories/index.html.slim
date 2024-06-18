@@ -1,26 +1,25 @@
-h1.text-xl.font-bold.text-center.mb-10
+h1.text-xl.font-bold.text-center
   | カテゴリーの一覧
-  p.text-sm.font-normal.mt-3.mb-8
+  p.text-sm.font-normal.mt-10.mb-8
    | このページではカテゴリー名の編集や削除ができます。
   p.text-sm.font-normal.mt-3.mb-8
-  / TODO:はてなアイコンを追加する
+    / TODO:はてなアイコンを追加する
     | '?'カテゴリーについてもっと詳しく知る
 
-  - if @categories.exists?
+  .text-sm.font-normal.text-gray-500.mt-3.mb-8.underline.underline-offset-1
+    = sort_link(@q, :created_at, '投稿日')
+  - if Category.exists?
     - @categories.each do |category|
       .w-full.max-w-4xl.mx-auto
         .flex.flex-wrap.md:flex-nowrap.items-center.justify-center.font-normal.mt-5
-          .w-full.md:w-1/4.text-center.text-sm.md:text-base
-            = category.name
-          .w-full.md:w-1/4.text-center.text-sm.md:text-base
-            / TODO:カテゴリーで絞り込んだ思い出一覧のリンクを設定する
-            = "#{category.memories.count}件"
-        .flex.justify-center.items-center.space-x-4.mt-2.text-xs.md:text-sm
+          .w-full.underline.underline-offset-1.text-center.text-sm.md:text-base.mb-4
+            = link_to "#{category.name}(#{category.memories.count}件)", category_memories_path(category.id)
+        .flex.justify-center.items-center.space-x-4.text-xs.md:text-sm.mb-12
           = button_to t('activerecord.action.edit'), edit_category_path(category), method: :get, class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-3 rounded'
           = button_to t('activerecord.action.destroy.category'),
             category, method: :delete, data: { turbo_confirm: sanitize("カテゴリー「#{category.name}」を削除しますか？\n紐づけられている#{category.memories.count}件の思い出は「カテゴリー登録なし」になります。") }, class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-3 rounded'
   - else
-    .text-center.m-5.font-normal.text-m
+    .text-center.m-5.font-normal.text-base
       | カテゴリーがありません。
   .font-normal.text-sm.mt-20
     = link_to 'カテゴリーを登録する', new_category_path, class: 'text-lg bg-sky-300 hover:bg-sky-400 text-white font-bold py-3 px-5 rounded'

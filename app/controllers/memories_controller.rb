@@ -2,13 +2,17 @@
 
 class MemoriesController < ApplicationController
   before_action :set_memory, only: %i[edit update destroy]
+  before_action :set_categories, only: %i[new edit]
 
   def random
-    @memory = Memory.order("RANDOM()").first
+    @memory = Memory.order('RANDOM()').first
   end
 
   def index
-    @memories = Memory.all
+    @q = Memory.ransack(params[:q])
+    @q.sorts = 'created_at desc' if @q.sorts.blank?
+
+    @memories = @q.result(distinct: true)
   end
 
   def new
@@ -23,14 +27,16 @@ class MemoriesController < ApplicationController
     if @memory.save
       redirect_to memories_path, notice: t('notice.create.memory')
     else
+      set_categories
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
     if @memory.update(memory_params)
-      redirect_to memories_path, notice: t('notice.update', model: memory)
+      redirect_to memories_path, notice: t('notice.update', model: Memory.model_name.human)
     else
+      set_categories
       render :edit, status: :unprocessable_entity
     end
   end
@@ -46,7 +52,11 @@ class MemoriesController < ApplicationController
     @memory = Memory.find(params[:id])
   end
 
+  def set_categories
+    @categories = Category.all
+  end
+
   def memory_params
-    params.require(:memory).permit(:name, :user_id, :category_id)
+    params.require(:memory).permit(:content, :category_id)
   end
 end

@@ -1,0 +1,22 @@
+.flex.flex-col.items-center.min-h-screen
+  .w-full.max-w-2xl.mx-auto.px-4.font-normal.text-center.md:px-24
+    h1.text-xl.font-bold.text-center.mt-20
+      | あなたの素敵な思い出をお届けします✉️
+
+    .flex-grow.mt-10.pb-6
+      - if @memory
+        p.mb-6
+          | #{@memory.content}
+        - if @memory.category
+          br
+          p.mb-6.text-xs.text-gray-500.underline.underline-offset-1.md:text-sm
+            = link_to "カテゴリー: #{@memory.category.name}", category_memories_path(@memory.category.id)
+        .flex.justify-center.items-center.space-x-6.text-xs.md:text-sm
+          p.text-xs.text-normal.md:text-sm
+            | 投稿日: #{l(@memory.created_at, format: :date_only)}
+        .flex.justify-center.items-center.mt-6
+          = link_to 'もっと見る', root_path, class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded'
+      - else
+        | 思い出がまだ登録されていません。
+        br
+        | 登録すると、ここにランダムで過去の思い出が表示されます。

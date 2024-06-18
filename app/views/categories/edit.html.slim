@@ -1,13 +1,12 @@
 / 後ほどモーダル化する
-h1.text-xl.font-bold.text-center.mb-10
+h1.text-xl.font-bold.text-center
   | カテゴリーの編集
-  p.text-sm.font-normal.mt-3.mb-8
-    | 以下に変更したいカテゴリー名を入力してください。
-
-  .flex.justify-center
+  p.text-sm.font-normal.mt-10.mb-8.w-full
+    | 以下に変更したいカテゴリー名を入力してください。（最大24文字）
+    .w-full.max-w-2xl.mx-auto.px-4.md:px-24
     = form_with(model: @category, local: true) do |form|
-      = form.text_field :name, class: 'w-80'
-
-      .flex.justify-between.mt-4.space-x-2
+      = form.text_field :name, class: 'w-full text-sm font-normal max-w-2xl mx-auto px-4 text-center md:px-24 md:text-base'
+      .flex.justify-center.mt-10.mb-4.text-sm.md:text-base
         = form.submit '保存する', class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded'
+      .flex.justify-center.text-sm.md:text-base
         = link_to '戻る', categories_path, class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded'

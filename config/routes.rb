@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :category, expect: [:show] do
+  resources :categories, expect: [:show] do
     resources :memories, only: [:index], controller: 'category_memories'
     member do
       delete :destroy_with_memories
