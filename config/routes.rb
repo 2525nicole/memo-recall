@@ -2,7 +2,15 @@
 
 Rails.application.routes.draw do
   devise_for :users
-  resources :categories, except: :show
+
+  resources :categories, expect: [:show] do
+    resources :memories, only: [:index], controller: 'category_memories'
+    member do
+      delete :destroy_with_memories
+    end
+  end
+
+  resources :memories, except: [:show]
 
   root 'memories#random'
 

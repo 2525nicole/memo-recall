@@ -40,6 +40,7 @@ gem "bootsnap", require: false
 gem "devise"
 gem 'devise-i18n'
 gem 'i18n_generators'
+gem 'ransack'
 gem "slim-rails"
 
 group :development, :test do

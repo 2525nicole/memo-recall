@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[edit update destroy]
+  before_action :set_category, only: %i[edit update destroy destroy_with_memories]
 
   def index
-    @categories = Category.all
+    @q = Category.ransack(params[:q])
+    @q.sorts = 'created_at desc' if @q.sorts.blank?
+
+    @categories = @q.result(distinct: true)
   end
 
   def new
@@ -25,7 +28,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to categories_path, notice: t('notice.update', model: Category)
+      redirect_to categories_path, notice: t('notice.update', model: Category.model_name.human)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -36,6 +39,12 @@ class CategoriesController < ApplicationController
     redirect_to categories_path, notice: t('notice.destroy.category')
   end
 
+  def destroy_with_memories
+    @category.memories.destroy_all
+    @category.destroy
+    redirect_to memories_path, notice: t('notice.destroy.category_with_memories')
+  end
+
   private
 
   def set_category
@@ -43,6 +52,6 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:name, :user_id)
+    params.require(:category).permit(:name)
   end
 end

@@ -1,0 +1,19 @@
+h1.font-bold.text-xl.text-center
+  | 思い出の編集
+  .flex.justify-center.w-full.mt-10
+  = form_with(model: @memory, local: true) do |form|
+    .w-full.max-w-2xl.mx-auto.px-4.justify-center.mb-8
+      = form.text_area :content, class: 'w-full h-48 font-normal'
+      - if @categories.exists?
+        .flex.flex-col.w-full.max-w-2xl.mx-auto.px-4.justify-center.mb-8
+          = form.label :category_id, 'カテゴリーを選択してください', class: 'mt-4 font-normal text-base'
+          = form.collection_select :category_id, @categories, :id, :name, { include_blank: 'カテゴリーなし' }, { class: 'font-normal mt-2 text-center' }
+      - else
+        .text-center.m-5.font-normal.text-base
+          | カテゴリーがありません。
+      .mt-10
+        = link_to '+ カテゴリーを登録する', new_category_path, class: 'font-normal py-3 px-5 text-sm underline underline-offset-1'
+      .flex.justify-center.mt-10.space-x-20
+        = form.submit '変更を保存する', class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded'
+      .flex.justify-center.mt-4.space-x-20
+        = link_to '戻る', memories_path, class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded'
