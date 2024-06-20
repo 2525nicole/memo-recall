@@ -10,8 +10,10 @@ html
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_importmap_tags
   body.flex.flex-col.min-h-screen
-    - if flash.notice.present?
-      .notification.w-screen.bg-cyan-100.border-cyan-500.text-cyan-700.p-4 = flash.notice
+    - if notice
+      .w-screen.bg-cyan-100.border-cyan-500.text-cyan-700.p-4 = notice
+    - if alert
+      .w-screen.bg-red-300.border-red-500.text-red-600.p-4 = alert
     main.container.m-auto
       .my-2.mx-3
         = yield
