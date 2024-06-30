@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
 
   resources :categories, expect: [:show] do
     resources :memories, only: [:index], controller: 'category_memories'
