@@ -1,0 +1,16 @@
+header.w-full.p-4
+  - if user_signed_in?
+    ul.flex.flex-col.items-end.space-y-2
+      li.text-center
+        = link_to 'トップページ', root_path, class: 'text-blue-500 hover:text-blue-700 w-full block'
+        / 以下「思い出の新規登録」は後ほどフローティングボタンにする
+      li.text-center
+        = link_to '思い出の新規登録', new_memory_path, class: 'text-blue-500 hover:text-blue-700 w-full block'
+      li.text-center
+        = link_to '思い出の一覧', memories_path, class: 'text-blue-500 hover:text-blue-700 w-full block'
+      li.text-center
+        = link_to 'カテゴリーの一覧', categories_path, class: 'text-blue-500 hover:text-blue-700 w-full block'
+      li.text-center
+        = link_to 'アカウント設定', edit_user_registration_path, class: 'text-blue-500 hover:text-blue-700 w-full block'
+      li.text-center
+        = button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'text-blue-500 hover:text-blue-700 w-full block'
