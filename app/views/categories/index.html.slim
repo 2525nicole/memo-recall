@@ -7,7 +7,7 @@ h1.text-xl.font-bold.text-center
     | '?'カテゴリーについてもっと詳しく知る
 
   .text-sm.font-normal.text-gray-500.mt-3.mb-8.underline.underline-offset-1
-    = sort_link(@q, :created_at, '投稿日')
+    = sort_link(@q, :id, '投稿順')
   - if Category.exists?
     - @categories.each do |category|
       .w-full.max-w-4xl.mx-auto
@@ -21,5 +21,8 @@ h1.text-xl.font-bold.text-center
   - else
     .text-center.m-5.font-normal.text-base
       | カテゴリーがありません。
+
+  = paginate @categories
+
   .font-normal.text-sm.mt-20
     = link_to 'カテゴリーを登録する', new_category_path, class: 'text-lg bg-sky-300 hover:bg-sky-400 text-white font-bold py-3 px-5 rounded'

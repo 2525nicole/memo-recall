@@ -10,9 +10,8 @@ class MemoriesController < ApplicationController
 
   def index
     @q = Memory.ransack(params[:q])
-    @q.sorts = 'created_at desc' if @q.sorts.blank?
-
-    @memories = @q.result(distinct: true)
+    @q.sorts = 'id desc' if @q.sorts.blank?
+    @memories = @q.result.page(params[:page])
   end
 
   def new

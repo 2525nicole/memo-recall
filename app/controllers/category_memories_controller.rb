@@ -5,9 +5,9 @@ class CategoryMemoriesController < ApplicationController
 
   def index
     @q = @category.memories.ransack(params[:q])
-    @q.sorts = 'created_at desc' if @q.sorts.blank?
+    @q.sorts = 'id desc' if @q.sorts.blank?
 
-    @memories = @q.result
+    @memories = @q.result.page(params[:page]).per(10)
   end
 
   private

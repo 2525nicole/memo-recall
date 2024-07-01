@@ -5,9 +5,9 @@ class CategoriesController < ApplicationController
 
   def index
     @q = Category.ransack(params[:q])
-    @q.sorts = 'created_at desc' if @q.sorts.blank?
+    @q.sorts = 'id desc' if @q.sorts.blank?
 
-    @categories = @q.result(distinct: true)
+    @categories = @q.result.page(params[:page])
   end
 
   def new
