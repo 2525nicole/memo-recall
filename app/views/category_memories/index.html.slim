@@ -3,7 +3,7 @@ h1.text-xl.font-bold.text-center.mb-10
   br
   |の思い出の一覧（#{@category.memories.count}件）
   .text-xs.font-normal.text-gray-500.mt-3.mb-8.underline.underline-offset-1.md:text-sm
-    = sort_link(@q, :created_at, '投稿日')
+    = sort_link(@q, :id, '投稿順')
   .mt-3.mb-8
     = button_to t('activerecord.action.destroy.memories_by_category'),
                 destroy_with_memories_category_path(@category), method: :delete, data: { turbo_confirm: sanitize("カテゴリー「#{@category.name}」と、\n紐づく#{@category.memories.count}件の思い出を手放しますか？\n手放した思い出は一覧から削除されます。") },
@@ -32,6 +32,7 @@ h1.text-xl.font-bold.text-center.mb-10
       br
       | 画面右下の✏️ボタンをクリックし、思い出を登録してみましょう。
 
+  = paginate @memories
   / 以下、ペンシルアイコンのフローティングボタンに変えて右下に配置する
   .font-normal.text-sm.mt-20
     = link_to '思い出を登録する', new_memory_path, class: 'text-lg bg-sky-300 hover:bg-sky-400 text-white font-bold py-3 px-5 rounded'

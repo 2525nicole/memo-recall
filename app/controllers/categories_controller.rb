@@ -4,10 +4,10 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i[edit update destroy destroy_with_memories]
 
   def index
-    @q = Category.ransack(params[:q])
-    @q.sorts = 'created_at desc' if @q.sorts.blank?
+    @q = current_user.categories.ransack(params[:q])
+    @q.sorts = 'id desc' if @q.sorts.blank?
 
-    @categories = @q.result(distinct: true)
+    @categories = @q.result.page(params[:page])
   end
 
   def new
@@ -17,8 +17,7 @@ class CategoriesController < ApplicationController
   def edit; end
 
   def create
-    @category = Category.new(category_params)
-    @category.user = current_user
+    @category = current_user.categories.build(category_params)
     if @category.save
       redirect_to categories_path, notice: t('notice.create.category')
     else
@@ -48,7 +47,7 @@ class CategoriesController < ApplicationController
   private
 
   def set_category
-    @category = Category.find(params[:id])
+    @category = current_user.categories.find(params[:id])
   end
 
   def category_params

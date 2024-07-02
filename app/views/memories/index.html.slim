@@ -1,7 +1,7 @@
 h1.text-xl.font-bold.text-center
   | 思い出の一覧
   .text-sm.font-normal.text-gray-500.mt-3.mb-8.underline.underline-offset-1
-    = sort_link(@q, :created_at, '投稿日')
+    = sort_link(@q, :id, '投稿順')
 
   - if @memories.exists?
     - @memories.each do |memory|
@@ -26,6 +26,7 @@ h1.text-xl.font-bold.text-center
       br
       | 画面右下の✏️ボタンをクリックし、思い出を登録してみましょう。
 
+  = paginate @memories
   / 以下、ペンシルアイコンのフローティングボタンに変えて右下に配置する
   .font-normal.text-sm.mt-10
     = link_to '思い出を登録する', new_memory_path, class: 'text-lg bg-sky-300 hover:bg-sky-400 text-white font-bold py-3 px-5 rounded'
