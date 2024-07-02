@@ -5,11 +5,11 @@ class MemoriesController < ApplicationController
   before_action :set_categories, only: %i[new edit]
 
   def random
-    @memory = Memory.order('RANDOM()').first
+    @memory = current_user.memories.order('RANDOM()').first
   end
 
   def index
-    @q = Memory.ransack(params[:q])
+    @q = current_user.memories.ransack(params[:q])
     @q.sorts = 'id desc' if @q.sorts.blank?
     @memories = @q.result.page(params[:page])
   end
@@ -21,8 +21,7 @@ class MemoriesController < ApplicationController
   def edit; end
 
   def create
-    @memory = Memory.new(memory_params)
-    @memory.user = current_user
+    @memory = current_user.memories.build(memory_params)
     if @memory.save
       redirect_to memories_path, notice: t('notice.create.memory')
     else
@@ -48,11 +47,11 @@ class MemoriesController < ApplicationController
   private
 
   def set_memory
-    @memory = Memory.find(params[:id])
+    @memory = current_user.memories.find(params[:id])
   end
 
   def set_categories
-    @categories = Category.all
+    @categories = current_user.categories.all
   end
 
   def memory_params
