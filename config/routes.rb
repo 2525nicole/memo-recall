@@ -14,7 +14,16 @@ Rails.application.routes.draw do
 
   resources :memories, except: [:show]
 
-  root 'memories#random'
+  authenticated :user do
+    root 'memories#random', as: :authenticated_root
+  end
+
+  root 'welcome#index'
+
+  get 'pp', to: 'welcome#pp', as: :pp
+  get 'tos', to: 'welcome#tos', as: :tos
+  get 'help', to: 'welcome#help', as: :help
+
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
