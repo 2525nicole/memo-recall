@@ -10,5 +10,4 @@ class WelcomeController < ApplicationController
   def tos; end
 
   def help; end
-
 end
