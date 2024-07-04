@@ -4,7 +4,7 @@ class Memory < ApplicationRecord
   belongs_to :user
   belongs_to :category, optional: true
 
-  validates :content, presence: true
+  validates :content, presence: true, length: { maximum: 400 }
 
   paginates_per 10
 
