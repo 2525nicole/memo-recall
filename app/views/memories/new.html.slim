@@ -1,34 +1,34 @@
 / 後ほどモーダル化する
 h1.font-bold.mb-10.text-xl.text-center
   | 思い出の新規登録
-  p.text-sm.font-normal.mt-10.mb-8
+  p.text-sm.font-normal.mt-10.mb-8.md:text-base
     | 記録したい思い出を書きましょう✏️
     - if @memory.errors.any?
-        ul.flex.flex-col.items-start
+        ul.flex.flex-col.items-center
           - @memory.errors.full_messages.each do |message|
             li.text-red-500.font-normal.text-sm.block = message
 
     .flex.justify-center.w-full
     = form_with(model: @memory, local: true) do |form|
       .w-full.max-w-2xl.mx-auto.px-4.justify-center.mb-8
-        = form.text_area :content, class: 'w-full h-48 font-normal'
-      p.text-sm.font-normal.mb-8
+        = form.text_area :content, class: 'w-full h-48 font-normal h-72'
+      p.text-sm.font-normal.mb-6.text-gray-600
         | 思い出に紐づけるカテゴリーを登録しましょう。
         br
         | 登録すると、カテゴリーごとに思い出を呼び出すことができるようになります。
         br
         / TODO:はてなアイコンを追加する
-        p.text-sm.mb-8.font-normal.underline.underline-offset-1
-          | '?'カテゴリーについてもっと詳しく知る
+        p
+        = link_to '?カテゴリーについてもっと詳しく知る', help_path, class: 'font-normal underline underline-offset-1text-gray-600 text-gray-600 hover:text-gray-900 text-sm md:text-base md:mx-6'
         - if @categories.exists?
-          .flex.flex-col.w-full.max-w-2xl.mx-auto.px-4.justify-center.mb-8
+          .flex.flex-col.w-full.max-w-2xl.mx-auto.px-4.justify-center.mb-8.mt-8
             = form.label :category_id, 'カテゴリーを選択してください', class: 'mt-4 font-normal text-base'
             = form.collection_select :category_id, @categories, :id, :name, { include_blank: 'カテゴリーなし' }, { class: 'font-normal mt-2 text-center' }
         - else
           .text-center.m-5.font-normal.text-base
             | カテゴリーがありません。
-        .mt-10
-          = link_to '+ カテゴリーを登録する', new_category_path, class: 'font-normal py-3 px-5 text-sm underline underline-offset-1'
+        .mt-10.mb-8
+          = link_to '+ カテゴリーを登録する', new_category_path, class: 'font-normal py-3 px-5 text-sm underline underline-offset-1 md:text-base'
         .flex.justify-center.mt-10
           = form.submit '記録する', class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded'
         .flex.justify-center.mt-4
