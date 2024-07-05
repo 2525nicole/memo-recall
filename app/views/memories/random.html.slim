@@ -3,10 +3,10 @@
     h1.text-xl.font-bold.text-center.mt-20
       | あなたの素敵な思い出をお届けします✉️
 
-    .flex-grow.mt-10.pb-6
+    .flex.flex-col.items-center.justify-center.text-sm.md:text-base.mt-5
       - if @memory
         p.mb-6
-          | #{@memory.content}
+          = simple_format @memory.content, class: 'text-left'
         - if @memory.category
           br
           p.mb-6.text-xs.text-gray-500.underline.underline-offset-1.md:text-sm
