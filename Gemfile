@@ -39,9 +39,11 @@ gem 'tzinfo-data', platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'devise-i18n'
+gem 'font-awesome-sass'
 gem 'i18n_generators'
 gem 'kaminari'
 gem 'ransack'
+gem 'sassc-rails'
 gem 'slim-rails'
 
 group :development, :test do
