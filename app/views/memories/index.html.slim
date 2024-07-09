@@ -35,14 +35,3 @@ h1.text-xl.font-bold.text-center
         | 画面右下の✏️ボタンをクリックし、思い出を登録してみましょう。
 
     = turbo_frame_tag "memories-page-#{@memories.next_page}", loading: :lazy, src: path_to_next_page(@memories)
-
-  div data-controller='modal'
-    .font-normal.text-sm.mt-10
-      = link_to new_memory_path, data: { turbo_frame: 'new_memory' }, class: 'fixed bottom-4 right-4 md:bottom-10 md:right-20 bg-sky-300 hover:bg-sky-400 text-white rounded-full w-14 md:w-20 h-14 md:h-20 flex items-center justify-center shadow-lg' do
-        i.fa-solid.fa-pen-to-square.text-4xl.md:text-6xl
-    .hidden.fixed.top-0.left-0.w-screen.h-screen.bg-blue-300.bg-opacity-20.z-50.max-h-screen data-modal-target='modal' data-action='turbo:frame-load->modal#open turbo:submit-end->modal#close'
-      .absolute.top-1/2.left-1/2.-translate-x-1/2.-translate-y-1/2.bg-white.p-4.rounded-md.w-11/12.md:max-w-lg.md:p-10.overflow-y-scroll.max-h-full
-        .text-right
-          button.text-3xl.text-slate-500 data-action='click->modal#close'
-            | ×
-          = turbo_frame_tag 'new_memory'
