@@ -12,9 +12,9 @@
     br
     | カテゴリーごとに思い出を呼び出すことができるようになります。
     br
-    / TODO:はてなアイコンを追加する
-  p.text-center
-    = link_to '?カテゴリーについてもっと詳しく知る', help_path, data: { turbo: false }, class: 'font-normal underline underline-offset-1text-gray-600 text-gray-600 hover:text-gray-900 text-sm md:text-base md:mx-6'
+  .text-center
+    .i.fa-regular.fa-circle-question
+    = link_to 'カテゴリーについてもっと詳しく知る', help_path, data: { turbo: false }, class: 'font-normal underline underline-offset-1text-gray-500 text-gray-600 hover:text-gray-900 text-sm md:text-base'
     - if @categories.exists?
       .flex.flex-col.w-full.max-w-2xl.mx-auto.px-4.justify-center.mb-8.mt-8.text-center
         = form.label :category_id, 'カテゴリーを選択してください', class: 'mt-4 font-normal text-sm md:text-base'
