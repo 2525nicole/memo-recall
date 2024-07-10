@@ -1,0 +1,11 @@
+div data-controller="removal"
+  - if notice
+    .w-screen.bg-cyan-100.border-cyan-500.text-cyan-700.p-4.h-14.flex.justify-between.items-center
+      = notice
+      p.text-xl.text-gray-500.hover:text-gray-900.ml-auto.cursor-pointer.px-4.py-3 data-action='click->removal#remove'
+        | ×
+  - if alert
+    .w-screen.bg-red-300.border-red-500.text-red-600.p-4.h-14.flex.justify-between.items-center
+      = alert
+      p.text-xl.text-gray-500.hover:text-gray-900.ml-auto.cursor-pointer.px-4.py-3 data-action='click->removal#remove'
+        | ×

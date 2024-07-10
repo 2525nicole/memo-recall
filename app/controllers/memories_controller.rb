@@ -23,7 +23,7 @@ class MemoriesController < ApplicationController
   def create
     @memory = current_user.memories.build(memory_params)
     if @memory.save
-      redirect_to memories_path, notice: t('notice.create.memory')
+      flash.now.notice = t('notice.create.memory')
     else
       set_categories
       render :new, status: :unprocessable_entity
@@ -32,7 +32,7 @@ class MemoriesController < ApplicationController
 
   def update
     if @memory.update(memory_params)
-      redirect_to memories_path, notice: t('notice.update', model: Memory.model_name.human)
+      flash.now.notice = t('notice.update', model: Memory.model_name.human)
     else
       set_categories
       render :edit, status: :unprocessable_entity

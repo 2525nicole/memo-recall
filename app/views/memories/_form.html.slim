@@ -1,28 +1,29 @@
-= form_with(model: memory, local: true) do |form|
-  - if memory.errors.any?
-    ul.flex.flex-col.items-center
-      - memory.errors.full_messages.each do |message|
-        li.text-red-500.font-normal.text-sm.block = message
-  .w-full.max-w-2xl.mx-auto.px-4.justify-center.mb-8
-    = form.text_area :content, class: 'w-full h-48 font-normal md:h-72'
-  p.text-xs.font-normal.mb-6.text-gray-600.text-center.md:text-sm
-    | 思い出に紐づけるカテゴリーを登録しましょう。
-    br
-    | 登録すると
-    br
-    | カテゴリーごとに思い出を呼び出すことができるようになります。
-    br
-  .text-center
-    .i.fa-regular.fa-circle-question
-    = link_to 'カテゴリーについてもっと詳しく知る', help_path, data: { turbo: false }, class: 'font-normal underline underline-offset-1text-gray-500 text-gray-600 hover:text-gray-900 text-sm md:text-base'
-    - if @categories.exists?
-      .flex.flex-col.w-full.max-w-2xl.mx-auto.px-4.justify-center.mb-8.mt-8.text-center
-        = form.label :category_id, 'カテゴリーを選択してください', class: 'mt-4 font-normal text-sm md:text-base'
-        = form.collection_select :category_id, @categories, :id, :name, { include_blank: 'カテゴリーなし' }, { class: 'font-normal mt-2 text-center text-sm md:text-base' }
-    - else
-      .text-center.m-5.font-normal.text-base
-        | カテゴリーがありません。
-  .mt-10.mb-8.text-center
-    = link_to '+ カテゴリーを登録する', new_category_path, class: 'font-normal py-3 px-5 text-sm underline underline-offset-1 md:text-base'
-  .flex.justify-center.mt-10
-    = form.submit '保存する', class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded'
+= turbo_frame_tag memory do
+  = form_with(model: memory, local: true) do |form|
+    - if memory.errors.any?
+      ul.flex.flex-col.items-center
+        - memory.errors.full_messages.each do |message|
+          li.text-red-500.font-normal.text-sm.block = message
+    .w-full.max-w-2xl.mx-auto.px-4.justify-center.mb-8
+      = form.text_area :content, class: 'w-full h-48 font-normal md:h-72'
+    p.text-xs.font-normal.mb-6.text-gray-600.text-center.md:text-sm
+      | 思い出に紐づけるカテゴリーを登録しましょう。
+      br
+      | 登録すると
+      br
+      | カテゴリーごとに思い出を呼び出すことができるようになります。
+      br
+    .text-center
+      .i.fa-regular.fa-circle-question
+      = link_to 'カテゴリーについてもっと詳しく知る', help_path, data: { turbo: false }, class: 'font-normal underline underline-offset-1text-gray-500 text-gray-600 hover:text-gray-900 text-sm md:text-base'
+      - if @categories.exists?
+        .flex.flex-col.w-full.max-w-2xl.mx-auto.px-4.justify-center.mb-8.mt-8.text-center
+          = form.label :category_id, 'カテゴリーを選択してください', class: 'mt-4 font-normal text-sm md:text-base'
+          = form.collection_select :category_id, @categories, :id, :name, { include_blank: 'カテゴリーなし' }, { class: 'font-normal mt-2 text-center text-sm md:text-base' }
+      - else
+        .text-center.m-5.font-normal.text-base
+          | カテゴリーがありません。
+    .mt-10.mb-8.text-center
+      = link_to '+ カテゴリーを登録する', new_category_path, class: 'font-normal py-3 px-5 text-sm underline underline-offset-1 md:text-base'
+    .flex.justify-center.mt-10
+      = form.submit '保存する', class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded'
