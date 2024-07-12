@@ -41,7 +41,9 @@ class MemoriesController < ApplicationController
 
   def destroy
     @memory.destroy
-    redirect_to memories_path, notice: t('notice.destroy.memory')
+    # redirect_to memories_path, notice: t('notice.destroy.memory')
+    flash.now[:after_destroy] = "思い出を手放しました"
+    # render, flash.now[:after_destroy] = "思い出を手放しました"
   end
 
   private
