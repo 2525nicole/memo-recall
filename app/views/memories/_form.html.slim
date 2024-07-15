@@ -14,10 +14,14 @@
       | カテゴリーごとに思い出を呼び出すことができるようになります。
       br
     .text-center.w-full
-      .i.fa-regular.fa-circle-question
-      = link_to 'カテゴリーについてもっと詳しく知る', help_path, data: { turbo: false }, class: 'font-normal underline underline-offset-1 text-gray-500 text-gray-600 hover:text-gray-900 text-sm md:text-base'
+      span data-controller="modal"
+        i.fa-regular.fa-circle-question.ml-2.text-gray-600.cursor-pointer data-action="click->modal#open"
+          | カテゴリーについてもっと詳しく見る
+        .hidden.fixed.w-full.h-screen.top-0.left-0.bg-gray-700/50.z-20 data-modal-target="modal" data-action="click->modal#close"
+          .absolute.top-0.md:top-1/2.left-1/2.-translate-x-1/2.md:-translate-y-1/2.bg-white.rounded-md.w-full.md:max-w-md.md:left-1/2.sm:-translate-x-1/2 data-action="click->modal#stay"
+            = render 'layouts/category_description'
       - if @categories.exists?
-        .flex.flex-col.w-full.max-w-2xl.mx-auto.px-4.justify-center.mb-8.mt-8.text-center
+        .flex.flex-col.w-full.mx-auto.px-4.justify-center.mb-8.mt-4.text-center
           = form.label :category_id, 'カテゴリーを選択してください', class: 'mt-4 font-normal text-sm md:text-base'
           = form.collection_select :category_id, @categories, :id, :name, { include_blank: 'カテゴリーなし' }, { class: 'font-normal mt-2 text-center text-sm md:text-base w-full' }
       - else
