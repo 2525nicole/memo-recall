@@ -23,10 +23,12 @@ class MemoriesController < ApplicationController
   def create
     @memory = current_user.memories.build(memory_params)
     if @memory.save
-      flash.now.notice = t('notice.create.memory')
+      flash.now[:after_create] = t('notice.create.memory')
+      unless request.referer.include?(memories_path)
+        flash.now[:after_create_with_link] = view_context.link_to('（クリックして思い出の一覧ページに行く）', memories_path)
+      end
     else
       set_categories
-      render :new, status: :unprocessable_entity
     end
   end
 
