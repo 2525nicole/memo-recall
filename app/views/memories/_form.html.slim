@@ -6,19 +6,14 @@
           li.text-red-500.font-normal.text-sm.block = message
     .w-full.max-w-2xl.mx-auto.px-4.justify-center.mb-8
       = form.text_area :content, class: 'w-full h-48 font-normal md:h-72'
-    p.text-xs.font-normal.mb-6.text-gray-600.text-center.md:text-sm
+    p.text-sm.font-normal.mb-4.text-gray-600.text-center.md:text-base
       | 思い出に紐づけるカテゴリーを登録しましょう。
-      br
-      | 登録すると
-      br
-      | カテゴリーごとに思い出を呼び出すことができるようになります。
-      br
     .text-center.w-full
       span data-controller="modal"
-        i.fa-regular.fa-circle-question.ml-2.text-gray-600.cursor-pointer data-action="click->modal#open"
+        i.fa-regular.fa-circle-question.ml-2.text-gray-500.hover:text-gray-900.cursor-pointer data-action="click->modal#open"
           | カテゴリーについてもっと詳しく見る
         .hidden.fixed.w-full.h-screen.top-0.left-0.bg-gray-700/50.z-20 data-modal-target="modal" data-action="click->modal#close"
-          .absolute.top-0.md:top-1/2.left-1/2.-translate-x-1/2.md:-translate-y-1/2.bg-white.rounded-md.w-full.md:max-w-md.md:left-1/2.sm:-translate-x-1/2 data-action="click->modal#stay"
+          .absolute.top-0.md:top-1/2.left-1/2.-translate-x-1/2.md:-translate-y-1/2.bg-white.rounded-md.w-full.md:max-w-md data-action="click->modal#stay"
             = render 'layouts/category_description'
       - if @categories.exists?
         .flex.flex-col.w-full.mx-auto.px-4.justify-center.mb-8.mt-4.text-center
@@ -28,6 +23,6 @@
         .text-center.m-5.font-normal.text-base.w-full
           | カテゴリーがありません。
     .mt-10.mb-8.text-center.w-full
-      = link_to '+ カテゴリーを登録する', new_category_path, class: 'font-normal py-3 px-5 text-sm underline underline-offset-1 md:text-base'
+      = link_to '+ カテゴリーを登録する', new_category_path, class: 'font-normal py-3 px-5 text-base underline underline-offset-1 md:text-lg text-gray-500 hover:text-gray-900'
     .flex.justify-center.mt-10.w-full
       = form.submit '保存する', class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded w-full'

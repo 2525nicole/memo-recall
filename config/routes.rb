@@ -22,7 +22,6 @@ Rails.application.routes.draw do
 
   get 'pp', to: 'welcome#pp', as: :pp
   get 'tos', to: 'welcome#tos', as: :tos
-  get 'help', to: 'welcome#help', as: :help
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
   get 'up' => 'rails/health#show', as: :rails_health_check

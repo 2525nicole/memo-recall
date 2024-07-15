@@ -24,9 +24,7 @@ class MemoriesController < ApplicationController
     @memory = current_user.memories.build(memory_params)
     if @memory.save
       flash.now[:after_create] = t('notice.create.memory')
-      unless request.referer.include?(memories_path)
-        flash.now[:after_create_with_link] = view_context.link_to('（クリックして思い出の一覧ページに行く）', memories_path)
-      end
+      flash.now[:after_create_with_link] = view_context.link_to('（思い出の一覧を見る）', memories_path) unless request.referer.include?(memories_path)
     else
       set_categories
     end
@@ -43,9 +41,7 @@ class MemoriesController < ApplicationController
 
   def destroy
     @memory.destroy
-    # redirect_to memories_path, notice: t('notice.destroy.memory')
-    flash.now[:after_destroy] = "思い出を手放しました"
-    # render, flash.now[:after_destroy] = "思い出を手放しました"
+    flash.now[:after_destroy] = t('notice.destroy.memory')
   end
 
   private

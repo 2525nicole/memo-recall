@@ -8,6 +8,4 @@ class WelcomeController < ApplicationController
   def pp; end
 
   def tos; end
-
-  def help; end
 end

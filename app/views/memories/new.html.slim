@@ -1,4 +1,5 @@
 = turbo_frame_tag 'new_memory' do
-  p.text-sm.font-normal.mb-8.text-center.md:text-base
-    | 記録したい思い出を書きましょう✏️
+  p.text-base.font-normal.mb-8.text-center.md:text-lg
+    | 記録したい思い出を書きましょう
+    i.fa-solid.fa-pencil
     = render 'form', memory: @memory

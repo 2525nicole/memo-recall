@@ -1,4 +1,4 @@
-h1.text-2xl.font-bold.text-center.text-gray-600
+h1.text-2xl.font-bold.text-center.text-gray-600.mt-8
   | 思い出の一覧
   i.fa-solid.fa-book.m-2
   .text-lg.font-normal.text-gray-500.mt-6.mb-12.underline.underline-offset-1
@@ -7,7 +7,7 @@ h1.text-2xl.font-bold.text-center.text-gray-600
   = turbo_frame_tag "memories-page-#{@memories.current_page}" do
     - if @memories.exists?
       - @memories.each do |memory|
-        = turbo_frame_tag "memories"
+        = turbo_frame_tag 'memories'
           = render memory
     - else
       .text-center.m-5.font-normal.text-base
