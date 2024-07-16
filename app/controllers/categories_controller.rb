@@ -6,7 +6,6 @@ class CategoriesController < ApplicationController
   def index
     @q = current_user.categories.ransack(params[:q])
     @q.sorts = 'id desc' if @q.sorts.blank?
-
     @categories = @q.result.page(params[:page])
   end
 
