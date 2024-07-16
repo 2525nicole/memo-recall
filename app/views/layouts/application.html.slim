@@ -13,12 +13,22 @@ html
     header
       - if user_signed_in?
         = render 'layouts/header'
-    - if notice
-      .w-screen.bg-cyan-100.border-cyan-500.text-cyan-700.p-4 = notice
-    - if alert
-      .w-screen.bg-red-300.border-red-500.text-red-600.p-4 = alert
+    #flash
+      = render 'layouts/flash'
     main.container.m-auto
       .my-2.mx-3
         = yield
     footer
         = render 'layouts/footer'
+  - if current_user
+      div data-controller='modal'
+        .font-normal.text-sm.mt-10
+          = link_to new_memory_path, data: { turbo_frame: 'new_memory' },
+          class: 'fixed bottom-4 right-4 md:bottom-10 md:right-20 bg-sky-300 hover:bg-sky-400 text-white rounded-full w-14 md:w-20 h-14 md:h-20 flex items-center justify-center shadow-lg' do
+            i.fa-solid.fa-pen-to-square.text-4xl.md:text-6xl
+        .hidden.fixed.top-0.left-0.w-screen.h-screen.bg-blue-300.bg-opacity-20.z-50.max-h-screen data-modal-target='modal' data-action='click->modal#close turbo:frame-load->modal#open turbo:submit-end->modal#close'
+          .absolute.top-1/2.left-1/2.-translate-x-1/2.-translate-y-1/2.bg-white.p-4.rounded-md.w-11/12.md:max-w-lg.md:p-10.overflow-y-scroll.max-h-full data-action="click->modal#stay"
+            .text-right
+              button.p.text-3xl.text-gray-500.hover:text-gray-900.cursor-pointer data-action='click->modal#close' type="button"
+                | ×
+            = turbo_frame_tag 'new_memory'

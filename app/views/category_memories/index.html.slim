@@ -1,4 +1,4 @@
-h1.text-xl.font-bold.text-center.mb-10
+h1.text-xl.font-bold.text-center.mb-10.mt-8
   | 「#{@category.name}」カテゴリー
   br
   |の思い出の一覧（#{@category.memories.count}件）
@@ -33,6 +33,3 @@ h1.text-xl.font-bold.text-center.mb-10
       | 画面右下の✏️ボタンをクリックし、思い出を登録してみましょう。
 
   = paginate @memories
-  / 以下、ペンシルアイコンのフローティングボタンに変えて右下に配置する
-  .font-normal.text-sm.mt-20
-    = link_to '思い出を登録する', new_memory_path, class: 'text-lg bg-sky-300 hover:bg-sky-400 text-white font-bold py-3 px-5 rounded'

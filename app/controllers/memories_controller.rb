@@ -23,16 +23,16 @@ class MemoriesController < ApplicationController
   def create
     @memory = current_user.memories.build(memory_params)
     if @memory.save
-      redirect_to memories_path, notice: t('notice.create.memory')
+      flash.now[:after_create] = t('notice.create.memory')
+      flash.now[:after_create_with_link] = view_context.link_to('（思い出の一覧を見る）', memories_path) unless request.referer.include?(memories_path)
     else
       set_categories
-      render :new, status: :unprocessable_entity
     end
   end
 
   def update
     if @memory.update(memory_params)
-      redirect_to memories_path, notice: t('notice.update', model: Memory.model_name.human)
+      flash.now.notice = t('notice.update', model: Memory.model_name.human)
     else
       set_categories
       render :edit, status: :unprocessable_entity
@@ -41,7 +41,7 @@ class MemoriesController < ApplicationController
 
   def destroy
     @memory.destroy
-    redirect_to memories_path, notice: t('notice.destroy.memory')
+    flash.now[:after_destroy] = t('notice.destroy.memory')
   end
 
   private
