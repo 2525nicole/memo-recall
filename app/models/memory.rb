@@ -6,7 +6,7 @@ class Memory < ApplicationRecord
 
   validates :content, presence: true, length: { maximum: 400 }
 
-  paginates_per 10
+  paginates_per 15
 
   def self.ransackable_attributes(_auth_object = nil)
     ['id']
