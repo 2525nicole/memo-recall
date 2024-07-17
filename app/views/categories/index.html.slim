@@ -16,7 +16,7 @@ h1.text-2xl.font-bold.text-center.text-gray-600.mt-8
   .text-lg.font-normal.text-gray-500.mt-6.mb-12.underline.underline-offset-1
     = sort_link(@q, :id, '投稿順')
   = turbo_frame_tag "categories-page-#{@categories.current_page}" do
-    - if Category.exists?
+    - if @categories.exists?
       - @categories.each do |category|
         .w-full.max-w-4xl.mx-auto
           .flex.flex-wrap.md:flex-nowrap.items-center.justify-center.font-normal.mt-5
@@ -28,6 +28,6 @@ h1.text-2xl.font-bold.text-center.text-gray-600.mt-8
               category, method: :delete, data: { turbo_confirm: sanitize("カテゴリー「#{category.name}」を削除しますか？\n紐づけられている#{category.memories.count}件の思い出は「カテゴリー登録なし」になります。") }, class: 'bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 w-36 md:w-44 rounded'
     - else
       .text-center.m-5.font-normal.text-base
-        | カテゴリーがありません。
+        | カテゴリーがまだ登録されていません。
 
     = turbo_frame_tag "categories-page-#{@categories.next_page}", loading: :lazy, src: path_to_next_page(@categories)
