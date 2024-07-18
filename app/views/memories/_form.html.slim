@@ -3,7 +3,7 @@
     - if memory.errors.any?
       ul.flex.flex-col.items-center
         - memory.errors.full_messages.each do |message|
-          li.text-red-500.font-normal.text-sm.block = message
+          li.text-red-500.font-normal.text-sm.md:text-base.mb-2.block = message
     .w-full.max-w-2xl.mx-auto.px-4.justify-center.mb-8
       = form.text_area :content, class: 'w-full h-48 font-normal md:h-72'
     p.text-sm.font-normal.mb-4.text-gray-600.text-center.md:text-base
