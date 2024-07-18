@@ -35,7 +35,6 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     flash.now.notice = t('notice.destroy.category')
-    # redirect_to categories_path, notice: t('notice.destroy.category')
   end
 
   def destroy_with_memories
