@@ -6,7 +6,6 @@ class CategoriesController < ApplicationController
   def index
     @q = current_user.categories.ransack(params[:q])
     @q.sorts = 'id desc' if @q.sorts.blank?
-
     @categories = @q.result.page(params[:page])
   end
 
@@ -35,7 +34,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    redirect_to categories_path, notice: t('notice.destroy.category')
+    flash.now.notice = t('notice.destroy.category')
   end
 
   def destroy_with_memories

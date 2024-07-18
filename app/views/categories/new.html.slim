@@ -1,17 +1,6 @@
-/ 後ほどモーダル化する
-h1.font-bold.mb-10.text-xl.text-center
+h1.text-2xl.font-bold.text-center.text-gray-600.mt-8
   | カテゴリーの新規登録
-  p.text-sm.font-normal.mt-3.mb-8
-    | 新しく登録するカテゴリー名を入力してください。（最大24文字）
-    - if @category.errors.any?
-        ul.flex.flex-col.items-start
-          - @category.errors.full_messages.each do |message|
-            li.text-red-500.font-normal.text-sm.block = message
+  p.text-sm.md:text-base.font-normal.mt-10.mb-2
+    | 新しく登録するカテゴリー名を入力してください。（最大20文字）
 
-  .flex.justify-center
-    = form_with(model: @category, local: true) do |form|
-      = form.label :name, Category.human_attribute_name(:name)
-        = form.text_field :name, class: 'w-80'
-        .flex.justify-between.mt-4.space-x-2
-          = form.submit '保存する', class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded'
-          = link_to '戻る', categories_path, class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded'
+    = render 'form', category: @category
