@@ -1,21 +1,21 @@
 .flex.flex-col.items-center.min-h-screen
-  .w-full.max-w-2xl.mx-auto.px-4.font-normal.text-center.md:px-24
+  .w-full.max-w-2xl.mx-auto.font-normal.text-center.px-2.md:px-10
     h1.text-xl.font-bold.text-center.mt-20
-      | あなたの素敵な思い出をお届けします✉️
+      | あなたの素敵な思い出をお届けします
+      .i.fa-regular.fa-envelope.ml-1
 
-    .flex.flex-col.items-center.justify-center.text-sm.md:text-base.mt-5
+    .flex.flex-col.items-center.justify-center.text-base.md:text-lg.mt-5
       - if @memory
-        p.mb-6
+        .border.border-gray-300.rounded.p-4.bg-white.shadow-md.w-full.max-w-2xl.mx-auto.font-normal.md:px-10
           = simple_format @memory.content, class: 'text-left'
         - if @memory.category
           br
-          p.mb-6.text-xs.text-gray-500.underline.underline-offset-1.md:text-sm
+          p.text-sm.text-gray-500.hover:text-gray-900.underline.underline-offset-1.mb-2.md:text-base
             = link_to "カテゴリー: #{@memory.category.name}", category_memories_path(@memory.category.id)
-        .flex.justify-center.items-center.space-x-6.text-xs.md:text-sm
-          p.text-xs.text-normal.md:text-sm
+        p.text-gray-600.text-sm.md:text-base.mt-4
             | 投稿日: #{l(@memory.created_at, format: :date_only)}
         .flex.justify-center.items-center.mt-6
-          = link_to 'もっと見る', root_path, class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded'
+          = link_to 'もっと見る', root_path, class: 'bg-sky-300 hover:bg-sky-500 text-white font-bold py-2 rounded w-36 md:w-44'
       - else
         | 思い出がまだ登録されていません。
         br
