@@ -12,10 +12,10 @@
               = simple_format @memory.content, class: 'text-left'
             - if @memory.category
               br
-              p.text-sm.mb-2.md:text-base
+              p.text-sm.mb-2.md:text-base.text-gray-600
                 | カテゴリー:
                 br
-                = link_to "#{@memory.category.name}", category_memories_path(@memory.category.id), data: { turbo: false }, class: 'text-gray-500 hover:text-gray-900 underline underline-offset-1'
+                = link_to @memory.category.name.to_s, category_memories_path(@memory.category.id), data: { turbo: false }, class: 'text-gray-500 hover:text-gray-900 underline underline-offset-1'
             p.text-gray-600.text-sm.md:text-base.mt-4
                 | 投稿日: #{l(@memory.created_at, format: :date_only)}
             .flex.justify-center.items-center.mt-6
