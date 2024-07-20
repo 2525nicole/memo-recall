@@ -28,8 +28,6 @@ class MemoriesController < ApplicationController
       else
         flash.now[:after_create_with_link] = view_context.link_to('思い出を記録しました。（思い出の一覧を見る）', memories_path) unless request.referer.include?(memories_path)
       end
-      # flash.now[:after_create] = t('notice.create.memory')
-      # flash.now[:after_create_with_link] = view_context.link_to('（思い出の一覧を見る）', memories_path) unless request.referer.include?(memories_path)
     else
       set_categories
       render :new, status: :unprocessable_entity
