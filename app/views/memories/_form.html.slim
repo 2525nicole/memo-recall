@@ -12,7 +12,7 @@
       span data-controller="modal"
         i.fa-regular.fa-circle-question.ml-2.text-gray-500.hover:text-gray-900.cursor-pointer data-action="click->modal#open"
           | カテゴリーについてもっと詳しく見る
-        .hidden.fixed.w-full.h-screen.top-0.left-0.bg-gray-700/50.z-20 data-modal-target="modal" data-action="click->modal#close"
+        .hidden.fixed.w-full.h-screen.top-0.left-0.bg-gray-700/50 data-modal-target="modal" data-action="click->modal#close"
           .absolute.top-0.md:top-1/2.left-1/2.-translate-x-1/2.md:-translate-y-1/2.bg-white.rounded-md.w-full.md:max-w-md data-action="click->modal#stay"
             = render 'layouts/category_description'
       - if @categories.exists?
