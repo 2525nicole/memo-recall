@@ -2,7 +2,7 @@
 
 class MemoriesController < ApplicationController
   before_action :set_memory, only: %i[edit update destroy]
-  before_action :set_categories, only: %i[new edit create]
+  before_action :set_categories, only: %i[new create edit update]
   before_action :initialize_category_errors, only: %i[new create edit update]
 
   def random
@@ -40,7 +40,17 @@ class MemoriesController < ApplicationController
   end
 
   def update
-    if @memory.update(memory_params)
+    if params[:memory][:new_category_name].present?
+      validate_and_set_category
+    elsif params[:memory][:category_id].present?
+      set_existing_category
+    end
+
+    @memory.assign_attributes(memory_params)
+    @memory.category = @category if @category.present?
+
+    if @memory.valid? && valid_category?
+      @memory.save
       flash.now.notice = t('notice.update', model: Memory.model_name.human)
     else
       set_categories
