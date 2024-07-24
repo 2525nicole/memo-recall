@@ -28,7 +28,7 @@ ja:
       destroy:
         category: 削除する
         memory: 手放す（削除する）
-        memories_by_category: "このカテゴリーの思い出をまとめて手放す（削除する）"
+        memories_by_category: "カテゴリーと、紐づく思い出を全て手放す（削除する）"
 
   notice:
     create:
