@@ -1,7 +1,10 @@
 h1.text-base.md:text-2xl.font-bold.text-center.text-gray-600.mt-8
   | 「#{@category.name}」
   br
-  |の思い出一覧（#{@category.memories.count}件）
+  |の思い出一覧（
+  = turbo_frame_tag "memories-count" do
+    = @category.memories.count
+  | 件）
   .text-base.md:text-lg.font-normal.text-gray-500.mt-6.mb-12.underline.underline-offset-1
     = sort_link(@q, :id, '投稿順')
   .mb-8
