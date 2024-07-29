@@ -22,17 +22,20 @@ class MemoriesController < ApplicationController
   def edit; end
 
   def create
-    @memory = current_user.memories.build(memory_params)
+    memory_attributes = memory_params.except(:new_category_name)
+    @memory = current_user.memories.build(memory_attributes)
+    new_category_created = false
 
     if params[:memory][:new_category_name].present?
-      validate_and_set_category
+      new_category_created = validate_and_set_category
     elsif params[:memory][:category_id].present?
       set_existing_category
     end
 
     if @memory.valid? && valid_category?
       @memory.save
-      display_appropriate_flash_messages
+      @category = @memory.category
+      display_appropriate_flash_messages(new_category_created)
     else
       set_categories
       render :new, status: :unprocessable_entity
@@ -78,13 +81,18 @@ class MemoriesController < ApplicationController
   end
 
   def memory_params
-    params.require(:memory).permit(:content, :category_id)
+    params.require(:memory).permit(:content, :category_id, :new_category_name)
   end
 
   def validate_and_set_category
     @category = current_user.categories.find_or_initialize_by(name: params[:memory][:new_category_name])
-    @category.errors.full_messages.each { |msg| @category_errors << msg } unless @category.valid?
-    @memory.category = @category
+    is_new_record = @category.new_record?
+    if @category.save
+      @memory.category = @category
+    else
+      @category.errors.full_messages.each { |msg| @category_errors << msg }
+    end
+    is_new_record
   end
 
   def set_existing_category
@@ -95,11 +103,37 @@ class MemoriesController < ApplicationController
     @memory.category.nil? || @memory.category&.valid?
   end
 
-  def display_appropriate_flash_messages
-    if request.referer.include?(memories_path)
-      flash.now[:after_create] = t('notice.create.memory')
+  def display_appropriate_flash_messages(new_category_created)
+    if request.referer.include?(categories_path)
+      flash.now[:after_create_with_link] = view_context.link_to('思い出を記録しました。（思い出の一覧を見る）', memories_path)
+      render_create_response(new_category_created)
     else
-      flash.now[:after_create_with_link] = view_context.link_to('思い出を記録しました。（思い出の一覧を見る）', memories_path) unless request.referer.include?(memories_path)
+      flash.now[:after_create] = t('notice.create.memory')
+    end
+  end
+
+  def render_create_response(new_category_created) # 思い出一覧ページ以外にいる時のレンダー処理
+    if new_category_created # 新しいカテゴリーが登録された時、カテゴリー一覧ページに追加される
+      render turbo_stream: [
+        turbo_stream.remove('no-categories-message'), # 思い出経由で1つ目のカテゴリーが登録された時の書き方確認する
+        turbo_stream.prepend('categories', partial: 'categories/category', locals: { category: @category }),
+        turbo_stream.update('flash', partial: 'layouts/flash')
+      ]
+    elsif @memory.category_id.nil? # カテゴリーの紐付けがない思い出はflashだけが表示される
+      render turbo_stream: [
+        turbo_stream.update('flash', partial: 'layouts/flash')
+      ]
+    elsif request.referer.include?(category_memories_path(@memory.category_id)) # 紐づけたカテゴリーの、カテゴリー別思い出一覧ページにいる時
+      render turbo_stream: [
+        turbo_stream.prepend("memories-page-#{@memory.category_id}", partial: 'memory', locals: { memory: @memory }),
+        turbo_stream.update("memories-count-#{@memory.category_id}", partial: 'category_memories/memories-count', locals: { category: @category }),
+        turbo_stream.update('flash', partial: 'layouts/flash')
+      ]
+    else # その他
+      render turbo_stream: [
+        turbo_stream.update("memories-count-#{@memory.category_id}", partial: 'category_memories/memories-count', locals: { category: @category }),
+        turbo_stream.update('flash', partial: 'layouts/flash')
+      ]
     end
   end
 end

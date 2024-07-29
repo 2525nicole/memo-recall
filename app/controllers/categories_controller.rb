@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
   def create
     @category = current_user.categories.build(category_params)
     if @category.save
-      redirect_to categories_path, notice: t('notice.create.category')
+      flash.now.notice = t('notice.create.category')
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +26,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to categories_path, notice: t('notice.update', model: Category.model_name.human)
+      flash.now.notice =  t('notice.update', model: Category.model_name.human)
     else
       render :edit, status: :unprocessable_entity
     end
