@@ -43,18 +43,27 @@ class MemoriesController < ApplicationController
   end
 
   def update
+    old_category_id = @memory.category_id
     if params[:memory][:new_category_name].present?
       validate_and_set_category
     elsif params[:memory][:category_id].present?
       set_existing_category
     end
 
-    @memory.assign_attributes(memory_params)
+    @memory.assign_attributes(memory_params.except(:new_category_name))
     @memory.category = @category if @category.present?
 
     if @memory.valid? && valid_category?
       @memory.save
-      flash.now.notice = t('notice.update', model: Memory.model_name.human)
+
+      if old_category_id && old_category_id != @memory.category_id && request.referer.include?(category_memories_path(old_category_id))
+        flash.now.notice = t('notice.update', model: Memory.model_name.human)
+
+        render_update_response(old_category_id)
+      else
+        flash.now.notice = t('notice.update', model: Memory.model_name.human)
+      end
+
     else
       set_categories
       render :edit, status: :unprocessable_entity
@@ -135,5 +144,14 @@ class MemoriesController < ApplicationController
         turbo_stream.update('flash', partial: 'layouts/flash')
       ]
     end
+  end
+
+  def render_update_response(old_category_id)
+    old_category = Category.find(old_category_id)
+    render turbo_stream: [
+      turbo_stream.remove(@memory), # OK
+      turbo_stream.update("memories-count-#{old_category_id}", partial: 'category_memories/memories-count', locals: { category: old_category.reload }),
+      turbo_stream.update('flash', partial: 'layouts/flash')
+    ]
   end
 end

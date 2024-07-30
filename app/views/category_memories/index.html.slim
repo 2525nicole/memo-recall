@@ -16,7 +16,6 @@ h1.text-base.md:text-2xl.font-bold.text-center.text-gray-600.mt-8
   = turbo_frame_tag 'memories'
     - if @memories.exists?
       - @memories.each do |memory|
-          / = turbo_frame_tag 'memories'
           = render memory
     - else
       .text-center.m-5.font-normal.text-base.md:text-lg
