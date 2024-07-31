@@ -18,5 +18,5 @@
                 | ×
               = turbo_frame_tag "edit_category_#{category.id}"
       = button_to t('activerecord.action.destroy.category'),
-        category, method: :delete, data: { turbo_confirm: sanitize("カテゴリー「#{category.name}」を削除しますか？\n紐づけられている#{category.memories.count}件の思い出は「カテゴリー登録なし」になります。") },
+        category, method: :delete, data: { turbo_confirm: sanitize("カテゴリー「#{category.name}」を削除しますか？\n紐づけられている思い出は「カテゴリー登録なし」になります。") },
         class: 'bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 w-36 md:w-44 rounded'

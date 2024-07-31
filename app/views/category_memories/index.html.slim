@@ -9,7 +9,7 @@ h1.text-base.md:text-2xl.font-bold.text-center.text-gray-600.mt-8
     = sort_link(@q, :id, '投稿順')
   .mb-8
     = button_to t('activerecord.action.destroy.memories_by_category'),
-                destroy_with_memories_category_path(@category), method: :delete, data: { turbo_confirm: sanitize("カテゴリー「#{@category.name}」と、\n紐づく#{@category.memories.count}件の思い出を手放しますか？\n手放した思い出は一覧から削除されます。") },
+                destroy_with_memories_category_path(@category), method: :delete, data: { turbo_confirm: sanitize("カテゴリー「#{@category.name}」と、\n紐づく思い出をすべて手放しますか？\n手放した思い出は一覧から削除されます。") },
                 class: 'text-sm md:text-base bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 rounded'
 
   = turbo_frame_tag "memories-page-#{@category.id}" do
