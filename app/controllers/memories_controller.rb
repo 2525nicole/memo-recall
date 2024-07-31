@@ -71,8 +71,15 @@ class MemoriesController < ApplicationController
   end
 
   def destroy
+    memory_category_id = @memory.category.id
     @memory.destroy
-    flash.now[:after_destroy] = t('notice.destroy.memory')
+    if request.referer.include?(category_memories_path(memory_category_id))
+      flash.now[:after_destroy] = t('notice.destroy.memory')
+
+      render_destroy_response(memory_category_id)
+    else
+      flash.now[:after_destroy] = t('notice.destroy.memory')
+    end
   end
 
   private
@@ -151,6 +158,15 @@ class MemoriesController < ApplicationController
     render turbo_stream: [
       turbo_stream.remove(@memory), # OK
       turbo_stream.update("memories-count-#{old_category_id}", partial: 'category_memories/memories-count', locals: { category: old_category.reload }),
+      turbo_stream.update('flash', partial: 'layouts/flash')
+    ]
+  end
+
+  def render_destroy_response(memory_category_id)
+    category = Category.find(memory_category_id)
+    render turbo_stream: [
+      turbo_stream.remove(@memory),
+      turbo_stream.update("memories-count-#{memory_category_id}", partial: 'category_memories/memories-count', locals: { category: category.reload }),
       turbo_stream.update('flash', partial: 'layouts/flash')
     ]
   end
