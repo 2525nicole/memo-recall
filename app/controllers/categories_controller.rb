@@ -26,7 +26,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      flash.now.notice =  t('notice.update', model: Category.model_name.human)
+      flash.now.notice = t('notice.update', model: Category.model_name.human)
     else
       render :edit, status: :unprocessable_entity
     end
