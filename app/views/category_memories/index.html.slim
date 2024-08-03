@@ -9,22 +9,19 @@ h1.text-base.md:text-2xl.font-bold.text-center.text-gray-600.mt-8
     = sort_link(@q, :id, '投稿順')
   .mb-8
     = button_to t('activerecord.action.destroy.memories_by_category'),
-                destroy_with_memories_category_path(@category), method: :delete, data: { turbo_confirm: sanitize("カテゴリー「#{@category.name}」と、\n紐づく思い出をすべて手放しますか？\n手放した思い出は一覧から削除されます。") },
+                destroy_with_memories_category_path(@category), method: :delete, data: { turbo_confirm: sanitize("カテゴリー「#{@category.name}」と、\n紐づく#{@category.memories.count}件の思い出を手放しますか？\n手放した思い出は一覧から削除されます。") },
                 class: 'text-sm md:text-base bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 rounded'
-
-  = turbo_frame_tag "memories-page-#{@category.id}" do
-  = turbo_frame_tag 'memories'
-    - if @memories.exists?
-      - @memories.each do |memory|
-          = render memory
-    - else
-      .text-center.m-5.font-normal.text-base.md:text-lg
-        | 思い出がまだ登録されていません。
-        br
-        | 画面右下の
-        i.fa-solid.fa-pen-to-square
-        | ボタンをクリックして
-        br
-        | 思い出を登録してみましょう。
-
+  #memories
+  = turbo_frame_tag "memories-page-#{@memories.current_page}"
+    = render @memories
     = turbo_frame_tag "memories-page-#{@memories.next_page}", loading: :lazy, src: path_to_next_page(@memories)
+
+  - if @memories.empty?
+    .text-center.m-5.font-normal.text-base.md:text-lg#no-memories-message
+      | 思い出がまだ登録されていません。
+      br
+      | 画面右下の
+      i.fa-solid.fa-pen-to-square
+      | ボタンをクリックして
+      br
+      | 思い出を登録してみましょう。

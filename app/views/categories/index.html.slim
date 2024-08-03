@@ -23,14 +23,11 @@ h1.text-2xl.font-bold.text-center.text-gray-600.mt-8
   .text-base.md:text-lg.font-normal.text-gray-500.mt-6.mb-12.underline.underline-offset-1
     = sort_link(@q, :id, '投稿順')
 
+  #categories
   = turbo_frame_tag "categories-page-#{@categories.current_page}" do
-  = turbo_frame_tag 'categories'
-    - if @categories.exists?
-      - @categories.each do |category|
-        = turbo_frame_tag category do
-            = render category
-    - else
-      .text-center.m-5.font-normal.text-base#no-categories-message
-        | カテゴリーがまだ登録されていません。
-
+    = render @categories
     = turbo_frame_tag "categories-page-#{@categories.next_page}", loading: :lazy, src: path_to_next_page(@categories)
+
+  - if @categories.empty?
+    .text-center.m-5.font-normal.text-base#no-categories-message
+      | カテゴリーがまだ登録されていません。
