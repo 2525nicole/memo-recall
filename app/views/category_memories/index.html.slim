@@ -1,35 +1,27 @@
-h1.text-xl.font-bold.text-center.mb-10.mt-8
-  | 「#{@category.name}」カテゴリー
+h1.text-base.md:text-2xl.font-bold.text-center.text-gray-600.mt-8
+  | 「#{@category.name}」
   br
-  |の思い出の一覧（#{@category.memories.count}件）
-  .text-xs.font-normal.text-gray-500.mt-3.mb-8.underline.underline-offset-1.md:text-sm
+  |の思い出一覧（
+  = turbo_frame_tag "memories-count-#{@category.id}" do
+    = @category.memories.count
+  | 件）
+  .text-base.md:text-lg.font-normal.text-gray-500.mt-6.mb-12.underline.underline-offset-1
     = sort_link(@q, :id, '投稿順')
-  .mt-3.mb-8
+  .mb-8
     = button_to t('activerecord.action.destroy.memories_by_category'),
                 destroy_with_memories_category_path(@category), method: :delete, data: { turbo_confirm: sanitize("カテゴリー「#{@category.name}」と、\n紐づく#{@category.memories.count}件の思い出を手放しますか？\n手放した思い出は一覧から削除されます。") },
-                class: 'text-xs bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-3 rounded md:text-sm'
+                class: 'text-sm md:text-base bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 rounded'
+  #memories
+  = turbo_frame_tag "memories-page-#{@memories.current_page}"
+    = render @memories
+    = turbo_frame_tag "memories-page-#{@memories.next_page}", loading: :lazy, src: path_to_next_page(@memories)
 
-  - if @memories.exists?
-    - @memories.each do |memory|
-      .w-full.max-w-2xl.mx-auto.px-2.font-normal.md:px-24
-        .flex.flex-col.items-center.justify-center.text-left.text-sm.md:text-base.mt-5
-          p.mb-6
-            | #{memory.content}
-            - if memory.category
-              br
-              p.text-xs.text-gray-500.underline.underline-offset-1.mb-6.md:text-sm
-                = link_to "カテゴリー: #{memory.category.name}", category_memories_path(memory.category.id)
-          .flex.flex-col.md:flex-row.justify-center.items-center.space-y-2.md:space-y-0.md:space-x-6.text-xs.md:text-sm
-            p.text-xs.text-normal.md:text-sm
-              | 投稿日: #{l(memory.created_at, format: :date_only)}
-            .flex.flex-row.space-x-2
-              = button_to t('activerecord.action.edit'), edit_memory_path(memory), method: :get, class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-3 rounded'
-              = button_to t('activerecord.action.destroy.memory'),
-                memory, method: :delete, data: { turbo_confirm: sanitize("この思い出を手放しますか？\n手放した思い出は一覧から削除されます。") }, class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-3 rounded'
-  - else
-    .text-center.m-5.font-normal.text-base
+  - if @memories.empty?
+    .text-center.m-5.font-normal.text-base.md:text-lg#no-memories-message
       | 思い出がまだ登録されていません。
       br
-      | 画面右下の✏️ボタンをクリックし、思い出を登録してみましょう。
-
-  = paginate @memories
+      | 画面右下の
+      i.fa-solid.fa-pen-to-square
+      | ボタンをクリックして
+      br
+      | 思い出を登録してみましょう。
