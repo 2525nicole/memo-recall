@@ -11,9 +11,7 @@
         ul.flex.flex-col.items-center
           - category.errors.full_messages.each do |message|
             li.text-red-500.font-normal.text-sm.md:text-base.mb-2.block = message
-      .w-full.max-w-2xl.mx-auto.px-4.justify-center.mb-8
-        = form.text_field :name, class: 'w-full md:w-3/5 text-base font-normal mx-auto px-2 text-center md:text-lg'
-      .flex.justify-center.mt-10.mb-4.text-sm.md:text-base
-        = form.submit '保存する', class: 'bg-sky-300 hover:bg-sky-500 text-white font-bold py-2 rounded w-36 md:w-44'
-      .flex.justify-center.mt-10.mb-4.text-sm.md:text-base
-        = link_to '戻る', categories_path, class: 'text-gray-500 hover:text-gray-900 underline'
+      .w-full.max-w-2xl.mx-auto.justify-center.mb-8
+        = form.text_field :name, class: 'w-full text-sm md:text-base font-normal mx-auto text-center md:text-lg'
+      .flex.justify-center.mt-10.w-full
+        = form.submit '保存する', class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded w-full text-base'
