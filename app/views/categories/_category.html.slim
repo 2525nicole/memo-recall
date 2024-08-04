@@ -2,7 +2,7 @@
   .w-full.max-w-4xl.mx-auto
     .flex.flex-wrap.md:flex-nowrap.items-center.justify-center.font-normal.mt-5
       .w-full.text-center.text-base.md:text-lg.mb-4
-        = link_to "#{category.name}", category_memories_path(category.id), class: 'underline underline-offset-1 hover:text-gray-900', data: { turbo: false }
+        = link_to category.name.to_s, category_memories_path(category.id), class: 'underline underline-offset-1 hover:text-gray-900', data: { turbo: false }
         span.inline.no-underline
           | (
           = turbo_frame_tag "memories-count-#{category.id}" do
