@@ -1,37 +1,26 @@
-h1.text-center.font-bold.text-2xl Memo Recall
-p.mt-12.font-normal.text-center.text-gray-500.text-sm.md:text-base
-  | 嬉しかった出来事や
-  br
-  | 大切な人からもらった素敵な言葉を残しませんか？
-  br
-  | 記録した思い出は、時間を経て出会ったとき
-  br
-  | 再びあなたの心を癒してくれます。
-.mt-12.font-normal.text-center.text-gray-800.mb-6.text-base.md:text-lg
-  | 登録して大事な思い出を記録しましょう
+.mt-10.mb-4
+  = image_tag 'title_logo.png', alt: 'Memo Recallのロゴ画像', class: 'm-auto max-w-screen-md mt-6'
+p.font-bold.text-center.text-base.md:text-lg.text-sky-600.mb-6
+  | 大切な思い出でいっぱいの、あなただけの宝箱
+.mt-6.font-normal.text-center.mb-2.text-sm.md:text-base
+  | 登録して思い出を記録しませんか？
 .flex.justify-center.w-full
-  .text-center.mt-6
-    = link_to 'アカウントを作成', new_user_registration_path, class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-4 px-4 rounded'
-    .justify-center.mt-8.text-gray-600.text-sm.md:text-base
-      | ※サービスは無料でご利用いただけます。
-.mt-12.font-normal.text-center.text-gray-800.mb-6.text-base.md:text-lg
-  | アカウントをお持ちの場合
+  .text-center
+    = link_to 'アカウントを作成', new_user_registration_path, class: 'block bg-sky-400 hover:bg-sky-300 text-white font-bold rounded font-bold py-3 px-8 text-center mx-auto text-base md:text-lg w-52'
+.mt-6.font-normal.text-center.mb-2.text-sm.md:text-base
+  | アカウントをお持ちの方
 .flex.justify-center.w-full
-  .text-center.mt-2
-    = link_to 'ログイン', user_session_path, class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-4 px-4 rounded'
-p.mt-12.font-normal.text-center.text-gray-500.text-sm.md:text-base
-  | Memo Recall（メモリコール）は
-  br
-  | 思い出記録サービスです。
-  br
-  | 記録した思い出は
-  br
-  | いつでも見返すことができます。
-p.mt-12.font-normal.text-center.text-gray-500.text-sm.md:text-base
-  | Memo Racallのトップページには
-  br
-  | 過去に記録した思い出がランダムで表示されます。
-  br
-  | 日常に追われて、いつしか遠い記憶となってしまった思い出や
-  br
-  | 昔の楽しかった出来事に再会しましょう。
+  .text-center
+    = link_to 'ログイン', user_session_path, class: 'block bg-white hover:bg-sky-100 text-sky-400 border-sky-400 border-2 font-bold rounded py-3 px-8 text-center mx-auto text-base md:text-lg w-52 mb-2'
+    = image_tag 'line.png', alt: 'ライン', class: 'm-auto max-w-screen-md mt-2'
+    p.font-normal.text-center.text-gray-800.text-base.md:text-lg.mt-6
+      | Memo Recall（メモリコール）は
+      br
+      | 思い出記録サービスです。
+      br
+      br
+      | 楽しかった出来事や
+      = image_tag 'family_outing.png', alt: 'ドライブ', class: 'w-64 m-auto max-w-screen-md mb-6'
+      | 誰かがかけてくれた嬉しい言葉
+      = image_tag 'heart_warming.png', alt: '心あたたまる', class: 'w-64 m-auto max-w-screen-md'
+      | 忘れてしまわないように記録しませんか？
