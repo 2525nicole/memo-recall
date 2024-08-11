@@ -1,30 +1,29 @@
-= render 'devise/shared/error_messages', resource: resource
-
+.container.mx-auto.px-4.max-w-md
+  = render 'devise/shared/header'
 h2.text-xl.font-bold.text-center.mb-6
   = t('.sign_up')
 
-.text-center
-  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    .field.mb-6.flex.flex-col.items-center.mt-8
-      .w-full.flex.justify-center
-        .w-full.max-w-lg.text-left
-          = f.label :email, class: 'text-base font-normal mb-2'
-          br
-          = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'w-full text-sm font-normal text-left md:text-base mb-2', placeholder: 'email@example.com'
-    .field.mb-6.flex.flex-col.items-center
-      .w-full.flex.justify-center
-        .w-full.max-w-lg.text-left
-          = f.label :password, class: 'text-base font-normal mb-2'
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = render 'devise/shared/error_messages', resource: resource
+
+  .text-center
+    .field.mb-6.mt-8
+      .w-full
+        .max-w-sm.mx-auto.text-left
+          = f.label :email, class: 'text-base md:text-lg font-normal mb-2'
+          = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'w-full text-base md:text-lg mb-2 rounded'
+    .field.mb-6
+      .w-full
+        .max-w-sm.mx-auto.text-left
+          = f.label :password, class: 'text-base md:text-lg font-normal mb-2'
           - if @minimum_password_length
-              = t('devise.shared.minimum_password_length', count: @minimum_password_length)
-          br
-          = f.password_field :password, autocomplete: 'new-password', class: 'w-full text-sm font-normal text-left md:text-base mb-2'
-    .field.mb-6.flex.flex-col.items-center
-      .w-full.flex.justify-center
-        .w-full.max-w-lg.text-left
-          = f.label :password_confirmation, class: 'text-base font-normal mb-2'
-          br
-          = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'w-full text-sm font-normal text-left md:text-base mb-8'
+            = t('devise.shared.minimum_password_length', count: @minimum_password_length)
+          = f.password_field :password, autocomplete: 'new-password', class: 'w-full text-base md:text-lg mb-2 rounded'
+    .field.mb-8
+      .w-full
+        .max-w-sm.mx-auto.text-left
+          = f.label :password_confirmation, class: 'text-base md:text-lg font-normal mb-2'
+          = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'w-full text-base md:text-lg mb-8 rounded'
       .actions
-        = f.submit t('.sign_up'), class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded mb-4'
+        = f.submit t('.sign_up'), class: 'block bg-sky-400 hover:bg-sky-300 text-white font-bold py-3 px-8 rounded mx-auto text-base md:text-lg w-52 mb-8'
   = render 'devise/shared/links'
