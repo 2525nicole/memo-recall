@@ -1,6 +1,5 @@
 .container.mx-auto.px-4.max-w-md
   = render 'devise/shared/header'
-
   h2.text-xl.font-bold.text-center.mb-6
     = t('.sign_in')
 
@@ -14,13 +13,10 @@
     .w-full.max-w-sm.mx-auto.mb-8.text-left
       = f.label :password, class: 'text-base md:text-lg font-normal mb-2'
       = f.password_field :password, autocomplete: 'current-password', class: 'w-full text-base md:text-lg mb-2 rounded'
-      
       - if devise_mapping.rememberable?
         .flex.items-center.mt-4
           = f.check_box :remember_me, class: 'mr-2 rounded'
           = f.label :remember_me, class: 'text-base font-normal'
-
     .text-center
       = f.submit t('.sign_in'), class: 'block bg-sky-400 hover:bg-sky-300 text-white font-bold py-3 px-8 rounded mx-auto text-base md:text-lg w-52 mb-8'
-
   = render 'devise/shared/links'
