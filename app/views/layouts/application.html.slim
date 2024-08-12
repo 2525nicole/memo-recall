@@ -9,11 +9,11 @@ html.bg-slate-200
     = stylesheet_link_tag 'tailwind', 'inter-font', 'data-turbo-track': 'reload'
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_importmap_tags
-  body.flex.flex-col.min-h-screen.max-w-screen-md.mx-auto.bg-white.px-4
+  body.flex.flex-col.min-h-screen.max-w-screen-sm.mx-auto.bg-white
     header
       - if user_signed_in?
         = render 'layouts/header'
-    main.container[class=container_padding_class]
+    main.px-4.container[class=container_padding_class]
       .my-2.mx-3
         #flash
           = render 'layouts/flash'

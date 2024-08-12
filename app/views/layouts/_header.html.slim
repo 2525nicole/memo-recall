@@ -1,4 +1,4 @@
-header.h-14.flex.justify-between.bg-sky-100.z-20.w-full.border-b.border-slate-200.fixed.max-w-screen-md
+header.h-14.flex.justify-between.bg-sky-100.z-20.w-full.border-b.border-slate-200.fixed.max-w-screen-sm
   = link_to root_path
     .flex.items-center.h-14.pl-10.text-base.md:text-lg.text-gray-700.font-bold
       | Memo Recall
@@ -6,7 +6,7 @@ header.h-14.flex.justify-between.bg-sky-100.z-20.w-full.border-b.border-slate-20
     div data-controller="modal"
       i.fa-solid.fa-bars.fa-xl.pt-7.pr-10.cursor-pointer data-action="click->modal#open"
         .hidden.fixed.w-full.h-screen.top-0.left-0.bg-gray-700/50 data-modal-target="modal" data-action="click->modal#close"
-          .relative.max-w-screen-md.mx-auto
+          .relative.max-w-screen-sm.mx-auto
             .absolute.top-0.right-0.bg-sky-100.rounded-bl-md.w-2/3.md:w-1/3 data-action="click->modal#stay"
               button.absolute.top-1.right-4.text-3xl.text-gray-400 data-action="click->modal#close" type="button"
                 | ×
