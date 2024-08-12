@@ -32,6 +32,7 @@ ja:
       confirmed: メールアドレスの確認が完了しました。
       new:
         resend_confirmation_instructions: アカウント確認メールの再送
+        resend_me_confirmation_instructions: 送信
       send_instructions: アカウントの有効化について数分以内にメールでご連絡します。
       send_paranoid_instructions: メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。
     failure:
