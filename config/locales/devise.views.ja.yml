@@ -32,6 +32,7 @@ ja:
       confirmed: メールアドレスの確認が完了しました。
       new:
         resend_confirmation_instructions: アカウント確認メールの再送
+        resend_me_confirmation_instructions: 送信
       send_instructions: アカウントの有効化について数分以内にメールでご連絡します。
       send_paranoid_instructions: メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。
     failure:
@@ -121,7 +122,7 @@ ja:
         didn_t_receive_confirmation_instructions: アカウント確認メールをもう一度送る
         didn_t_receive_unlock_instructions: アカウントのロック解除方法のメールをもう一度送る
         forgot_your_password: パスワードをお忘れの方
-        sign_in: ログイン
+        sign_in: すでにアカウントをお持ちの方
         sign_in_with_provider: "%{provider}でログイン"
         sign_up: アカウントをお持ちでない方
       minimum_password_length: "（%{count}字以上）"
@@ -141,3 +142,5 @@ ja:
       not_saved:
         one: エラーが発生したため %{resource} は保存されませんでした。
         other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
+    actions:
+      send_emai: メールを送信する

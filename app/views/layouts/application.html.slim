@@ -9,7 +9,7 @@ html.bg-slate-200
     = stylesheet_link_tag 'tailwind', 'inter-font', 'data-turbo-track': 'reload'
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_importmap_tags
-  body.flex.flex-col.min-h-screen.max-w-screen-md.mx-auto.bg-white
+  body.flex.flex-col.min-h-screen.max-w-screen-md.mx-auto.bg-white.px-4
     header
       - if user_signed_in?
         = render 'layouts/header'
