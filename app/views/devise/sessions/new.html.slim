@@ -1,27 +1,26 @@
-h2.text-xl.font-bold.text-center.mb-6
-  = t('.sign_in')
+.container.mx-auto.px-4.max-w-md
+  = render 'devise/shared/header'
 
-.text-center
+  h2.text-xl.font-bold.text-center.mb-6
+    = t('.sign_in')
+
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     = render 'devise/shared/error_messages', resource: resource
-    .field.mb-6.flex.flex-col.items-center
-      .w-full.flex.justify-center
-        .w-full.max-w-lg.text-left
-          = f.label :email, class: 'text-base font-normal mb-2'
-          br
-          = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'w-full text-sm font-normal text-left md:text-base mb-2', placeholder: 'email@example.com'
-    .field.mb-6.flex.flex-col.items-center
-      .w-full.flex.justify-center
-        .w-full.max-w-lg.text-left
-          = f.label :password, class: 'text-base font-normal mb-2'
-          br
-          = f.password_field :password, autocomplete: 'current-password', class: 'w-full text-sm font-normal text-left md:text-base mb-2'
+
+    .w-full.max-w-sm.mx-auto.mt-8.mb-6.text-left
+      = f.label :email, class: 'text-base md:text-lg font-normal mb-2'
+      = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'w-full text-base md:text-lg mb-2 rounded'
+
+    .w-full.max-w-sm.mx-auto.mb-8.text-left
+      = f.label :password, class: 'text-base md:text-lg font-normal mb-2'
+      = f.password_field :password, autocomplete: 'current-password', class: 'w-full text-base md:text-lg mb-2 rounded'
+      
       - if devise_mapping.rememberable?
-        .field.mb-6.flex.flex-col.items-center
-          .w-full.flex.justify-center
-            .w-full.max-w-lg.text-left
-              = f.check_box :remember_me, class: 'mr-2'
-              = f.label :remember_me, class: 'text-base font-normal mb-2'
-    .actions.mb-6
-      = f.submit t('.sign_in'), class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded mb-8'
+        .flex.items-center.mt-4
+          = f.check_box :remember_me, class: 'mr-2 rounded'
+          = f.label :remember_me, class: 'text-base font-normal'
+
+    .text-center
+      = f.submit t('.sign_in'), class: 'block bg-sky-400 hover:bg-sky-300 text-white font-bold py-3 px-8 rounded mx-auto text-base md:text-lg w-52 mb-8'
+
   = render 'devise/shared/links'
