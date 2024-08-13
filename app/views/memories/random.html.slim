@@ -14,10 +14,10 @@
                 = render 'random_description'
 
     .flex.flex-col.items-center.justify-center.text-base.md:text-lg.mt-5
-      .w-full.max-w-2xl.mx-auto
+      .w-full.mx-auto
         = turbo_frame_tag 'random_memory' do
           - if @memory
-            .border.border-gray-300.rounded.p-4.bg-white.shadow-md.w-full.max-w-2xl.mx-auto.font-normal.md:px-10
+            .border.border-gray-300.rounded.p-4.bg-white.shadow-md.w-full.mx-auto.font-normal.md:px-10
               = simple_format @memory.content, class: 'text-left'
             - if @memory.category
               br
