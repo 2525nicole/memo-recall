@@ -14,7 +14,7 @@ h1.text-2xl.font-bold.text-center.text-gray-600.mt-8
     .font-normal.text-sm.mb-8
       = link_to '＋カテゴリーを登録する', new_category_path, data: { turbo_frame: 'new_category' }, class: 'text-lg bg-sky-300 hover:bg-sky-400 text-white font-bold py-3 px-5 rounded'
     .hidden.fixed.top-0.left-0.w-screen.h-screen.bg-blue-300.bg-opacity-20.z-50.max-h-screen data-modal-target='modal' data-action='click->modal#close turbo:frame-load->modal#open turbo:submit-end->modal#close'
-      .absolute.top-1/2.left-1/2.-translate-x-1/2.-translate-y-1/2.bg-white.p-4.rounded-md.w-11/12.md:max-w-lg.md:p-10.overflow-y-scroll.max-h-full data-action="click->modal#stay"
+      .absolute.top-1/2.left-1/2.-translate-x-1/2.-translate-y-1/2.bg-white.p-4.rounded-md.w-11/12.md:p-10.overflow-y-scroll.max-h-full data-action="click->modal#stay"
         .text-right
           button.p.text-3xl.text-gray-500.hover:text-gray-900.cursor-pointer data-action='click->modal#close' type="button"
             | ×
