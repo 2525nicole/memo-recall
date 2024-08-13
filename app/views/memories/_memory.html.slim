@@ -1,5 +1,5 @@
 = turbo_frame_tag memory do
-  .w-full.max-w-2xl.mx-auto.px-2.font-normal.md:px-10.text-black
+  .w-full.mx-auto.px-2.font-normal.md:px-10.text-black
     .flex.flex-col.items-center.justify-center.text-base.md:text-lg.mt-5
       p
         = simple_format memory.content, class: 'text-left'
@@ -13,7 +13,7 @@
         div data-controller='modal'
           .flex.flex-row
             = link_to t('activerecord.action.edit'), edit_memory_path(memory), data: { turbo_frame: "edit_memory_#{memory.id}" }, class: 'bg-sky-300 hover:bg-sky-500 text-white font-bold py-2 rounded w-36 md:w-44'
-          .hidden.fixed.top-0.left-0.w-screen.h-screen.bg-blue-300.bg-gray-700/50.max-h-screen data-modal-target='modal' data-action='click->modal#close turbo:frame-load->modal#open turbo:submit-end->modal#close'
+          .hidden.fixed.top-0.left-0.w-screen.h-screen.bg-blue-300.bg-gray-700/50.z-40.max-h-screen data-modal-target='modal' data-action='click->modal#close turbo:frame-load->modal#open turbo:submit-end->modal#close'
             .absolute.top-1/2.left-1/2.-translate-x-1/2.-translate-y-1/2.bg-white.p-4.rounded-md.w-11/12.md:max-w-lg.md:p-10.overflow-y-scroll.max-h-full data-action="click->modal#stay"
               .text-right
                 .p.text-3xl.text-gray-500.hover:text-gray-900.cursor-pointer data-action='click->modal#close' type="button"
