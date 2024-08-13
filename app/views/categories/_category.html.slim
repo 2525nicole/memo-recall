@@ -1,5 +1,5 @@
 = turbo_frame_tag category do
-  .w-full.max-w-4xl.mx-auto
+  .w-full.mx-auto
     .flex.flex-wrap.md:flex-nowrap.items-center.justify-center.font-normal.mt-5
       .w-full.text-center.text-base.md:text-lg.mb-4
         = link_to category.name.to_s, category_memories_path(category.id), class: 'underline underline-offset-1 hover:text-gray-900', data: { turbo: false }
