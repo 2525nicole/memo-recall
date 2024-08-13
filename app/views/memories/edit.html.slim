@@ -1,3 +1,5 @@
 = turbo_frame_tag "edit_memory_#{@memory.id}" do
-  .flex.justify-center.w-full.mt-10
+  p.text-base.font-normal.mb-8.text-center.md:text-lg
+    | 思い出の編集
+    i.fa-solid.fa-pencil
     = render 'form', memory: @memory
