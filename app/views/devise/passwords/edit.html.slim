@@ -1,23 +1,25 @@
-h2.text-xl.font-bold.text-center.mb-6
-  = t('.change_your_password')
+.container.mx-auto.px-4.max-w-md
+  = render 'devise/shared/header'
+  h2.text-xl.font-bold.text-center.mb-6
+    = t('.change_your_password')
 
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = render 'devise/shared/error_messages', resource: resource
-  = f.hidden_field :reset_password_token
-  .field.mb-6.flex.flex-col.items-center
-    .w-full.flex.justify-center
-      .w-full.max-w-lg.text-left
-        = f.label :password, t('.new_password')
-        - if @minimum_password_length
-            = t('devise.shared.minimum_password_length', count: @minimum_password_length)
-        br
-        = f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'w-full text-sm font-normal text-left md:text-base mb-2'
-  .field.mb-6.flex.flex-col.items-center
-    .w-full.flex.justify-center
-      .w-full.max-w-lg.text-left
-        = f.label :password_confirmation, t('.confirm_new_password')
-        br
-        = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'w-full text-sm font-normal text-left md:text-base mb-8'
-    .actions
-      = f.submit t('.change_my_password'), class: 'bg-sky-300 hover:bg-sky-400 text-white font-bold py-2 px-4 rounded mb-4'
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+    = render 'devise/shared/error_messages', resource: resource
+    = f.hidden_field :reset_password_token
+    .text-center
+      .field.mb-6.mt-8
+        .w-full
+          .max-w-sm.mx-auto.text-left
+          = f.label :password, t('.new_password')
+          - if @minimum_password_length
+              = t('devise.shared.minimum_password_length', count: @minimum_password_length)
+          br
+          = f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'w-full text-base md:text-lg mb-2 rounded'
+      .field.mb-6
+        .w-full
+          .max-w-sm.mx-auto.text-left
+          = f.label :password_confirmation, t('.confirm_new_password')
+          = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'w-full text-base md:text-lg mb-8 rounded'
+        .text-center
+          = f.submit t('.change_my_password'), class: 'block bg-sky-400 hover:bg-sky-300 text-white font-bold py-3 px-8 rounded mx-auto text-base md:text-lg w-52 mb-8'
   = render 'devise/shared/links'
