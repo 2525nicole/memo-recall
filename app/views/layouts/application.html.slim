@@ -9,6 +9,9 @@ html.bg-slate-200
     = stylesheet_link_tag 'tailwind', 'inter-font', 'data-turbo-track': 'reload'
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = javascript_importmap_tags
+    = favicon_link_tag 'favicon.ico'
+    = favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type: 'image/png', sizes: '180x180'
+    = favicon_link_tag 'android-chrome-144x144.png', rel: 'icon', type: 'image/png', sizes: '144x144'
   body.flex.flex-col.min-h-screen.max-w-screen-sm.mx-auto.bg-white
     header
       - if user_signed_in?
