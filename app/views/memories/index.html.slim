@@ -1,7 +1,7 @@
 h1.text-2xl.font-bold.text-center.text-gray-600.mt-8
   | 思い出の一覧
   i.fa-solid.fa-book.m-2
-  .text-base.md:text-lg.font-normal.text-gray-500.mt-6.mb-12.underline.underline-offset-1
+  .text-base.sm:text-lg.font-normal.text-gray-500.mt-6.mb-12.underline.underline-offset-1
     = sort_link(@q, :id, '投稿順')
 
   #memories
@@ -10,7 +10,7 @@ h1.text-2xl.font-bold.text-center.text-gray-600.mt-8
       = turbo_frame_tag "memories-page-#{@memories.next_page}", loading: :lazy, src: path_to_next_page(@memories)
 
   - if @memories.empty?
-    .text-center.m-5.font-normal.text-base.md:text-lg#no-memories-message
+    .text-center.m-5.font-normal.text-base.sm:text-lg#no-memories-message
       | 思い出がまだ登録されていません。
       br
       | 画面右下の
