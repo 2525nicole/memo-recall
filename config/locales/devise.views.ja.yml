@@ -97,10 +97,10 @@ ja:
         cancel_my_account: アカウントを削除する
         currently_waiting_confirmation_for_email: "%{email} の確認待ち"
         leave_blank_if_you_don_t_want_to_change_it: パスワードを変更しない場合、入力は不要です。
-        title: "%{resource}設定"
+        title: "アカウント設定"
         unhappy: 気に入りません
         update: 更新
-        we_need_your_current_password_to_confirm_your_changes: メールアドレスまたはパスワードを変更するために、現在のパスワードを入力してください。
+        we_need_your_current_password_to_confirm_your_changes: "メールアドレスまたはパスワードを変更するために、<br>現在のパスワードを入力してください。"
       new:
         sign_up: アカウント登録
       signed_up: アカウント登録が完了しました。
