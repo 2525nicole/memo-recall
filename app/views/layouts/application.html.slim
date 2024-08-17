@@ -12,23 +12,24 @@ html.bg-slate-200
     = favicon_link_tag 'favicon.ico'
     = favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type: 'image/png', sizes: '180x180'
     = favicon_link_tag 'android-chrome-144x144.png', rel: 'icon', type: 'image/png', sizes: '144x144'
-  body.flex.flex-col.min-h-screen.max-w-screen-sm.mx-auto.bg-white
+  body.flex.flex-col.max-w-screen-sm.mx-auto.bg-white.relative.min-h-screen
     header
       - if user_signed_in?
         = render 'layouts/header'
-    main.px-4.container[class=container_padding_class]
+    main.px-4.container.flex-grow[class=container_padding_class]
       .my-2.mx-3
         #flash
           = render 'layouts/flash'
       = yield
-      - if current_user
-        .sticky.bottom-4.flex.justify-end.z-10
-          = link_to new_memory_path, data: { turbo_frame: 'new_memory' },
-          class: 'bg-sky-300 hover:bg-sky-400 text-white rounded-full w-14 sm:w-20 h-14 sm:h-20 flex items-center justify-center shadow-lg' do
-            i.fa-solid.fa-pen-to-square.text-4xl.sm:text-6xl
+    - if current_user
+      .sticky.bottom-0.flex.justify-end.z-10
+        = link_to new_memory_path, data: { turbo_frame: 'new_memory' },
+        class: 'bg-sky-300 hover:bg-sky-400 text-white rounded-full w-14 sm:w-20 h-14 sm:h-20 flex items-center justify-center shadow-lg' do
+          i.fa-solid.fa-pen-to-square.text-4xl.sm:text-6xl
 
-    footer
-      = render 'layouts/footer'
+    - if !user_signed_in? || current_page?(edit_user_registration_path)
+      footer.bg-sky-100.w-full.mt-6
+        = render 'layouts/footer'
 
     div data-controller='modal'
       .hidden.fixed.top-0.left-0.w-screen.h-screen.bg-blue-300.bg-gray-700/50.z-40.max-h-screen data-modal-target='modal' data-action='click->modal#close turbo:frame-load->modal#open turbo:submit-end->modal#close'
