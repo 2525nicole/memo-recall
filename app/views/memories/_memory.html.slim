@@ -6,7 +6,7 @@
           = simple_format memory.content, class: 'text-left'
           - if memory.category
             br
-            p.text-sm.text-gray-500.hover:text-gray-900.underline.underline-offset-1.mb-2.sm:text-base
+            p.text-sm.text-gray-900.hover:text-gray-500.underline.underline-offset-1.hover:no-underline.mb-2.sm:text-base
               = link_to "カテゴリー: #{memory.category.name}", category_memories_path(memory.category.id), data: { turbo: false }
         p.text-gray-600.text-sm.sm:text-base.mt-4
           | 投稿日: #{l(memory.created_at, format: :date_only)}
