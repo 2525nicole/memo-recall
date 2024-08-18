@@ -12,7 +12,7 @@ html.bg-slate-200
     = favicon_link_tag 'favicon.ico'
     = favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type: 'image/png', sizes: '180x180'
     = favicon_link_tag 'android-chrome-144x144.png', rel: 'icon', type: 'image/png', sizes: '144x144'
-  body.flex.flex-col.max-w-screen-sm.mx-auto.bg-white.relative.min-h-screen
+  body.flex.flex-col.max-w-screen-sm.mx-auto.bg-white.relative.min-h-screen.text-gray-800
     header
       - if user_signed_in?
         = render 'layouts/header'

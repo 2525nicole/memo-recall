@@ -6,11 +6,11 @@
           = simple_format memory.content, class: 'text-left'
           - if memory.category
             br
-            p.text-sm.text-gray-900.hover:text-gray-500.underline.underline-offset-1.hover:no-underline.mb-2.sm:text-base
+            p.text-sm.text-gray-900.hover:text-gray-500.underline.hover:no-underline.mb-2.sm:text-base
               = link_to "カテゴリー: #{memory.category.name}", category_memories_path(memory.category.id), data: { turbo: false }
         p.text-gray-600.text-sm.sm:text-base.mt-4
           | 投稿日: #{l(memory.created_at, format: :date_only)}
-        .flex.flex-row.justify-center.items-center.space-y-2.space-y-0.space-x-12.sm:space-x-16.text-sm.sm:text-base.sm:mb-10.my-5
+        .flex.flex-row.justify-center.items-center.space-x-12.sm:space-x-16.text-sm.sm:text-base.my-5
           div data-controller='modal'
             .flex.flex-row
               = link_to t('activerecord.action.edit'), edit_memory_path(memory), data: { turbo_frame: "edit_memory_#{memory.id}" }, class: 'block bg-sky-400 hover:bg-sky-300 text-white font-bold py-2 rounded w-36 sm:w-44'
