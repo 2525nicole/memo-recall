@@ -1,8 +1,7 @@
 .flex.flex-col.items-center.min-h-screen
   .w-full.mx-auto.font-normal.text-center.px-2.sm:px-10
-    h1.text-lg.sm:text-xl.font-bold.text-center.mt-20
-
-      | あなたの素敵な思い出をお届けします
+    h1.text-lg.sm:text-xl.font-bold.text-center.mt-6
+      | あなたの思い出をお届けします
       .i.fa-regular.fa-envelope.ml-1
 
     .text-sm.sm:text-base.font-normal.mt-3.mb-8
@@ -17,6 +16,8 @@
       .w-full.mx-auto
         = turbo_frame_tag 'random_memory' do
           - if @memory
+            .flex.justify-center.items-center.mb-6
+              = link_to 'もっと見る', root_path, class: 'bg-sky-400 hover:bg-sky-300 text-white font-bold py-3 px-8 rounded w-52'
             .border.border-gray-300.rounded.p-4.bg-white.shadow-md.w-full.mx-auto.font-normal.sm:px-10
               = simple_format @memory.content, class: 'text-left'
             - if @memory.category
@@ -24,12 +25,9 @@
               p.text-sm.mb-2.sm:text-base.text-gray-600
                 | カテゴリー:
                 br
-                = link_to @memory.category.name.to_s, category_memories_path(@memory.category.id), data: { turbo: false }, class: 'text-gray-500 hover:text-gray-900 underline underline-offset-1'
-
+                = link_to @memory.category.name.to_s, category_memories_path(@memory.category.id), data: { turbo: false }, class: 'underline hover:no-underline text-gray-700 hover:text-gray-500'
             p.text-gray-600.text-sm.sm:text-base.mt-4
                 | 投稿日: #{l(@memory.created_at, format: :date_only)}
-            .flex.justify-center.items-center.mt-6
-              = link_to 'もっと見る', root_path, class: 'bg-sky-300 hover:bg-sky-500 text-white font-bold py-2 rounded w-36 sm:w-44'
           - else
             | 思い出がまだ登録されていません。
             br
