@@ -1,27 +1,30 @@
-h1.text-base.sm:text-2xl.font-bold.text-center.text-gray-600.mt-8
-  | 「#{@category.name}」
+h1.text-base.sm:text-xl.font-bold.text-center.mt-8
+  | #{@category.name}
   br
   |の思い出一覧（
   = turbo_frame_tag "memories-count-#{@category.id}" do
     = @category.memories.count
   | 件）
-  .text-base.sm:text-lg.font-normal.text-gray-500.mt-6.mb-12.underline.underline-offset-1
+  .text-base.sm:text-lg.font-normal.text-gray-900.hover:text-gray-500.underline.hover:no-underline.mt-6.mb-8
     = sort_link(@q, :id, '投稿順')
   .mb-8
     = button_to t('activerecord.action.destroy.memories_by_category'),
-                destroy_with_memories_category_path(@category), method: :delete, data: { turbo_confirm: sanitize("カテゴリー「#{@category.name}」と、\n紐づく#{@category.memories.count}件の思い出を手放しますか？\n手放した思い出は一覧から削除されます。") },
-                class: 'text-sm sm:text-base bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 rounded'
+                destroy_with_memories_category_path(@category), method: :delete, data: { turbo_confirm: sanitize("カテゴリー「#{@category.name}」と、\n紐づく思い出をすべて手放しますか？\n手放した思い出は一覧から削除されます。") },
+                class: 'bg-gray-400 hover:bg-gray-300 text-sm sm:text-base text-white font-bold py-2 rounded'
   #memories
   = turbo_frame_tag "memories-page-#{@memories.current_page}"
     = render @memories
     = turbo_frame_tag "memories-page-#{@memories.next_page}", loading: :lazy, src: path_to_next_page(@memories)
 
   - if @memories.empty?
-    .text-center.m-5.font-normal.text-base.sm:text-lg#no-memories-message
-      | 思い出がまだ登録されていません。
+    .text-center.font-normal.text-base.sm:text-lg#no-memories-message
+      | このカテゴリーに紐づく思い出が
+      br
+      | まだ登録されていません。
+      br
       br
       | 画面右下の
       i.fa-solid.fa-pen-to-square
-      | ボタンをクリックして
+      | をクリックして
       br
       | 思い出を登録してみましょう。
