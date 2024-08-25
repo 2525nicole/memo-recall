@@ -19,7 +19,7 @@ h1.text-2xl.font-bold.text-center.mt-8
           button.p.text-3xl.text-gray-500.hover:text-gray-900.cursor-pointer data-action='click->modal#close' type="button"
             | ×
         = turbo_frame_tag 'new_category'
-  .text-base.sm:text-lg.font-normal.text-gray-900.hover:text-gray-500.underline.hover:no-underline.mt-6.mb-8
+  .text-base.sm:text-lg.font-normal.link-with-underline.mt-6.mb-8
     = sort_link(@q, :id, '投稿順')
 
   #categories

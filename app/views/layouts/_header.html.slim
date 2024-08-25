@@ -12,12 +12,12 @@ header.h-14.flex.justify-between.bg-sky-100.z-20.w-full.border-b.border-slate-20
               .p-4.text-base.text-left.md:text-lg
                   ul.flex.flex-col.items-center.space-y-2
                     li.text-center
-                      = link_to 'トップページ', root_path, class: 'text-gray-700 hover:text-gray-500 font-bold w-full block p-2'
+                      = link_to 'トップページ', root_path, class: 'link font-bold w-full block p-2'
                     li.text-center
-                      = link_to '思い出の一覧', memories_path, class: 'text-gray-700 hover:text-gray-500 font-bold w-full block p-2'
+                      = link_to '思い出の一覧', memories_path, class: 'link font-bold w-full block p-2'
                     li.text-center
-                      = link_to 'カテゴリーの一覧', categories_path, class: 'text-gray-700 hover:text-gray-500 font-bold w-full block p-2'
+                      = link_to 'カテゴリーの一覧', categories_path, class: 'link font-bold w-full block p-2'
                     li.text-center
-                      = link_to 'アカウント設定', edit_user_registration_path, class: 'text-gray-700 hover:text-gray-500 font-bold w-full block p-2'
+                      = link_to 'アカウント設定', edit_user_registration_path, class: 'link font-bold w-full block p-2'
                     li.text-center
-                      = button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'text-gray-700 hover:text-gray-500 font-bold w-full block p-2'
+                      = button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'link font-bold w-full block p-2'
