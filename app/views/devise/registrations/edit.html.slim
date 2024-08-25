@@ -48,13 +48,13 @@ h2.text-xl.font-bold.text-center.mb-6
               = f.label :current_password, class: 'text-base sm:text-lg font-normal mb-2'
               = f.password_field :current_password, autocomplete: 'current-password', class: 'w-full text-base sm:text-lg mb-2 rounded'
       .text-center
-        = f.submit t('.update'), class: 'block bg-sky-400 hover:bg-sky-300 text-white font-bold py-3 px-8 rounded mx-auto text-base sm:text-lg w-52 mb-8'
+        = f.submit t('.update'), class: 'primary-btn py-3 px-8 mx-auto text-base sm:text-lg w-52 mb-8'
   = button_to t('.cancel_my_account'),
               registration_path(resource_name),
               data: { confirm: t('.are_you_sure'),
               turbo_confirm: t('.are_you_sure') },
               method: :delete,
-              class: 'text-base underline hover:no-underline text-gray-700 hover:text-gray-500 mb-6'
+              class: 'text-base link-with-underline mb-6'
   = link_to t('devise.shared.links.back'),
             :back,
-            class: 'text-base underline hover:no-underline text-gray-700 hover:text-gray-500'
+            class: 'text-base link-with-underline'
