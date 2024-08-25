@@ -4,66 +4,95 @@
     <title>The page you were looking for doesn't exist (404)</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <style>
-      .rails-default-error-page {
-        background-color: #efefef;
-        color: #2e2f30;
-        text-align: center;
-        font-family: arial, sans-serif;
-        margin: 0;
+      html {
+        color: #1f2937;
+        line-height: 1;
       }
 
-      .rails-default-error-page div.dialog {
-        width: 95%;
-        max-width: 33em;
-        margin: 4em auto 0;
+      body {
+        padding-top: 4rem;
+        background-color: #e2e8f0;
       }
 
-      .rails-default-error-page div.dialog > div {
-        border: 1px solid #ccc;
-        border-right-color: #999;
-        border-left-color: #999;
-        border-bottom-color: #bbb;
-        border-top: #b00100 solid 4px;
-        border-top-left-radius: 9px;
-        border-top-right-radius: 9px;
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .error-message {
+        max-width: 40rem;
+        margin-inline: auto;
         background-color: white;
-        padding: 7px 12% 0;
-        box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+        border: solid 4px #38bdf8;
+        border-radius: 10px;
       }
 
-      .rails-default-error-page h1 {
-        font-size: 100%;
-        color: #730e15;
-        line-height: 1.5em;
+      .error-message__header {
+        border-bottom: solid 1px #38bdf8;
+        background-color: white;
+        line-height: 1.4;
+        text-align: center;
       }
 
-      .rails-default-error-page div.dialog > p {
-        margin: 0 0 1em;
-        padding: 1em;
-        background-color: #f7f7f7;
-        border: 1px solid #ccc;
-        border-right-color: #999;
-        border-left-color: #999;
-        border-bottom-color: #999;
-        border-bottom-left-radius: 4px;
-        border-bottom-right-radius: 4px;
-        border-top-color: #dadada;
-        color: #666;
-        box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+      .error-message__header h1 {
+        padding: 0.25em;
+        font-size: 1.25rem;
+      }
+
+      .error-message__body {
+        padding: 1.25em;
+        font-size: 1rem;
+      }
+
+      @media (max-width: 47.9375em) {
+        .error-message__body {
+          font-size: 0.875rem;
+        }
+      }
+
+      .error-message__body p {
+        line-height: 1.6;
+        margin-bottom: 1em;
+      }
+
+      .error-message__body .error-message__number {
+        text-align: center;
+        font-size: 1.125em;
+        font-weight: 900;
+        margin-bottom: 0.875em;
+      }
+
+      .link {
+        color: #374151;
+        text-align: center;
+      }
+
+      .link:hover {
+        color: #6b7280;
+        text-decoration: none;
       }
     </style>
   </head>
 
-  <body class="rails-default-error-page">
+  <body>
     <!-- This file lives in public/404.html -->
-    <div class="dialog">
-      <div>
-        <h1>The page you were looking for doesn't exist.</h1>
-        <p>You may have mistyped the address or the page may have moved.</p>
+    <div class="container">
+      <div class="error-message">
+        <header class="error-message__header">
+          <h1>ご指定のページが見つかりません</h1>
+        </header>
+        <div class="error-message__body">
+          <p class="error-message__number">404: Not Found</p>
+          <p>
+            お探しのページは一時的にアクセスができない状況にあるか、移動もしくは削除された可能性があります。<br />
+            アドレスにお間違いないか再度ご確認ください。
+          </p>
+          <div class="link">
+            <!-- ドメイン取得後、以下にURLを追加する -->
+            <a href="" class="link">トップページへ戻る</a>
+          </div>
+        </div>
       </div>
-      <p>
-        If you are the application owner check the logs for more information.
-      </p>
     </div>
   </body>
 </html>
