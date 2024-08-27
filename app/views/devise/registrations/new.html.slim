@@ -1,6 +1,7 @@
+- set_meta_tags title: 'アカウント登録'
 .container.mx-auto.px-4.max-w-md
   = render 'devise/shared/header'
-  h2.text-xl.font-bold.text-center.mb-6
+  h1.text-xl.font-bold.text-center.mb-6
     = t('.sign_up')
 
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
