@@ -19,11 +19,11 @@ module ApplicationHelper
         type: 'website',
         description: :description,
         image: image_url('ogp.png'),
-        url: 'http://localhost:3000/'
+        url: 'https://memo-recall.fly.dev/'
       },
       twitter: {
         card: 'summary_large_image',
-        site: '@2525nicole2525'
+        site: '@2525nicole2525',
       }
     }
   end
