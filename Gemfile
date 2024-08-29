@@ -72,3 +72,5 @@ group :development do
   gem 'slim_lint', require: false
 end
 
+
+gem "dockerfile-rails", ">= 1.6", :group => :development
