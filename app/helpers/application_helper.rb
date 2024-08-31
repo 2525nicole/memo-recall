@@ -2,7 +2,7 @@
 
 module ApplicationHelper
   def container_padding_class
-    if current_page?(tos_path	) || current_page?(pp_path)
+    if current_page?(tos_path) || current_page?(pp_path)
       'pt-10'
     elsif user_signed_in?
       'pt-14'
