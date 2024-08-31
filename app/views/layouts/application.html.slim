@@ -15,7 +15,7 @@ html.bg-slate-200
     = favicon_link_tag 'android-chrome-144x144.png', rel: 'icon', type: 'image/png', sizes: '144x144'
   body.flex.flex-col.max-w-screen-sm.mx-auto.bg-white.relative.min-h-screen.text-gray-800
     header
-      - if user_signed_in?
+      - if user_signed_in? || current_page?(tos_path) || current_page?(pp_path)
         = render 'layouts/header'
     main.px-4.container.flex-grow[class=container_padding_class]
       .my-2.mx-3
