@@ -2,7 +2,13 @@
 
 module ApplicationHelper
   def container_padding_class
-    user_signed_in? ? 'pt-14' : 'pt-0'
+    if current_page?(tos_path	) || current_page?(pp_path)
+      'pt-10'
+    elsif user_signed_in?
+      'pt-14'
+    else
+      'pt-0'
+    end
   end
 
   def default_meta_tags
