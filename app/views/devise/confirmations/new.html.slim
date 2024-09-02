@@ -8,12 +8,12 @@
     = render 'devise/shared/error_messages', resource: resource
 
     .w-full.max-w-sm.mx-auto.mt-8.mb-6.text-left
-      = f.label :email, class: 'text-base sm:text-lg font-normal mb-2'
+      = f.label :email, class: 'text-lg font-normal mb-2'
       = f.email_field :email,
         autofocus: true,
         autocomplete: 'email',
-        class: 'w-full text-base sm:text-lg mb-2 rounded',
+        class: 'w-full text-lg mb-2 rounded',
         value: resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email
     .text-center
-      = f.submit t('.resend_me_confirmation_instructions'), class: 'primary-btn py-3 px-8 mx-auto text-base sm:text-lg w-52 mb-8'
+      = f.submit t('.resend_me_confirmation_instructions'), class: 'primary-btn py-3 px-8 mx-auto text-lg w-52 mb-8'
   = render 'devise/shared/links'
