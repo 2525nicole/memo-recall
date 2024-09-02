@@ -1,6 +1,6 @@
 - if resource.errors.any?
   .w-full.flex.justify-center
-    #error_explanation[data-turbo-cache="false" class="text-sm sm:text-base font-normal bg-pink-200 text-pink-600 p-2 w-full text-center"]
+    #error_explanation[data-turbo-cache="false" class="text-base font-normal bg-pink-200 text-pink-600 p-2 w-full text-center"]
       ul.list-none
         - resource.errors.full_messages.each do |message|
           li = message
