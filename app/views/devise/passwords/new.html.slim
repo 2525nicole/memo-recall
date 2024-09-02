@@ -7,12 +7,12 @@
   = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
     = render 'devise/shared/error_messages', resource: resource
 
-    .text-center.mt-8.text-xs.sm:text-base
-      p.text-sm.sm:text-base.mb-2 パスワード再設定用のリンクをお送りします。
-      p.text-xs.sm:text-sm ※登録しているメールアドレスを入力してください。
+    .text-center.mt-8.text-base
+      p.text-base.mb-2 パスワード再設定用のリンクをお送りします
+      p.text-sm ※登録しているメールアドレスを入力してください。
     .w-full.max-w-sm.mx-auto.mt-8.mb-6.text-left
-        = f.label :email, class: 'text-base sm:text-lg font-normal mb-2'
-        = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'w-full text-base sm:text-lg mb-2 rounded'
+        = f.label :email, class: 'text-lg font-normal mb-2'
+        = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'w-full text-lg mb-2 rounded'
     .text-center
-      = f.submit t('.send_me_reset_password_instructions'), class: 'primary-btn py-3 px-8 mx-auto text-base sm:text-lg w-52 mb-8'
+      = f.submit t('.send_me_reset_password_instructions'), class: 'primary-btn py-3 px-8 mx-auto text-lg w-52 mb-8'
   = render 'devise/shared/links'
