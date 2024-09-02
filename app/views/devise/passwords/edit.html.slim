@@ -15,12 +15,12 @@
             - if @minimum_password_length
                 = t('devise.shared.minimum_password_length', count: @minimum_password_length)
             br
-            = f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'w-full text-base sm:text-lg mb-2 rounded'
+            = f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'w-full text-lg mb-2 rounded'
       .field
         .w-full
           .max-w-sm.mx-auto.text-left
             = f.label :password_confirmation, t('.confirm_new_password')
-            = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'w-full text-base sm:text-lg mb-8 rounded'
+            = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'w-full text-lg mb-8 rounded'
         .text-center
-          = f.submit t('.change_my_password'), class: 'primary-btn py-3 px-8 mx-auto text-base sm:text-lg w-52 mb-8'
+          = f.submit t('.change_my_password'), class: 'primary-btn py-3 px-8 mx-auto text-lg w-52 mb-8'
   = render 'devise/shared/links'
