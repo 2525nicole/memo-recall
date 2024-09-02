@@ -1,30 +1,30 @@
 div data-controller="removal"
   - if flash[:after_destroy]
-    .w-full.bg-cyan-100.text-cyan-700.py-0.h-10.flex.justify-between.items-center.sm:pl-8.sm:h-14.mb-4
+    .w-full.bg-cyan-100.text-cyan-700.py-0.h-10.flex.justify-between.items-center.sm:pl-8.sm:h-14
       .flex.items-center
         = image_tag 'flying_bird.png', alt: '飛び立つ鳥', class: 'h-20 sm:h-24 z-30'
         = flash[:after_destroy]
       p.text-xl.text-gray-500.hover:text-gray-900.ml-auto.cursor-pointer.pl-1.pr-4.py-3 data-action='click->removal#remove'
         | ×
   - if flash[:after_create]
-    .w-full.bg-cyan-100.text-cyan-700.py-2.h-10.flex.justify-between.items-center.pl-8.sm:pl-16.sm:h-14.mb-4
+    .w-full.bg-cyan-100.text-cyan-700.py-2.h-10.flex.justify-between.items-center.pl-8.sm:pl-16.sm:h-14
       span.flex.items-center.text-sm.sm:text-base
         = flash[:after_create]
       p.text-xl.text-gray-500.hover:text-gray-900.ml-auto.cursor-pointer.px-4.py-3 data-action='click->removal#remove'
         | ×
   - if flash[:after_create_with_link]
-    .w-full.bg-cyan-100.border-cyan-500.text-cyan-700.py-2.h-10.flex.justify-between.items-center.pl-8.sm:pl-16.sm:h-14.mb-4
+    .w-full.bg-cyan-100.border-cyan-500.text-cyan-700.py-2.h-10.flex.justify-between.items-center.pl-8.sm:pl-16.sm:h-14
       span.flex.items-center.underline.hover:text-gray-900.text-sm.sm:text-base
         == flash[:after_create_with_link]
       p.text-xl.text-gray-500.hover:text-gray-900.ml-auto.cursor-pointer.px-4.py-3 data-action='click->removal#remove'
         | ×
   - if notice
-    .w-full.bg-cyan-100.text-cyan-700.pt-0.pb-0.h-10.flex.justify-between.items-center.pl-8.sm:pl-16.sm:h-14.mb-4
+    .w-full.bg-cyan-100.text-cyan-700.pt-0.pb-0.h-10.flex.justify-between.items-center.pl-8.sm:pl-16.sm:h-14
       = notice
       p.text-xl.text-gray-500.hover:text-gray-900.ml-auto.cursor-pointer.px-4.py-3 data-action='click->removal#remove'
         | ×
   - if alert
-    .w-full.bg-pink-200.text-pink-600.py-0.h-10.flex.justify-between.items-center.pl-8.sm:pl-16.sm:h-14.mb-4
+    .w-full.bg-pink-200.text-pink-600.py-0.h-10.flex.justify-between.items-center.pl-8.sm:pl-16.sm:h-14
       = alert
       p.text-xl.text-gray-500.hover:text-gray-900.ml-auto.cursor-pointer.px-4.py-3 data-action='click->removal#remove'
         | ×
