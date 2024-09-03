@@ -1,11 +1,10 @@
 - set_meta_tags title: 'パスワード再設定'
+= render 'devise/shared/error_messages', resource: resource
 .container.mx-auto.px-4.max-w-md
   = render 'devise/shared/header'
   h1.text-xl.font-bold.text-center.mb-6
     = t('.change_your_password')
-
   = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-    = render 'devise/shared/error_messages', resource: resource
     = f.hidden_field :reset_password_token
     .text-center
       .field.mb-6.mt-8
