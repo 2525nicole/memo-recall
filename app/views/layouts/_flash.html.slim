@@ -8,7 +8,7 @@ div data-controller="removal"
         | ×
   - if flash[:after_create]
     .w-full.bg-cyan-100.text-cyan-700.py-2.h-10.flex.justify-between.items-center.pl-8.sm:pl-16.sm:h-14
-      span.flex.items-center.text-sm.sm:text-base
+      span.flex.items-center.text-base
         = flash[:after_create]
       p.text-xl.text-gray-500.hover:text-gray-900.ml-auto.cursor-pointer.px-4.py-3 data-action='click->removal#remove'
         | ×
