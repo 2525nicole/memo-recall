@@ -1,3 +1,4 @@
+- placeholder_text = "例：一時帰国中の●●と会った。\n相変わらず元気でパワフルで、たくさんの刺激をもらった！目標に向かって頑張る人はかっこいい！\n私も何かチャレンジしたい気持ちになった。キックボクシングの体験教室行ってみようかな〜"
 = turbo_frame_tag memory do
   = form_with(model: memory, local: true, class: 'w-full') do |form|
     - if @memory.errors.any? || @category_errors.any?
@@ -6,31 +7,27 @@
           li.text-red-500.font-normal.text-sm.sm:text-base.mb-2.block = message
         - @category_errors.each do |message|
           li.text-red-500.font-normal.text-sm.sm:text-base.mb-2.block = message
-    .w-full.mx-auto.px-4.justify-center.mb-4
-      = form.text_area :content, class: 'w-full h-48 font-normal sm:h-72'
-    p.font-normal.mb-3.text-gray-600.text-center.text-base.sm:text-lg
-      | 思い出に紐づけるカテゴリーを選択、
-      br
-      | または
-      br
-      | 新しいカテゴリーを登録しましょう。
-
+    .flex.flex-col.w-full.mx-auto.px-4.justify-center.mb-6.mt-2.text-center
+      = form.label :content, '思い出の本文', class: 'font-bold text-base sm:text-lg mb-2'
+      = form.text_area :content, placeholder: placeholder_text, class: 'w-full h-48 font-normal sm:h-72'
+    p.font-bold.mb-1.text-gray-600.text-center.text-base.sm:text-lg
+      | 思い出に紐づけるカテゴリーの設定
     .text-center.w-full
       span data-controller="modal"
-        i.fa-regular.fa-circle-question.ml-2.mb-6.text-gray-500.hover:text-gray-900.text-sm.sm:text-base.cursor-pointer data-action="click->modal#open"
-          | カテゴリーについてもっと詳しく見る
+        i.fa-regular.fa-circle-question.ml-2.mb-4.text-gray-500.hover:text-gray-900.text-sm.sm:text-base.cursor-pointer data-action="click->modal#open"
+          | カテゴリーについて
         .hidden.fixed.w-full.h-screen.top-0.left-0.bg-gray-700/50 data-modal-target="modal" data-action="click->modal#close"
           .absolute.top-0.sm:top-1/2.left-1/2.-translate-x-1/2.sm:-translate-y-1/2.bg-white.rounded-md.w-full.sm:max-w-md data-action="click->modal#stay"
             = render 'layouts/category_description'
     - if @categories.present?
       .flex.flex-col.w-full.mx-auto.px-4.justify-center.mb-4.text-center
-        = form.label :category_id, '登録済みのカテゴリーから選ぶ', class: 'font-normal text-sm sm:text-base mb-4'
+        = form.label :category_id, '登録済みのカテゴリーから選ぶ', class: 'font-normal text-sm sm:text-base mb-2'
         = form.collection_select :category_id, @categories, :id, :name, include_blank: 'カテゴリーなし', class: 'font-normal mt-2 text-center w-full'
     - else
       .text-center.m-5.font-normal.text-base.w-full
         | ※まだカテゴリーの登録がありません。
     .flex.flex-col.w-full.mx-auto.px-4.justify-center.mb-8.mt-4.text-center
-      = form.label :category_id, '新しいカテゴリーを登録する（最大20文字）', class: 'font-normal text-sm sm:text-base'
-      = form.text_field :new_category_name, placeholder: '例：旅行の思い出', class: 'w-full mt-4 text-base font-normal px-2 text-left sm:text-lg'
+      = form.label :category_id, '新しいカテゴリーを登録する（最大20文字）', class: 'font-normal text-sm sm:text-base mb-2'
+      = form.text_field :new_category_name, placeholder: '例：嬉しかった出来事', class: 'w-full text-base font-normal px-2 text-left sm:text-lg'
     .flex.justify-center.mt-10.w-full
       = form.submit '保存する', class: 'primary-btn py-2 px-4 w-full'
