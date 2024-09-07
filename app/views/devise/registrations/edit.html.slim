@@ -16,7 +16,7 @@ h1.text-2xl.font-bold.text-center.mb-6.mt-8
                 div
                   = t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email)
     h3.font-bold.text-lg
-      | パスワード変更
+      | 新しいパスワード
       .font-normal.text-base.text-left.max-w-sm.mx-auto
         = t('.leave_blank_if_you_don_t_want_to_change_it')
       .text-center
@@ -35,7 +35,7 @@ h1.text-2xl.font-bold.text-center.mb-6.mt-8
               br
               = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'w-full text-lg mb-2 rounded'
     h3.font-bold.text-lg
-      | 現在のパスワードを入力
+      | 現在のパスワード（必須）
       .font-normal.text-base.text-left.max-w-sm.mx-auto
         = raw t('.we_need_your_current_password_to_confirm_your_changes')
       .text-center
