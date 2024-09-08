@@ -1,22 +1,26 @@
 - set_meta_tags title: 'ログイン'
 = render 'devise/shared/error_messages', resource: resource
-.container.mx-auto.px-4.max-w-md
+.container.flex.flex-col.items-center.px-4.sm:px-10
   = render 'devise/shared/header'
-  h1.text-xl.font-bold.text-center.mb-6
-    = t('.sign_in')
+  .max-w-md.w-full
+    h1.text-xl.font-bold.text-center.mb-6
+      = t('.sign_in')
 
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    .w-full.max-w-sm.mx-auto.mt-8.mb-6.text-left
-      = f.label :email, class: 'text-lg font-normal mb-2'
-      = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'w-full text-lg mb-2 rounded'
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .w-full.max-w-sm.mx-auto
+        .text-left
+          .field.mt-8.mb-6
+            = f.label :email, class: 'text-lg font-normal mb-2'
+            = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'w-full text-lg mb-2 rounded'
 
-    .w-full.max-w-sm.mx-auto.mb-8.text-left
-      = f.label :password, class: 'text-lg font-normal mb-2'
-      = f.password_field :password, autocomplete: 'current-password', class: 'w-full text-lg mb-2 rounded'
-      - if devise_mapping.rememberable?
-        .flex.items-center.mt-4
-          = f.check_box :remember_me, class: 'mr-2 rounded'
-          = f.label :remember_me, class: 'text-base font-normal'
-    .text-center
-      = f.submit t('.sign_in'), class: 'primary-btn py-3 px-8 mx-auto text-lg w-52 mb-8'
+          .field.mb-8
+            = f.label :password, class: 'text-lg font-normal mb-2'
+            = f.password_field :password, autocomplete: 'current-password', class: 'w-full text-lg mb-2 rounded'
+            - if devise_mapping.rememberable?
+              .flex.items-center.mt-4
+                = f.check_box :remember_me, class: 'mr-2 rounded'
+                = f.label :remember_me, class: 'text-base font-normal'
+
+      .text-center
+        = f.submit t('.sign_in'), class: 'primary-btn py-3 px-8 mx-auto text-lg w-52 mb-8'
   = render 'devise/shared/links'

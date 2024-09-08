@@ -1,17 +1,17 @@
 - set_meta_tags title: 'アカウント確認メールの再送'
 = render 'devise/shared/error_messages', resource: resource
-.container.mx-auto.px-4.max-w-md
+.container.flex.flex-col.items-center.px-4.sm:px-10
   = render 'devise/shared/header'
-  h2.text-xl.font-bold.text-center.mb-6
-    = t('.resend_confirmation_instructions')
-  = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-    .w-full.max-w-sm.mx-auto.mt-8.mb-6.text-left
-      = f.label :email, class: 'text-lg font-normal mb-2'
-      = f.email_field :email,
-        autofocus: true,
-        autocomplete: 'email',
-        class: 'w-full text-lg mb-2 rounded',
-        value: resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email
-    .text-center
-      = f.submit t('.resend_me_confirmation_instructions'), class: 'primary-btn py-3 px-8 mx-auto text-lg w-52 mb-8'
-  = render 'devise/shared/links'
+  .max-w-md.w-full
+    h2.text-xl.font-bold.text-center.mb-6
+      = t('.resend_confirmation_instructions')
+    = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+      .w-full.max-w-sm.mx-auto.mt-8.mb-6.text-left
+        = f.label :email, class: 'text-lg font-normal mb-2'
+        = f.email_field :email,
+          autofocus: true,
+          autocomplete: 'email',
+          class: 'w-full text-lg mb-2 rounded'
+      .text-center
+        = f.submit t('.resend_me_confirmation_instructions'), class: 'primary-btn py-3 px-8 mx-auto text-lg w-52 mb-8'
+    = render 'devise/shared/links'
