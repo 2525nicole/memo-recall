@@ -1,56 +1,57 @@
 - set_meta_tags title: 'トップページ'
-.mt-10.font-bold.text-center.text-base.sm:text-lg.text-sky-600
-  | 大切な思い出を　いつでも、いつまでも
-  = image_tag 'title_logo.png', alt: 'Memo Recallのロゴ画像', class: 'm-auto mt-2'
-p.font-normal.text-center.text-gray-800.text-base.sm:text-lg.mt-2
-  | Memo Recall（メモリコール）は
-  br
-  | 思い出記録サービスです。
-  br
-  | いつでも簡単に思い出を記録したり、振り返ることができます。
-.mt-6.text-center.mb-2
-.flex.justify-center.w-full
-  .text-center
-    = link_to 'アカウントを作成', new_user_registration_path, class: 'primary-btn block py-3 px-8 text-center mx-auto text-base sm:text-lg w-52'
-.mt-6.font-normal.text-center.mb-2.text-sm.sm:text-base
-  | アカウントをお持ちの方はこちら
-.flex.justify-center.w-full
-  .text-center
-    = link_to 'ログイン', user_session_path, class: 'block bg-white hover:bg-sky-100 text-sky-400 border-sky-400 border-2 font-bold rounded py-3 px-8 text-center mx-auto text-base sm:text-lg w-52 mb-2'
-    = image_tag 'line.png', alt: '星のライン', class: 'm-auto mt-2'
-    p.font-normal.text-center.text-gray-800.text-sm.sm:text-base.mt-6
-      | 楽しかった出来事や
-      = image_tag 'family_outing.png', alt: '楽しいお出かけ', class: 'w-64 m-auto mb-6'
-      | 誰かがかけてくれた嬉しい言葉
-      = image_tag 'heart_warming.png', alt: '心ああたまる様子', class: 'w-80 m-auto'
-      | 大切な思い出を、忘れないように記録しませんか？
-    p.font-normal.text-center.text-gray-800.text-sm.sm:text-base.mt-10
-      | ログイン後はどこのページにいても、
-      br
-      | フォームを開いてすぐに思い出を記録できます。
-      = image_tag 'demo_form.png', alt: '思い出登録フォーム', class: 'w-96 m-auto mt-4'
-    p.font-normal.text-center.text-gray-800.text-sm.sm:text-base.mt-10
-      | カテゴリーと紐づけて登録することで
-      br
-      | カテゴリーごとの思い出を表示したり、
-      = image_tag 'demo_category_memories.png', alt: 'カテゴリー別思い出一覧ページ', class: 'w-96 m-auto mb-8 mt-4'
-      | 思い出の整理ができるので、
-      br
-      | いつでも前向きに過去を振り返ることができます。
-      = image_tag 'demo_destroy_category_and_memories.png', alt: 'カテゴリーと紐づく思い出一括削除', class: 'w-96 m-auto mt-4'
-    p.font-normal.text-center.text-gray-800.text-sm.sm:text-base.mt-10
-      | トップページでは、登録済みの思い出がランダムで表示されます。
-      = image_tag 'demo_top.png', alt: '思い出のランダム表示', class: 'w-96 m-auto mb-8 mt-4'
-      | 日々の忙しさで忘れかけていた大切な思い出と
-      br
-      | 思わぬ再会ができるかもしれません。
-.mt-10.font-normal.text-center.mb-2.text-base.sm:text-lg
-  | あなたも大切な思い出を記録しませんか？
-.flex.justify-center.w-full
-  .text-center
-    = link_to 'アカウントを作成', new_user_registration_path, class: 'primary-btn block py-3 px-8 text-center mx-auto text-base sm:text-lg w-52'
-.mt-6.font-normal.text-center.mb-2.text-sm.sm:text-base
-  | アカウントをお持ちの方はこちら
-.flex.justify-center.w-full
-  .text-center
-    = link_to 'ログイン', user_session_path, class: 'block bg-white hover:bg-sky-100 text-sky-400 border-sky-400 border-2 font-bold rounded py-3 px-8 text-center mx-auto text-base sm:text-lg w-52 mb-2'
+.px-4.sm:px-10
+  .mt-6.font-bold.text-center.text-lg.text-sky-600
+    | 大切な思い出を　いつでも、いつまでも
+    = image_tag 'title_logo.png', alt: 'Memo Recallのロゴ画像', class: 'm-auto mt-2'
+  p.font-normal.text-center.text-gray-800.text-base.mt-2
+    | Memo Recallは思い出記録サービスです。
+    br
+    | いつでも簡単に思い出を記録したり、
+    br
+    | 振り返ることができます。
+  .mt-6.text-center.mb-2
+    .flex.justify-center.w-full
+      .text-center
+        = link_to '新規登録', new_user_registration_path, class: 'primary-btn block py-3 px-8 text-center mx-auto text-lg w-52'
+    .mt-6.font-normal.text-center.mb-2.text-base
+      | アカウントをお持ちの方はこちら
+    .flex.justify-center.w-full
+      .text-center
+        = link_to 'ログイン', user_session_path, class: 'block bg-white hover:bg-sky-100 text-sky-400 border-sky-400 border-2 font-bold rounded py-3 px-8 text-center mx-auto text-lg w-52 mb-2'
+        = image_tag 'line.png', alt: '星のライン', class: 'm-auto mt-2'
+        p.font-normal.text-center.text-gray-800.text-base.mt-6
+          | 楽しかった出来事や
+          = image_tag 'family_outing.png', alt: '楽しいお出かけ', class: 'w-64 m-auto mb-6'
+          | 誰かがかけてくれた嬉しい言葉
+          = image_tag 'heart_warming.png', alt: '心ああたまる様子', class: 'w-80 m-auto'
+          | 大切な思い出を、忘れないように記録しませんか？
+        p.font-normal.text-center.text-gray-800.text-base.mt-10
+          | ログイン後はどこのページにいても、
+          br
+          | フォームを開いてすぐに思い出を記録できます。
+          = image_tag 'demo_form.png', alt: '思い出登録フォーム', class: 'w-96 m-auto mt-4'
+        p.font-normal.text-center.text-gray-800.text-base.mt-10
+          | カテゴリーと紐づけて登録することで
+          br
+          | カテゴリーごとの思い出を表示したり、
+          = image_tag 'demo_category_memories.png', alt: 'カテゴリー別思い出一覧ページ', class: 'w-96 m-auto mb-8 mt-4'
+          | 思い出の整理ができるので、
+          br
+          | いつでも前向きに過去を振り返ることができます。
+          = image_tag 'demo_destroy_category_and_memories.png', alt: 'カテゴリーと紐づく思い出一括削除', class: 'w-96 m-auto mt-4'
+        p.font-normal.text-center.text-gray-800.text-base.mt-10
+          | トップページでは、登録済みの思い出がランダムで表示されます。
+          = image_tag 'demo_top.png', alt: '思い出のランダム表示', class: 'w-96 m-auto mb-8 mt-4'
+          | 日々の忙しさで忘れかけていた大切な思い出と
+          br
+          | 思わぬ再会ができるかもしれません。
+    .mt-10.font-normal.text-center.mb-2.text-lg
+      | あなたも大切な思い出を記録しませんか？
+    .flex.justify-center.w-full
+      .text-center
+        = link_to '新規登録', new_user_registration_path, class: 'primary-btn block py-3 px-8 text-center mx-auto text-lg w-52'
+    .mt-6.font-normal.text-center.mb-2.text-base
+      | アカウントをお持ちの方はこちら
+    .flex.justify-center.w-full
+      .text-center
+        = link_to 'ログイン', user_session_path, class: 'block bg-white hover:bg-sky-100 text-sky-400 border-sky-400 border-2 font-bold rounded py-3 px-8 text-center mx-auto text-lg w-52 mb-2'

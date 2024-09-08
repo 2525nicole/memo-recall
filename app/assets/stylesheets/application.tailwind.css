@@ -23,3 +23,9 @@
     @apply text-gray-700 hover:text-gray-500 underline hover:no-underline;
   }
 }
+
+@layer utilities {
+  .max-h-80vh {
+    max-height: 80vh;
+  }
+}

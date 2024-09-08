@@ -1,6 +1,3 @@
 - set_meta_tags title: '思い出の編集'
 = turbo_frame_tag "edit_memory_#{@memory.id}" do
-  p.text-base.font-normal.mb-4.text-center.sm:text-lg
-    | 思い出の編集
-    i.fa-solid.fa-pencil
-    = render 'form', memory: @memory
+  = render 'form', memory: @memory
