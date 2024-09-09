@@ -4,18 +4,25 @@ export default class extends Controller {
   static targets = ["input", "counter"];
 
   connect() {
-    this.updateCounter();
+    this.inputTargets.forEach((input) => this.updateCounter({ target: input }));
   }
 
-  updateCounter() {
-    const inputLength = this.inputTarget.value.length;
-    const maxLength = this.inputTarget.dataset.maxLength;
-    this.counterTarget.innerText = `現在 ${inputLength}/${maxLength} 文字入力しています`;
+  updateCounter(event) {
+    const input = event.target;
+    const maxLength = input.dataset.maxLength;
+    const inputLength = input.value.length;
 
-    if (inputLength > maxLength) {
-      this.counterTarget.classList.add("text-red-500");
-    } else {
-      this.counterTarget.classList.remove("text-red-500");
+    const counter = this.counterTargets.find(
+      (counter) => counter.dataset.counterFor === input.id,
+    );
+    if (counter) {
+      counter.innerText = `現在 ${inputLength}/${maxLength} 文字入力しています`;
+
+      if (inputLength > maxLength) {
+        counter.classList.add("text-red-500");
+      } else {
+        counter.classList.remove("text-red-500");
+      }
     }
   }
 }
