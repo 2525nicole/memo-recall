@@ -4,7 +4,7 @@ class Category < ApplicationRecord
   belongs_to :user
   has_many :memories, dependent: :nullify
 
-  validates :name, presence: true, length: { maximum: 20 }, uniqueness: { scope: :user_id }
+  validates :name, presence: true, length: { maximum: 15 }, uniqueness: { scope: :user_id }
 
   paginates_per 15
 

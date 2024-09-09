@@ -24,7 +24,7 @@
                 br
                 p.text-sm.mb-2.sm:text-base.text-gray-600
                   | カテゴリー:
-                  br
+                  / br
                   = link_to @memory.category.name.to_s, category_memories_path(@memory.category.id), data: { turbo: false }, class: 'link-with-underline'
               p.text-gray-600.text-sm.sm:text-base.mt-4
                   | 投稿日: #{l(@memory.created_at, format: :date_only)}

@@ -1,6 +1,6 @@
 - placeholder_text = "例：一時帰国中の●●と会った。\n相変わらず元気でパワフルで、たくさんの刺激をもらった！目標に向かって頑張る人はかっこいい！\n私も何かチャレンジしたい気持ちになった。キックボクシングの体験教室行ってみようかな〜"
 = turbo_frame_tag memory do
-  = form_with(model: memory, local: true, class: 'w-full') do |form|
+  = form_with(model: memory, local: true, class: 'w-full', data: { controller: 'character-counter' }) do |form|
     - if @memory.errors.any? || @category_errors.any?
       ul.flex.flex-col.items-center
         - memory.errors.full_messages.each do |message|
@@ -11,15 +11,17 @@
       p.text-base.sm:text-lg
       | 登録する思い出を入力してください。
       = form.label :content, '思い出の本文', class: 'font-bold text-base sm:text-lg my-2'
-      = form.text_area :content, placeholder: placeholder_text, class: 'w-full h-48 font-normal sm:h-72'
+      = form.text_area :content, id: 'memory_content', placeholder: placeholder_text, class: 'w-full h-48 font-normal sm:h-72', data: { character_counter_target: 'input', action: 'input->character-counter#updateCounter', max_length: 300 }
+      p.text-base.text-gray-500.mt-2.font-normal.text-right
+        span data-character-counter-target='counter' data-counter-for='memory_content' 現在 0/300 文字入力しています
     p.font-bold.mb-1.text-gray-600.text-center.text-base.sm:text-lg
       | 思い出に紐づけるカテゴリーの設定
     .text-center.w-full
-      span data-controller="modal"
-        i.fa-regular.fa-circle-question.ml-2.mb-4.text-gray-500.hover:text-gray-900.text-sm.sm:text-base.cursor-pointer data-action="click->modal#open"
+      span data-controller='modal'
+        i.fa-regular.fa-circle-question.ml-2.mb-4.text-gray-500.hover:text-gray-900.text-sm.sm:text-base.cursor-pointer data-action='click->modal#open'
           | カテゴリーについて
-        .hidden.fixed.w-full.h-screen.top-0.left-0.bg-gray-700/50 data-modal-target="modal" data-action="click->modal#close"
-          .absolute.top-0.sm:top-1/2.left-1/2.-translate-x-1/2.sm:-translate-y-1/2.bg-white.rounded-md.w-full.sm:max-w-md data-action="click->modal#stay"
+        .hidden.fixed.w-full.h-screen.top-0.left-0.bg-gray-700/50 data-modal-target='modal' data-action='click->modal#close'
+          .absolute.top-0.sm:top-1/2.left-1/2.-translate-x-1/2.sm:-translate-y-1/2.bg-white.rounded-md.w-full.sm:max-w-md data-action='click->modal#stay'
             = render 'layouts/category_description'
     - if @categories.present?
       .flex.flex-col.w-full.mx-auto.px-4.justify-center.mb-4.text-center
@@ -29,7 +31,10 @@
       .text-center.m-5.font-normal.text-base.w-full
         | ※まだカテゴリーの登録がありません。
     .flex.flex-col.w-full.mx-auto.px-4.justify-center.mb-8.mt-4.text-center
-      = form.label :category_id, '新しいカテゴリーを登録する（最大20文字）', class: 'font-normal text-sm sm:text-base mb-2'
-      = form.text_field :new_category_name, placeholder: '例：嬉しかった出来事', class: 'w-full text-base font-normal px-2 text-left sm:text-lg'
+      = form.label :category_id, '新しいカテゴリーを登録する（最大15文字）', class: 'font-normal text-sm sm:text-base mb-2'
+      = form.text_field :new_category_name, id: 'new_category_name', placeholder: '例：嬉しかった出来事', class: 'w-full text-base font-normal px-2 text-left sm:text-lg',
+        data: { character_counter_target: 'input', action: 'input->character-counter#updateCounter', max_length: 15 }
+      p.text-base.text-gray-500.mt-2.font-normal.text-right
+        span data-character-counter-target='counter' data-counter-for='new_category_name' 現在 0/15 文字入力しています
     .flex.justify-center.w-full
       = form.submit '保存する', class: 'primary-btn py-2 px-4 w-full'
