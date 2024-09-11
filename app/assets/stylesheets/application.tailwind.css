@@ -22,6 +22,13 @@
   .link-with-underline {
     @apply text-gray-700 hover:text-gray-500 underline hover:no-underline;
   }
+
+  select {
+    @apply rounded !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+  }
 }
 
 @layer utilities {
