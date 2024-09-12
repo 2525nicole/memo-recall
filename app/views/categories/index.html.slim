@@ -10,7 +10,7 @@
             | カテゴリーについて
           .hidden.fixed.w-full.h-screen.top-14.left-0.bg-gray-700/50 data-modal-target="modal" data-action="click->modal#close"
             .absolute.top-16.sm:top-1/2.left-1/2.-translate-x-1/2.sm:-translate-y-1/2.bg-white.rounded-md.w-11/12.sm:max-w-lg data-action="click->modal#stay"
-              = render 'layouts/category_description'
+              = render 'categories/category_description'
 
     div data-controller='modal'
       .font-normal.text-sm.mb-8

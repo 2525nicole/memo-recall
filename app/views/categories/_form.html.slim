@@ -7,7 +7,7 @@
         | カテゴリーについて
       .hidden.fixed.w-full.h-full.top-0.left-0.bg-gray-700/50.font-normal.z-40 data-modal-target='modal' data-action='click->modal#close'
         .absolute.top-0.left-1/2.-translate-x-1/2.bg-white.rounded-md.w-full.sm:max-w-md.max-h-80vh.overflow-y-scroll data-action='click->modal#stay'
-          = render 'layouts/category_description'
+          = render 'categories/category_description'
     = form_with(model: category, local: true, class: 'w-full', data: { controller: 'character-counter' }) do |form|
       - if category.errors.any?
         ul.flex.flex-col.items-center
