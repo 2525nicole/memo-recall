@@ -1,14 +1,15 @@
 - set_meta_tags title: 'トップページ'
 .px-4.sm:px-10
-  .mt-6.font-bold.text-center.text-lg.text-sky-600
+  h1.mt-6.font-bold.text-center.text-lg.text-sky-600
     | 大切な思い出を　いつでも、いつまでも
     = image_tag 'title_logo.png', alt: 'Memo Recallのロゴ画像', class: 'm-auto mt-2'
-  p.font-normal.text-center.text-gray-800.text-base.mt-2
-    | Memo Recallは思い出記録サービスです。
-    br
-    | いつでも簡単に思い出を記録したり、
-    br
-    | 振り返ることができます。
+    .font-normal.text-center.text-gray-800.text-base.mt-2
+      p
+        | Memo Recallは思い出記録サービスです。
+      p
+        | いつでも簡単に思い出を記録したり、
+        br
+        | 振り返ることができます。
   .mt-6.text-center.mb-2
     .flex.justify-center.w-full
       .text-center
@@ -25,27 +26,34 @@
           | 誰かがかけてくれた嬉しい言葉
           = image_tag 'heart_warming.png', alt: '心ああたまる様子', class: 'w-80 m-auto'
           | 大切な思い出を、忘れないように記録しませんか？
-        p.font-normal.text-center.text-gray-800.text-base.mt-10
+        h2.font-semibold.text-center.text-gray-800.text-lg.mt-14
+          | いつでも記録できる
+        p.font-normal.text-base.mt-2
           | ログイン後はどこのページにいても、
           br
           | フォームを開いてすぐに思い出を記録できます。
           = image_tag 'demo_form.png', alt: '思い出登録フォーム', class: 'w-96 m-auto mt-4'
-        p.font-normal.text-center.text-gray-800.text-base.mt-10
-          | カテゴリーと紐づけて登録することで
-          br
-          | カテゴリーごとの思い出を表示したり、
+        h2.font-semibold.text-center.text-gray-800.text-lg.mt-14
+          | カテゴリー登録機能で思い出の整理が簡単
+        p.font-normal.text-base.mt-2
+          | 思い出はカテゴリーと紐づけて登録できます。
+        p.font-normal.text-base
+          | カテゴリーごとに思い出を表示したり、
           = image_tag 'demo_category_memories.png', alt: 'カテゴリー別思い出一覧ページ', class: 'w-96 m-auto mb-8 mt-4'
+        p.font-normal.text-base
           | 思い出の整理ができるので、
           br
           | いつでも前向きに過去を振り返ることができます。
           = image_tag 'demo_destroy_category_and_memories.png', alt: 'カテゴリーと紐づく思い出一括削除', class: 'w-96 m-auto mt-4'
-        p.font-normal.text-center.text-gray-800.text-base.mt-10
+        h2.font-semibold.text-center.text-gray-800.text-lg.mt-14
+          | 過去の思い出と、ふいに再会できる
+        p.font-normal.text-base.mt-2
           | トップページでは、登録済みの思い出がランダムで表示されます。
           = image_tag 'demo_top.png', alt: '思い出のランダム表示', class: 'w-96 m-auto mb-8 mt-4'
           | 日々の忙しさで忘れかけていた大切な思い出と
           br
           | 思わぬ再会ができるかもしれません。
-    .mt-10.font-normal.text-center.mb-2.text-lg
+    h2.mt-12.font-semibold.text-center.mb-2.text-lg
       | あなたも大切な思い出を記録しませんか？
     .flex.justify-center.w-full
       .text-center
