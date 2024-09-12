@@ -30,5 +30,5 @@
       = turbo_frame_tag "categories-page-#{@categories.next_page}", loading: :lazy, src: path_to_next_page(@categories)
 
     - if @categories.empty?
-      .text-center.m-5.font-normal.text-base.sm:text-lg#no-categories-message
+      p.text-center.m-5.font-normal.text-base.sm:text-lg#no-categories-message
         | カテゴリーがまだ登録されていません。
