@@ -26,11 +26,17 @@
                 br
                 p.text-sm.mb-2.sm:text-base.text-gray-600
                   | カテゴリー:
-                  / br
                   = link_to @memory.category.name.to_s, category_memories_path(@memory.category.id), data: { turbo: false }, class: 'link-with-underline'
               p.text-gray-600.text-sm.sm:text-base.mt-4
                   | 投稿日: #{l(@memory.created_at, format: :date_only)}
             - else
-              | 思い出がまだ登録されていません。
-              br
-              | 登録すると、ここにランダムで過去の思い出が表示されます。
+              p
+                | 思い出がまだ登録されていません。
+              p
+                | 登録すると、ここにランダムで過去の思い出が表示されます。
+              p
+                | 画面右下の
+                i.fa-solid.fa-pen-to-square
+                | をクリックして
+                br
+                | 思い出を登録してみましょう。

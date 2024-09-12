@@ -8,14 +8,14 @@
         - @category_errors.each do |message|
           li.text-red-500.font-normal.text-sm.sm:text-base.mb-2.block = message
     .flex.flex-col.w-full.mx-auto.px-4.justify-center.mb-6.text-center
-      p.text-base.sm:text-lg
+      h2.text-base.sm:text-lg
       | 登録する思い出を入力してください。
       = form.label :content, '思い出の本文', class: 'font-bold text-base sm:text-lg my-2'
       = form.text_area :content, id: 'memory_content', placeholder: placeholder_text,
         class: 'w-full h-48 font-normal sm:h-72 resize-none rounded', data: { character_counter_target: 'input', action: 'input->character-counter#updateCounter', max_length: 300 }
       p.text-base.text-gray-500.mt-2.font-normal.text-right
         span data-character-counter-target='counter' data-counter-for='memory_content' 現在 0/300 文字入力しています
-    .font-bold.mb-1.text-gray-600.text-center.text-base.sm:text-lg
+    h2.font-bold.mb-1.text-gray-600.text-center.text-base.sm:text-lg
       | カテゴリーの設定
       span data-controller="modal"
         i.fa-regular.fa-circle-question.ml-2.mb-4.text-gray-500.hover:text-gray-900.text-sm.sm:text-base.cursor-pointer data-action='click->modal#open'
@@ -27,7 +27,7 @@
         = form.label :category_id, '登録済みのカテゴリーから選ぶ', class: 'font-normal text-sm sm:text-base mb-2'
         = form.collection_select :category_id, @categories, :id, :name, include_blank: 'カテゴリーなし', class: 'w-full font-normal mt-2'
     - else
-      .text-center.m-5.font-normal.text-base.w-full
+      p.text-center.m-5.font-normal.text-base.w-full
         | ※まだカテゴリーの登録がありません。
     .flex.flex-col.w-full.mx-auto.px-4.sm:px-16.justify-center.mb-8.mt-4.text-center
       = form.label :category_id, '新しいカテゴリーを登録する', class: 'font-normal text-sm sm:text-base mb-2'
