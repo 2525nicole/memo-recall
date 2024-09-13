@@ -24,30 +24,45 @@ class MemoriesController < ApplicationController
   def edit; end
 
   def create
-    @memory = current_user.memories.build(memory_params.except(:new_category_name))
-    new_category_created = save_category_of_memory
+    success = false
 
-    if @memory.valid? && valid_category?
-      @memory.save
+    ActiveRecord::Base.transaction do
+      @memory = current_user.memories.build(memory_params.except(:new_category_name))
+      new_category_created = save_category_of_memory
+
+      raise ActiveRecord::Rollback unless @memory.valid? && valid_category?
+
+      @memory.save!
       determine_flash_messages(@memory, @category, new_category_created)
-    else
-      set_categories
-      render :new, status: :unprocessable_entity
+      success = true
     end
+
+    return if success
+
+    set_categories
+    render :new, status: :unprocessable_entity
   end
 
   def update
     old_category_id = @memory.category_id
-    @memory.assign_attributes(memory_params.except(:new_category_name))
-    save_category_of_memory
+    success = false
 
-    if @memory.valid? && valid_category?
-      @memory.save
+    ActiveRecord::Base.transaction do
+      @memory.assign_attributes(memory_params.except(:new_category_name))
+      save_category_of_memory
+
+      raise ActiveRecord::Rollback unless @memory.valid? && valid_category?
+
+      @memory.save!
       handle_update_flash_and_render(old_category_id)
-    else
-      set_categories
-      render :edit, status: :unprocessable_entity
+
+      success = true
     end
+
+    return if success
+
+    set_categories
+    render :edit, status: :unprocessable_entity
   end
 
   def destroy
