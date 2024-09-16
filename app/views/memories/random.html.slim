@@ -16,8 +16,21 @@
 
       .flex.flex-col.items-center.justify-center.text-base.sm:text-lg.mt-5
         .w-full.mx-auto
-          = turbo_frame_tag 'random_memory' do
-            - if @memory
+          - unless @memory
+            #no-memories-message
+              p
+                | 思い出がまだ登録されていません。
+              p
+                | 登録すると、ここにランダムで過去の思い出が表示されます。
+              p
+                | 画面右下の
+                i.fa-solid.fa-pen-to-square
+                | をクリックして
+                br
+                | 思い出を登録してみましょう。
+            #first-memory
+          - if @memory
+            = turbo_frame_tag 'random_memory' do
               .flex.justify-center.items-center.mb-6
                 = link_to 'もっと見る', root_path, class: 'primary-btn py-3 px-8 w-52'
               .border.border-gray-300.rounded.p-4.bg-white.shadow-md.w-full.mx-auto.font-normal.sm:px-10
@@ -29,14 +42,3 @@
                   = link_to @memory.category.name.to_s, category_memories_path(@memory.category.id), data: { turbo: false }, class: 'link-with-underline'
               p.text-gray-600.text-sm.sm:text-base.mt-4
                   | 投稿日: #{l(@memory.created_at, format: :date_only)}
-            - else
-              p
-                | 思い出がまだ登録されていません。
-              p
-                | 登録すると、ここにランダムで過去の思い出が表示されます。
-              p
-                | 画面右下の
-                i.fa-solid.fa-pen-to-square
-                | をクリックして
-                br
-                | 思い出を登録してみましょう。
