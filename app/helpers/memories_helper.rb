@@ -26,12 +26,18 @@ module MemoriesHelper
       render turbo_stream: add_to_category_page(memory, category, new_category_created) + [turbo_stream.update('flash', partial: 'layouts/flash')]
     elsif request_referer(root_path)
       [
-        turbo_stream.replace('first-memory', partial: 'memory_with_more_link', locals: { memory: memory }),
+        turbo_stream.replace('first-memory', partial: 'memory_with_more_link', locals: { memory: }),
         turbo_stream.remove('no-memories-message'),
         turbo_stream.update('flash', partial: 'layouts/flash')
       ]
     elsif memory.category_id && request_referer(category_memories_path(memory.category_id))
-      render turbo_stream: add_to_category_memories_page(memory, category) + [turbo_stream.remove('no-memories-message')] + [turbo_stream.update('flash', partial: 'layouts/flash')]
+      render turbo_stream: (
+        add_to_category_memories_page(memory, category) +
+        [
+          turbo_stream.remove('no-memories-message'),
+          turbo_stream.update('flash', partial: 'layouts/flash')
+        ]
+      )
     else
       render_flash_message
     end
