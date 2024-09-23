@@ -1,3 +1,4 @@
-= turbo_stream.remove 'no-memories-message'
 = turbo_stream.prepend 'memories', @memory
+= turbo_stream.replace 'first-memory', partial: 'memory_with_more_link', locals: { memory: @memory }
+= turbo_stream.remove 'no-memories-message'
 = turbo_stream.update 'flash', partial: 'layouts/flash'
