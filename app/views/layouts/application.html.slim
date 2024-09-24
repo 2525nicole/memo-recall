@@ -20,11 +20,12 @@ html.bg-slate-200
         #flash
           = render 'layouts/flash'
       = yield
+
     - if current_page?(authenticated_root_path) || current_page?(memories_path) || (params[:category_id].present? && current_page?(category_memories_path(category_id: params[:category_id])))
       .sticky.bottom-0.flex.justify-end.z-10
         = link_to new_memory_path, data: { turbo_frame: 'new_memory' },
         class: 'bg-sky-400 hover:bg-sky-300 text-white rounded-full w-14 sm:w-20 h-14 sm:h-20 flex items-center justify-center shadow-lg' do
-          i.fa-solid.fa-pen-to-square.text-4xl.sm:text-6xl
+          i.fa-solid.fa-plus.text-4xl.sm:text-5xl
 
       div data-controller='modal'
         .hidden.fixed.top-0.left-0.w-screen.h-screen.bg-blue-300.bg-gray-700/50.z-40.max-h-screen data-modal-target='modal' data-action='click->modal#close turbo:frame-load->modal#open turbo:submit-end->modal#close'
