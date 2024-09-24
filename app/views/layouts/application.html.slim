@@ -20,20 +20,21 @@ html.bg-slate-200
         #flash
           = render 'layouts/flash'
       = yield
-    - if current_user
+
+    - if user_signed_in? && (current_page?(authenticated_root_path) || current_page?(memories_path) || (params[:category_id].present? && current_page?(category_memories_path(category_id: params[:category_id]))))
       .sticky.bottom-0.flex.justify-end.z-10
         = link_to new_memory_path, data: { turbo_frame: 'new_memory' },
-        class: 'bg-sky-400 hover:bg-sky-300 text-white rounded-full w-14 sm:w-20 h-14 sm:h-20 flex items-center justify-center shadow-lg' do
-          i.fa-solid.fa-pen-to-square.text-4xl.sm:text-6xl
+        class: 'bg-sky-400 hover:bg-sky-300 text-white rounded-full w-14 sm:w-20 h-14 sm:h-20 flex items-center justify-center m-8 sm:m-4' do
+          i.fa-solid.fa-plus.text-4xl.sm:text-5xl
+
+      div data-controller='modal'
+        .hidden.fixed.top-0.left-0.w-screen.h-screen.bg-blue-300.bg-gray-700/50.z-40.max-h-screen data-modal-target='modal' data-action='click->modal#close turbo:frame-load->modal#open turbo:submit-end->modal#close'
+          .absolute.top-1/2.left-1/2.-translate-x-1/2.-translate-y-1/2.bg-white.z-50.px-4.pb-4.rounded-md.w-11/12.sm:max-w-lg.sm:p-6.overflow-y-auto.max-h-80vh.sm:max-h-full data-action="click->modal#stay"
+            .text-right
+              button.p.text-3xl.text-gray-500.hover:text-gray-900.cursor-pointer data-action='click->modal#close' type="button"
+                | ×
+            = turbo_frame_tag 'new_memory'
 
     - if !user_signed_in? || current_page?(edit_user_registration_path) || current_page?(tos_path) || current_page?(pp_path)
       footer.bg-sky-100.w-full.mt-6
         = render 'layouts/footer'
-
-    div data-controller='modal'
-      .hidden.fixed.top-0.left-0.w-screen.h-screen.bg-blue-300.bg-gray-700/50.z-40.max-h-screen data-modal-target='modal' data-action='click->modal#close turbo:frame-load->modal#open turbo:submit-end->modal#close'
-        .absolute.top-1/2.left-1/2.-translate-x-1/2.-translate-y-1/2.bg-white.z-50.px-4.pb-4.rounded-md.w-11/12.sm:max-w-lg.sm:p-6.overflow-y-auto.max-h-80vh.sm:max-h-full data-action="click->modal#stay"
-          .text-right
-            button.p.text-3xl.text-gray-500.hover:text-gray-900.cursor-pointer data-action='click->modal#close' type="button"
-              | ×
-          = turbo_frame_tag 'new_memory'
