@@ -24,7 +24,7 @@ html.bg-slate-200
     - if current_page?(authenticated_root_path) || current_page?(memories_path) || (params[:category_id].present? && current_page?(category_memories_path(category_id: params[:category_id])))
       .sticky.bottom-0.flex.justify-end.z-10
         = link_to new_memory_path, data: { turbo_frame: 'new_memory' },
-        class: 'bg-sky-400 hover:bg-sky-300 text-white rounded-full w-14 sm:w-20 h-14 sm:h-20 flex items-center justify-center shadow-lg' do
+        class: 'bg-sky-400 hover:bg-sky-300 text-white rounded-full w-14 sm:w-20 h-14 sm:h-20 flex items-center justify-center m-8 sm:m-4' do
           i.fa-solid.fa-plus.text-4xl.sm:text-5xl
 
       div data-controller='modal'
