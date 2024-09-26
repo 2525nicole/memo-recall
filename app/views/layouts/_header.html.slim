@@ -1,9 +1,9 @@
-header.h-14.flex.justify-between.bg-sky-100.z-20.w-full.fixed.max-w-screen-sm
+header.h-14.flex.items-center.justify-between.bg-sky-100.z-20.w-full.fixed.max-w-screen-sm
   = link_to root_path
-    = image_tag 'title_logo.png', alt: 'Memo Recallのロゴ画像', class: 'h-14 ml-10 inline-block'
+    = image_tag 'title_logo.png', alt: 'Memo Recallのロゴ画像', class: 'h-12 sm:ml-8 ml-4 inline-block'
   - if user_signed_in?
     div data-controller="modal"
-      i.fa-solid.fa-bars.fa-xl.pt-7.pr-10.cursor-pointer data-action="click->modal#open"
+      i.fa-solid.fa-bars.fa-xl.cursor-pointer.sm:mr-8.mr-4 data-action="click->modal#open"
         .hidden.fixed.w-full.h-screen.top-0.left-0.bg-gray-700/50 data-modal-target="modal" data-action="click->modal#close"
           .relative.max-w-screen-sm.mx-auto
             .absolute.top-0.right-0.bg-sky-100.rounded-bl-md.w-2/3.md:w-1/3 data-action="click->modal#stay"
