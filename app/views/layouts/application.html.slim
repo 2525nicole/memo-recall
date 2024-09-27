@@ -11,10 +11,12 @@ html.bg-slate-200
     = favicon_link_tag 'favicon.ico'
     = favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type: 'image/png', sizes: '180x180'
     = favicon_link_tag 'android-chrome-144x144.png', rel: 'icon', type: 'image/png', sizes: '144x144'
+
   body.flex.flex-col.max-w-screen-sm.mx-auto.bg-white.relative.min-h-screen.text-gray-800
     header
       - if user_signed_in? || current_page?(tos_path) || current_page?(pp_path)
         = render 'layouts/header'
+
     main.container.flex-grow[class=container_padding_class]
       .my-2.mx-3
         #flash
@@ -28,7 +30,7 @@ html.bg-slate-200
           i.fa-solid.fa-plus.text-4xl.sm:text-5xl
 
       div data-controller='modal'
-        .hidden.fixed.top-0.left-0.w-screen.h-screen.bg-blue-300.bg-gray-700/50.z-40.max-h-screen data-modal-target='modal' data-action='click->modal#close turbo:frame-load->modal#open turbo:submit-end->modal#close'
+        .hidden.fixed.top-0.left-0.w-screen.h-screen.bg-blue-300.bg-gray-700/50.z-50.max-h-screen data-modal-target='modal' data-action='click->modal#close turbo:frame-load->modal#open turbo:submit-end->modal#close'
           .absolute.top-1/2.left-1/2.-translate-x-1/2.-translate-y-1/2.bg-white.z-50.px-4.pb-4.rounded-md.w-11/12.sm:max-w-lg.sm:p-6.overflow-y-auto.max-h-80vh.sm:max-h-full data-action="click->modal#stay"
             .text-right
               button.p.text-3xl.text-gray-500.hover:text-gray-900.cursor-pointer data-action='click->modal#close' type="button"
