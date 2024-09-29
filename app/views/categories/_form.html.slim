@@ -18,3 +18,9 @@
       span data-character-counter-target='counter' data-counter-for='category_name' 現在 0/15 文字入力しています
     .flex.justify-center.mt-10.w-full
       = form.submit '保存する', class: 'primary-btn py-2 px-4 w-full text-base'
+
+  - if category.persisted?
+    .mt-5
+      = link_to t('activerecord.action.destroy.category'),
+        category, data: { turbo_method: :delete, turbo_confirm: sanitize("カテゴリー「#{category.name}」を削除しますか？\n紐づけられている思い出は「カテゴリー登録なし」になります。") },
+        class: 'link-with-underline font-normal'
