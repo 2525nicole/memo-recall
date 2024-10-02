@@ -1,34 +1,35 @@
 - set_meta_tags title: 'カテゴリーの一覧'
 - set_meta_tags description: 'カテゴリーの一覧ページです。'
 
+h1.text-2xl.font-bold.text-center.py-4
+  | カテゴリーの一覧
+  span data-controller="modal"
+    i.fa-regular.fa-circle-question.ml-2.text-gray-500.hover:text-gray-900.cursor-pointer.text-sm.sm:text-base.font-normal data-action="click->modal#open"
+      .hidden.fixed.w-full.h-screen.top-14.left-0.bg-gray-700/50.z-60 data-modal-target="modal" data-action="click->modal#close"
+        .absolute.top-16.sm:top-1/2.left-1/2.-translate-x-1/2.sm:-translate-y-1/2.bg-white.rounded-md.w-11/12.sm:max-w-lg data-action="click->modal#stay"
+          = render 'categories/category_description'
+
 .px-4.sm:px-10
-  h1.text-2xl.font-bold.text-center.mt-8
-    | カテゴリーの一覧
-    .text-sm.sm:text-base.font-normal.mt-3.mb-8
-      span data-controller="modal"
-          i.fa-regular.fa-circle-question.ml-2.text-gray-500.hover:text-gray-900.cursor-pointer data-action="click->modal#open"
-            | カテゴリーについて
-          .hidden.fixed.w-full.h-screen.top-14.left-0.bg-gray-700/50 data-modal-target="modal" data-action="click->modal#close"
-            .absolute.top-16.sm:top-1/2.left-1/2.-translate-x-1/2.sm:-translate-y-1/2.bg-white.rounded-md.w-11/12.sm:max-w-lg data-action="click->modal#stay"
-              = render 'categories/category_description'
+  .text-base.sm:text-lg.font-normal.link-with-underline.mb-2.flex.justify-end
+    = sort_link(@q, :id, '投稿順')
 
-    div data-controller='modal'
-      .font-normal.text-sm.mb-8
-        = link_to '＋カテゴリーを登録する', new_category_path, data: { turbo_frame: 'new_category' }, class: 'text-base sm:text-lg bg-sky-400 hover:bg-sky-300 text-white font-bold py-3 px-5 rounded'
-      .hidden.fixed.top-0.left-0.bg-gray-700/50.w-screen.h-screen.bg-blue-300.bg-opacity-20.z-50.max-h-screen data-modal-target='modal' data-action='click->modal#close turbo:frame-load->modal#open turbo:submit-end->modal#close'
-        .absolute.top-1/2.left-1/2.-translate-x-1/2.-translate-y-1/2.bg-white.rounded-md.w-11/12.sm:max-w-lg.px-6.pb-10.pt-2.sm:p-6.max-h-full data-action="click->modal#stay"
-          .text-right
-            button.p.text-3xl.text-gray-500.hover:text-gray-900.cursor-pointer.font-normal data-action='click->modal#close' type="button"
-              | ×
-          = turbo_frame_tag 'new_category'
-    .text-base.sm:text-lg.font-normal.link-with-underline.mt-6.mb-8
-      = sort_link(@q, :id, '投稿順')
-
-    #categories
+  #categories
     = turbo_frame_tag "categories-page-#{@categories.current_page}" do
       = render @categories
       = turbo_frame_tag "categories-page-#{@categories.next_page}", loading: :lazy, src: path_to_next_page(@categories)
 
-    - if @categories.empty?
-      p.text-center.m-5.font-normal.text-base.sm:text-lg#no-categories-message
-        | カテゴリーがまだ登録されていません。
+  - if @categories.empty?
+    p.text-center.m-5.font-normal.text-base.sm:text-lg#no-categories-message
+      | カテゴリーがまだ登録されていません。
+  .mb-16
+
+  div data-controller='modal'
+    .font-normal.text-sm.mb-8
+      div class="fixed bottom-0 left-1/2 transform -translate-x-1/2 h-16 w-full max-w-screen-sm bg-sky-100 text-center flex items-center justify-center"
+        = link_to '＋カテゴリーを登録する', new_category_path, data: { turbo_frame: 'new_category' }, class: 'bg-sky-400 text-white font-bold py-2 px-24 sm:px-32 rounded text-base'
+    .hidden.fixed.top-0.left-0.bg-gray-700/50.w-screen.h-screen.bg-blue-300.bg-opacity-20.z-50.max-h-screen data-modal-target='modal' data-action='click->modal#close turbo:frame-load->modal#open turbo:submit-end->modal#close'
+      .absolute.top-1/2.left-1/2.-translate-x-1/2.-translate-y-1/2.bg-white.rounded-md.w-11/12.sm:max-w-md.px-4.pb-4.pt-2.sm:px-6.sm:pb-6.sm:pt-4.max-h-full data-action="click->modal#stay"
+        .text-right
+          button.p.text-3xl.text-gray-500.hover:text-gray-900.cursor-pointer.font-normal data-action='click->modal#close' type="button"
+            | ×
+        = turbo_frame_tag 'new_category'

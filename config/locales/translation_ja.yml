@@ -26,9 +26,9 @@ ja:
       new: 新規登録
       edit: 編集する
       destroy:
-        category: 削除する
+        category: このカテゴリーを削除する
         memory: 手放す（削除する）
-        memories_by_category: "カテゴリーと、紐づく思い出を全て手放す（削除する）"
+        memories_by_category: "このカテゴリーと、紐づく思い出を全て手放す（削除する）"
 
   notice:
     create:
