@@ -12,7 +12,7 @@
               .absolute.top-1/4.left-1/2.-translate-x-1/2.sm:-translate-y-1/2.bg-white.rounded-md.w-11/12.sm:max-w-lg data-action="click->modal#stay"
                 = render 'random_description'
 
-      .flex.flex-col.items-center.justify-center.text-base.sm:text-lg.relative
+      .flex.flex-col.items-center.justify-center.text-base.sm:text-lg.relative.text-left.sm:text-center
         .w-full.mx-auto
           - unless @memory
             #no-memories-message
@@ -23,9 +23,7 @@
               p
                 | 画面右下の
                 i.fa-solid.fa-pen-to-square
-                | をクリックして
-                br
-                | 思い出を登録してみましょう。
+                | をクリックして思い出を登録してみましょう。
             #first-memory
           - if @memory
             = turbo_frame_tag 'random_memory' do

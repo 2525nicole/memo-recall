@@ -22,14 +22,10 @@
       = turbo_frame_tag "memories-page-#{@memories.next_page}", loading: :lazy, src: path_to_next_page(@memories)
 
     - if @memories.empty?
-      .text-center.font-normal.text-base.sm:text-lg#no-memories-message
+      .text-left.sm:text-center.font-normal.text-base.sm:text-lg#no-memories-message
         p
-          | このカテゴリーに紐づく思い出が
-          br
-          | まだ登録されていません。
+          | このカテゴリーに紐づく思い出がまだ登録されていません。
         p
           | 画面右下の
           i.fa-solid.fa-pen-to-square
-          | をクリックして
-          br
-          | 思い出を登録してみましょう。
+          | をクリックして思い出を登録してみましょう。
