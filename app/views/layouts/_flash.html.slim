@@ -2,7 +2,7 @@ div data-controller="removal"
   - if flash[:after_destroy]
     .w-full.bg-cyan-100.text-cyan-700.py-0.h-10.flex.justify-between.items-center.sm:pl-8.sm:h-14
       .flex.items-center
-        = image_tag 'flying_bird.png', alt: '飛び立つ鳥', class: 'h-20 sm:h-24 z-30'
+        = image_tag 'flying_bird.png', alt: '飛び立つ鳥', class: 'h-16 sm:h-20 z-30 translate-y-2'
         = flash[:after_destroy]
       p.text-xl.text-gray-500.hover:text-gray-900.ml-auto.cursor-pointer.pl-1.pr-4.py-3 data-action='click->removal#remove'
         | ×
