@@ -36,3 +36,9 @@
       span data-character-counter-target='counter' data-counter-for='new_category_name' 現在 0/15 文字入力しています
   .flex.justify-center.w-full
     = form.submit '保存する', class: 'primary-btn py-2 px-4 w-full'
+
+  - if memory.persisted?
+    .mt-8.text-base.text-center
+      = link_to t('activerecord.action.destroy.memory'),
+        memory, data: { turbo_method: :delete, turbo_confirm: sanitize("この思い出を手放しますか？\n手放した思い出は一覧から削除されます。") },
+        class: 'link-with-underline font-normal'
