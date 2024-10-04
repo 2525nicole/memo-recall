@@ -13,7 +13,7 @@
       = form.label :content, '思い出の本文', class: 'text-sky-600 bg-sky-100 border-l-8 pl-2 border-sky-400 font-bold text-base sm:text-lg text-left my-2'
       = form.text_area :content, id: 'memory_content', placeholder: placeholder_text,
         class: 'w-full h-48 font-normal sm:h-72 resize-none rounded', data: { character_counter_target: 'input', action: 'input->character-counter#updateCounter', max_length: 300 }
-      p.text-xs.sm:text-sm.text-gray-500.font-normal.text-right
+      .text-xs.sm:text-sm.text-gray-500.font-normal.text-right
         span data-character-counter-target='counter' data-counter-for='memory_content' 現在 0/300 文字入力しています
     .flex.flex-col.w-full.mx-auto.mb-2.text-center
       h2.font-bold.text-gray-600.text-left.text-base.sm:text-lg.text-sky-600.bg-sky-100.border-l-8.pl-2.border-sky-400.my-2
@@ -28,7 +28,7 @@
           = form.label :category_id, '登録済みのカテゴリーから選ぶ', class: 'font-normal text-sm sm:text-base text-left'
           = form.collection_select :category_id, @categories, :id, :name, include_blank: 'カテゴリーなし', class: 'w-full font-normal mt-2'
       - else
-        p.text-center.m-5.font-normal.text-base.w-full
+        .text-center.m-5.font-normal.text-base.w-full
           | ※まだカテゴリーの登録がありません。
       .flex.flex-col.w-full.mx-auto.justify-center.mt-2.mb-6.text-center.gap-2
         = form.label :category_id, '新しいカテゴリーを登録する', class: 'font-normal text-sm sm:text-base text-left'
