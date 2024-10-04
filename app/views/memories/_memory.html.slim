@@ -1,25 +1,25 @@
 = turbo_frame_tag memory do
-  .w-full.mx-auto.px-2.font-normal.sm:px-10.text-black.my-6
-    .flex.flex-col.items-center.justify-center.text-base.sm:text-lg.gap-4.sm:gap-6
+  - unless current_page?(authenticated_root_path)
+    .border-t
+  .w-full.mx-auto.font-normal.text-black.my-6
+    .flex.flex-col.justify-start.text-base.sm:text-lg.gap-4.sm:gap-6
       = simple_format memory.content, class: 'text-left'
       - if memory.category
-        p.text-sm.link-with-underline.sm:text-base
+        .text-sm.link-with-underline.sm:text-base.flex.justify-start
           = link_to "カテゴリー: #{memory.category.name}", category_memories_path(memory.category.id), data: { turbo: false }
-      p.text-gray-600.text-sm.sm:text-base
-        | 投稿日: #{l(memory.created_at, format: :date_only)}
-      .flex.flex-row.justify-center.items-center.space-x-12.sm:space-x-16.text-sm.sm:text-base
+
+      .flex.flex-row.justify-between.items-center.text-sm.sm:text-base
+        .text-gray-600.text-sm.sm:text-base
+          | 投稿日: #{l(memory.created_at, format: :date_only)}
         div data-controller='modal'
           .flex.flex-row
-            = link_to t('activerecord.action.edit'), edit_memory_path(memory), data: { turbo_frame: "edit_memory_#{memory.id}" }, class: 'edit-btn'
+            = link_to t('activerecord.action.edit'), edit_memory_path(memory), data: { turbo_frame: "edit_memory_#{memory.id}" }, class: 'edit-btn text-center'
 
+      .flex.flex-row.justify-center.items-center.space-x-12.sm:space-x-16.text-sm.sm:text-base
+        div data-controller='modal'
           .hidden.fixed.top-0.left-0.w-screen.h-screen.bg-gray-700/50.z-50.max-h-screen data-modal-target='modal' data-action='click->modal#close turbo:frame-load->modal#open turbo:submit-end->modal#close'
-            .absolute.top-1/2.left-1/2.-translate-x-1/2.-translate-y-1/2.bg-white.p-4.rounded-md.w-11/12.sm:max-w-lg.sm:p-10.overflow-y-scroll.max-h-full.z-60 data-action="click->modal#stay"
+            .absolute.top-1/2.left-1/2.-translate-x-1/2.-translate-y-1/2.bg-white.px-4.pb-4.sm:px-4.sm:py-6.rounded-md.w-11/12.sm:max-w-lg.overflow-y-scroll.max-h-80vh.sm:max-h-full.z-60 data-action="click->modal#stay"
               .text-right
                 .text-3xl.text-gray-500.hover:text-gray-900.cursor-pointer data-action='click->modal#close' type="button"
                   | ×
                 = turbo_frame_tag "edit_memory_#{memory.id}"
-
-        = button_to t('activerecord.action.destroy.memory'),
-          memory, method: :delete, data: { turbo_confirm: sanitize("この思い出を手放しますか？\n手放した思い出は一覧から削除されます。") }, class: 'destroy-btn'
-  - unless current_page?(authenticated_root_path)
-    .border-b
