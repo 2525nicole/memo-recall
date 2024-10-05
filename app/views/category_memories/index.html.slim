@@ -2,19 +2,18 @@
 - set_meta_tags description: "カテゴリー「#{@category.name}」の思い出一覧ページです。"
 
 .px-4.sm:px-10
-  h1.text-base.sm:text-xl.font-bold.text-center.mt-4
-    | カテゴリー「#{@category.name}」
-    br
-    |の思い出一覧（
+  h1.text-base.sm:text-xl.font-bold.text-left.py-4
+    | カテゴリー「#{@category.name}」の思い出一覧（
     = turbo_frame_tag "memories-count-#{@category.id}" do
       = @category.memories.count
     | 件）
-    .text-base.sm:text-lg.font-normal.link-with-underline.mt-6.mb-8
+
+  .flex.flex-col
+    = link_to t('activerecord.action.destroy.memories_by_category'),
+      destroy_with_memories_category_path(@category), method: :delete, data: { turbo_method: :delete, turbo_confirm: sanitize("カテゴリー「#{@category.name}」と、\n紐づく思い出をすべて手放しますか？\n手放した思い出は一覧から削除されます。") },
+      class: 'link-with-underline font-normal text-sm sm:text-base justify-start my-2'
+    .flex.justify-end.text-base.sm:text-lg.link-with-underline.mb-2
       = sort_link(@q, :id, '投稿順')
-    .mb-8
-      = button_to t('activerecord.action.destroy.memories_by_category'),
-                  destroy_with_memories_category_path(@category), method: :delete, data: { turbo_confirm: sanitize("カテゴリー「#{@category.name}」と、\n紐づく思い出をすべて手放しますか？\n手放した思い出は一覧から削除されます。") },
-                  class: 'bg-gray-400 hover:bg-gray-300 text-sm sm:text-base text-white font-bold py-2 rounded'
 
     #memories
     = turbo_frame_tag "memories-page-#{@memories.current_page}"
@@ -22,10 +21,10 @@
       = turbo_frame_tag "memories-page-#{@memories.next_page}", loading: :lazy, src: path_to_next_page(@memories)
 
     - if @memories.empty?
-      .text-left.sm:text-center.font-normal.text-base.sm:text-lg#no-memories-message
+      .text-left.sm:text-center.font-normal.m-6.text-base.sm:text-lg#no-memories-message
         p
           | このカテゴリーに紐づく思い出がまだ登録されていません。
         p
           | 画面右下の
-          i.fa-solid.fa-pen-to-square
+          i.fa-solid.fa-plus
           | をクリックして思い出を登録してみましょう。
