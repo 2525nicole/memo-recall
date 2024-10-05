@@ -36,6 +36,6 @@ html.bg-slate-200
                 | ×
             = turbo_frame_tag 'new_memory'
 
-    - if !user_signed_in? || current_page?(edit_user_registration_path) || current_page?(tos_path) || current_page?(pp_path)
+    - unless user_signed_in?
       footer.bg-sky-100.w-full.mt-6
         = render 'layouts/footer'
