@@ -1,9 +1,9 @@
 - if resource.errors.any?
   .my-2.mx-3
-    .w-full.flex.justify-center
-      #error_explanation[data-controller="removal" data-turbo-cache="false" class="w-full bg-pink-200 text-pink-600 py-0 flex justify-between items-center pl-8 sm:pl-16"]
+    #error_explanation[data-controller="removal" data-turbo-cache="false" class="relative w-full bg-pink-200 text-pink-600 py-2 flex items-center"]
+      .flex.justify-center.w-full
         ul.list-none
           - resource.errors.full_messages.each do |message|
             li = message
-        p.text-xl.text-gray-500.hover:text-gray-900.ml-auto.cursor-pointer.px-4.py-3 data-action='click->removal#remove'
-          | ×
+      p.absolute.top-1/2.right-0.text-xl.text-gray-500.hover:text-gray-900.cursor-pointer.px-4.py-2.transform.-translate-y-1/2 data-action='click->removal#remove'
+        | ×
