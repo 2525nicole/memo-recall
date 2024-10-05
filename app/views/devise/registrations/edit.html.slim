@@ -2,24 +2,26 @@
 - set_meta_tags description: 'アカウント設定ページです。'
 
 = render 'devise/shared/error_messages', resource: resource
-.px-4.sm:px-10
-  h1.text-2xl.font-bold.text-center.mb-6.mt-4
-    = t('.title', resource: devise_i18n_fix_model_name_case(resource.model_name.human, i18n_key: 'registrations.edit.title'))
+
+h1.text-2xl.font-bold.text-center.mb-6.mt-4
+  = t('.title', resource: devise_i18n_fix_model_name_case(resource.model_name.human, i18n_key: 'registrations.edit.title'))
+
+.px-4.sm:px-8
   .text-center
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       h2.font-bold.text-lg
         | メールアドレス（必須）
-        .text-center
-          .field.mb-6.mt-4
-            .w-full
-              .max-w-sm.mx-auto.text-left.font-normal
-                = f.label :email, class: 'text-lg font-normal mb-2'
-                = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'font-nomal w-full text-lg mb-2 rounded'
-                - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-                  div
-                    = t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email)
-      h2.font-bold.text-lg
-        | 新しいパスワード
+      .text-center
+        .field.mb-6.mt-4
+          .w-full
+            .max-w-sm.mx-auto.text-left.font-normal
+              = f.label :email, class: 'text-lg font-normal mb-2'
+              = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'font-nomal w-full text-lg mb-2 rounded'
+              - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+                div
+                  = t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email)
+        h2.font-bold.text-lg
+          | 新しいパスワード
         p.font-normal.text-base.text-left.max-w-sm.mx-auto
           = t('.leave_blank_if_you_don_t_want_to_change_it')
         .text-center
@@ -37,8 +39,8 @@
                 = f.label :password_confirmation, class: 'text-lg font-normal mb-2'
                 br
                 = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'w-full text-lg mb-2 rounded'
-      h2.font-bold.text-lg
-        | 現在のパスワード（必須）
+        h2.font-bold.text-lg
+          | 現在のパスワード（必須）
         p.font-normal.text-base.text-left.max-w-sm.mx-auto
           = raw t('.we_need_your_current_password_to_confirm_your_changes')
         .text-center
@@ -49,12 +51,8 @@
                 = f.password_field :current_password, autocomplete: 'current-password', class: 'w-full text-lg mb-2 rounded'
         .text-center
           = f.submit t('.update'), class: 'primary-btn py-3 px-8 mx-auto text-lg w-52 mb-8'
-    = button_to t('.cancel_my_account'),
-                registration_path(resource_name),
-                data: { confirm: t('.are_you_sure'),
-                turbo_confirm: t('.are_you_sure') },
-                method: :delete,
-                class: 'text-base link-with-underline mb-6'
+
+
     = link_to t('devise.shared.links.back'),
               :back,
               class: 'text-base link-with-underline'
