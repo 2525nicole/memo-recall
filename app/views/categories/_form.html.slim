@@ -23,8 +23,3 @@
       = link_to t('activerecord.action.destroy.category'),
         category, data: { turbo_method: :delete, turbo_confirm: sanitize("カテゴリー「#{category.name}」を削除しますか？\n紐づけられている思い出は「カテゴリー登録なし」になります。") },
         class: 'link-with-underline font-normal'
-
-    .mt-6.text-base
-      = link_to t('activerecord.action.destroy.memories_by_category'),
-        destroy_with_memories_category_path(category), method: :delete, data: { turbo_method: :delete, turbo_confirm: sanitize("カテゴリー「#{category.name}」と、\n紐づく思い出をすべて手放しますか？\n手放した思い出は一覧から削除されます。") },
-        class: 'link-with-underline font-normal'
