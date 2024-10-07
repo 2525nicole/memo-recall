@@ -1,15 +1,16 @@
 - set_meta_tags title: 'トップページ'
 .px-4.sm:px-10
-  h1.mt-6.font-bold.text-center.text-lg.text-sky-600
+  p.mt-6.font-bold.text-center.text-lg.text-sky-600
     | 大切な思い出を　いつでも、いつまでも
+  h1
     = image_tag 'title_logo.png', alt: 'Memo Recallのロゴ画像', class: 'm-auto mt-2'
-    .font-normal.text-center.text-gray-800.text-base.mt-2
-      p
-        | Memo Recallは思い出記録サービスです。
-      p
-        | いつでも簡単に思い出を記録したり、
-        br
-        | 振り返ることができます。
+  .font-normal.text-center.text-gray-800.text-base.mt-2
+    p
+      | Memo Recallは思い出記録サービスです。
+    p
+      | いつでも簡単に思い出を記録したり、
+      br
+      | 振り返ることができます。
   .mt-6.text-center.mb-2
     .flex.justify-center.w-full
       .text-center
@@ -22,37 +23,37 @@
         = image_tag 'line.png', alt: '星のライン', class: 'm-auto mt-2'
         p.font-normal.text-center.text-gray-800.text-base.mt-6
           | 楽しかった出来事や
-          = image_tag 'family_outing.png', alt: '楽しいお出かけ', class: 'w-64 m-auto mb-6'
+          = image_tag 'family_outing.png', alt: '楽しいお出かけ', class: 'm-auto mt-3 mb-9'
           | 誰かがかけてくれた嬉しい言葉
-          = image_tag 'heart_warming.png', alt: '心ああたまる様子', class: 'w-80 m-auto'
+          = image_tag 'heart_warming.png', alt: '心ああたまる様子', class: 'm-auto mt-3 mb-9'
           | 大切な思い出を、忘れないように記録しませんか？
-        h2.font-semibold.text-center.text-gray-800.text-lg.mt-14
+        h2.font-semibold.text-center.text-lg.mt-14.text-sky-600.bg-sky-100.border-l-8.pl-2.border-sky-400
           | いつでも記録できる
         p.font-normal.text-base.mt-2
           | ログイン後はどこのページにいても、
           br
           | フォームを開いてすぐに思い出を記録できます。
-          = image_tag 'demo_form.png', alt: '思い出登録フォーム', class: 'w-96 m-auto mt-4'
-        h2.font-semibold.text-center.text-gray-800.text-lg.mt-14
+          = image_tag 'record_memory.png', alt: '思い出の記録', class: 'm-auto mt-4'
+        h2.font-semibold.text-center.text-lg.mt-14.text-sky-600.bg-sky-100.border-l-8.pl-2.border-sky-400
           | カテゴリー登録機能で思い出の整理が簡単
         p.font-normal.text-base.mt-2
           | 思い出はカテゴリーと紐づけて登録できます。
         p.font-normal.text-base
           | カテゴリーごとに思い出を表示したり、
-          = image_tag 'demo_category_memories.png', alt: 'カテゴリー別思い出一覧ページ', class: 'w-96 m-auto mb-8 mt-4'
         p.font-normal.text-base
           | 思い出の整理ができるので、
           br
           | いつでも前向きに過去を振り返ることができます。
-          = image_tag 'demo_destroy_category_and_memories.png', alt: 'カテゴリーと紐づく思い出一括削除', class: 'w-96 m-auto mt-4'
-        h2.font-semibold.text-center.text-gray-800.text-lg.mt-14
+          = image_tag 'let_go_of_memory.png', alt: '思い出を手放す', class: 'm-auto mt-4'
+        h2.font-semibold.text-center.text-lg.mt-14.text-sky-600.bg-sky-100.border-l-8.pl-2.border-sky-400
           | 過去の思い出と、ふいに再会できる
         p.font-normal.text-base.mt-2
           | トップページでは、登録済みの思い出がランダムで表示されます。
-          = image_tag 'demo_top.png', alt: '思い出のランダム表示', class: 'w-96 m-auto mb-8 mt-4'
+          br
           | 日々の忙しさで忘れかけていた大切な思い出と
           br
           | 思わぬ再会ができるかもしれません。
+          = image_tag 'reuniting_with_memory.png', alt: '思い出との再会', class: 'm-auto mt-4'
     h2.mt-12.font-semibold.text-center.mb-2.text-lg
       | あなたも大切な思い出を記録しませんか？
     .flex.justify-center.w-full
