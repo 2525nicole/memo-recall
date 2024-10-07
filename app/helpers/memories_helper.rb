@@ -24,7 +24,7 @@ module MemoriesHelper
   def add_memory_to_page(memory, category, new_category_created)
     if request_referer(categories_path)
       render turbo_stream: add_to_category_page(memory, category, new_category_created) + [turbo_stream.update('flash', partial: 'layouts/flash')]
-    elsif request_referer(root_path)
+    elsif request_referer(authenticated_root_path)
       [
         turbo_stream.replace('first-memory', partial: 'memory_with_more_link', locals: { memory: }),
         turbo_stream.remove('no-memories-message'),
