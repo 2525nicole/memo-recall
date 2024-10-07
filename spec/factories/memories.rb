@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :memory do
-    content { 'MyText' }
+    content { '今日はこんな嬉しいことがありました。' }
     category_id { 1 }
-    user { nil }
+    user
   end
 end
