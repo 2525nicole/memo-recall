@@ -12,7 +12,7 @@ header.h-14.flex.items-center.justify-between.bg-sky-100.z-50.w-full.fixed.max-w
               .p-4.text-base.text-left.sm:text-lg.z-50
                   ul.flex.flex-col.space-y-2
                     li
-                      = link_to 'トップページ', root_path, class: 'link font-bold w-full block p-2'
+                      = link_to 'トップページ', authenticated_root_path, class: 'link font-bold w-full block p-2'
                     li
                       = link_to '思い出の一覧', memories_path, class: 'link font-bold w-full block p-2'
                     li
