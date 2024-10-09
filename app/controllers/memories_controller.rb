@@ -28,12 +28,12 @@ class MemoriesController < ApplicationController
 
     ActiveRecord::Base.transaction do
       @memory = current_user.memories.build(memory_params.except(:new_category_name))
-      new_category_created = save_category_of_memory
+      save_category_of_memory
 
       raise ActiveRecord::Rollback unless @memory.valid? && valid_category?
 
       @memory.save!
-      determine_flash_messages(@memory, @category, new_category_created)
+      determine_flash_messages(@memory, @category)
       success = true
     end
 
