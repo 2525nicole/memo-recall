@@ -20,7 +20,7 @@
   }
 
   select {
-    @apply rounded !important;
+    @apply rounded;
     appearance: none !important;
     -webkit-appearance: none !important;
     -moz-appearance: none !important;

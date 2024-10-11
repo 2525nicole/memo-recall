@@ -72,5 +72,9 @@ group :development do
   gem 'slim_lint', require: false
 end
 
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+end
 
 gem "dockerfile-rails", ">= 1.6", :group => :development
