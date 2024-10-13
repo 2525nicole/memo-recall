@@ -37,6 +37,17 @@ RSpec.configure do |config|
     Rails.root.join('spec/fixtures')
   ]
 
+  config.before(:each, type: :system) do
+    if ENV['HEADED']
+      driven_by :selenium, using: :chrome
+    else
+      driven_by(:selenium, using: :headless_chrome) do |driver_option|
+        driver_option.add_argument('--no-sandbox')
+        driver_option.add_argument('--disable-dev-shm-usage')
+      end
+    end
+  end
+
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -66,4 +77,5 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::IntegrationHelpers, type: :system
 end
