@@ -29,7 +29,7 @@ RSpec.describe User, type: :model do
 
       context '登録済みのメールアドレスの場合' do
         it 'ユーザー登録に失敗する' do
-          create(:user)
+          create(:user, email: 'test@example.com')
           user = build(:user, email: 'test@example.com')
           expect(user).not_to be_valid
           expect(user.errors[:email]).to include('はすでに存在します')
