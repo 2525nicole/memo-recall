@@ -69,6 +69,7 @@ class MemoriesController < ApplicationController
     memory_category_id = @memory.category.id if @memory.category
 
     @memory.destroy
+    @memories_count = current_user.memories.count
     if @memory.category && request_referer(category_memories_path(memory_category_id))
       flash.now[:after_destroy] = t('notice.destroy.memory')
       exclude_memory_from_page(memory_category_id, @memory)
