@@ -34,6 +34,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
+    @category_count = current_user.categories.count
     flash.now.notice = t('notice.destroy.category')
   end
 

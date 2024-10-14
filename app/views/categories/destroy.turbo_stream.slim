@@ -1,2 +1,4 @@
 = turbo_stream.remove @category
 = turbo_stream.update 'flash', partial: 'layouts/flash'
+- if @category_count&.zero?
+  = turbo_stream.update 'categories', partial: 'no_categories_message'

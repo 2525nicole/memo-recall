@@ -14,10 +14,4 @@ h1.text-2xl.font-bold.text-center.py-4
       = turbo_frame_tag "memories-page-#{@memories.next_page}", loading: :lazy, src: path_to_next_page(@memories)
 
   - if @memories.empty?
-    .text-left.sm:text-center.m-6.font-normal.text-base.sm:text-lg#no-memories-message
-      p
-        | 思い出がまだ登録されていません。
-      p
-        | 画面右下の
-        i.fa-solid.fa-plus
-        | をクリックして思い出を登録してみましょう。
+    = render 'no_memories_message'

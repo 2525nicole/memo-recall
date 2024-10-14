@@ -1,2 +1,4 @@
 = turbo_stream.remove @memory
 = turbo_stream.update 'flash', partial: 'layouts/flash'
+- if @memories_count&.zero?
+  = turbo_stream.update 'memories', partial: 'no_memories_message'

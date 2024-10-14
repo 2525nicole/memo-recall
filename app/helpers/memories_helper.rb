@@ -12,11 +12,17 @@ module MemoriesHelper
 
   def exclude_memory_from_page(memory_category_id, memory)
     category = Category.find(memory_category_id)
-    render turbo_stream: [
+    memories_count = category.memories.count
+
+    turbo_streams = [
       turbo_stream.remove(memory),
       turbo_stream.update("memories-count-#{memory_category_id}", partial: 'category_memories/memories-count', locals: { category: category.reload }),
       turbo_stream.update('flash', partial: 'layouts/flash')
     ]
+
+    turbo_streams << turbo_stream.update('memories', partial: 'category_memories/no_category_memories_message') if memories_count.zero?
+
+    render turbo_stream: turbo_streams
   end
 
   private
