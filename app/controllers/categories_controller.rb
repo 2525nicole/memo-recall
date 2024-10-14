@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[edit update destroy destroy_with_memories]
+  before_action :set_category, only: %i[edit update destroy]
 
   def index
     @q = current_user.categories.ransack(params[:q])
@@ -33,15 +33,15 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category.destroy
-    @category_count = current_user.categories.count
-    flash.now.notice = t('notice.destroy.category')
-  end
-
-  def destroy_with_memories
-    @category.memories.destroy_all
-    @category.destroy
-    redirect_to memories_path, notice: t('notice.destroy.category_with_memories')
+    if params[:with_memories] == 'true'
+      @category.memories.destroy_all
+      @category.destroy
+      redirect_to memories_path, notice: t('notice.destroy.category_with_memories')
+    else
+      @category.destroy
+      @category_count = current_user.categories.count
+      flash.now.notice = t('notice.destroy.category')
+    end
   end
 
   private

@@ -7,9 +7,6 @@ Rails.application.routes.draw do
 
   resources :categories, expect: [:show] do
     resources :memories, only: [:index], controller: 'category_memories'
-    member do
-      delete :destroy_with_memories
-    end
   end
 
   resources :memories, except: [:show]
