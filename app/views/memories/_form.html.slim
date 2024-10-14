@@ -28,7 +28,7 @@
           = form.label :category_id, '登録済みのカテゴリーから選ぶ', class: 'font-normal text-sm sm:text-base text-left'
           = form.collection_select :category_id, @categories, :id, :name, include_blank: 'カテゴリーなし', class: 'w-full font-normal mt-2'
       - else
-        .text-center.m-5.font-normal.text-base.w-full
+        .text-left.m-5.ml-0.font-normal.text-base.w-full
           | ※まだカテゴリーの登録がありません。
       .flex.flex-col.w-full.mx-auto.justify-center.mt-2.mb-6.text-center.gap-2
         = form.label :category_id, '新しいカテゴリーを登録する', class: 'font-normal text-sm sm:text-base text-left'
