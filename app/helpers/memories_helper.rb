@@ -20,9 +20,7 @@ module MemoriesHelper
       turbo_stream.update('flash', partial: 'layouts/flash')
     ]
 
-    if memories_count.zero?
-      turbo_streams << turbo_stream.update('memories', partial: 'category_memories/no_category_memories_message')
-    end
+    turbo_streams << turbo_stream.update('memories', partial: 'category_memories/no_category_memories_message') if memories_count.zero?
 
     render turbo_stream: turbo_streams
   end
