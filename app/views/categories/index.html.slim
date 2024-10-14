@@ -19,9 +19,7 @@ h1.text-2xl.font-bold.text-center.py-4
       = turbo_frame_tag "categories-page-#{@categories.next_page}", loading: :lazy, src: path_to_next_page(@categories)
 
   - if @categories.empty?
-    p.text-center.m-5.font-normal.text-base.sm:text-lg#no-categories-message
-      | カテゴリーがまだ登録されていません。
-  .mb-16
+    = render 'no_categories_message'
 
   div data-controller='modal'
     .font-normal.text-sm.mb-8

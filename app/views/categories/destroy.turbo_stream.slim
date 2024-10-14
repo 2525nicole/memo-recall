@@ -1,6 +1,4 @@
 = turbo_stream.remove @category
 = turbo_stream.update 'flash', partial: 'layouts/flash'
 - if @category_count&.zero?
-  = turbo_stream.update 'categories' do
-    p.text-center.m-5.font-normal.text-base.sm:text-lg#no-categories-message
-      | カテゴリーがまだ登録されていません。
+  = turbo_stream.update 'categories', partial: 'no_categories_message'
