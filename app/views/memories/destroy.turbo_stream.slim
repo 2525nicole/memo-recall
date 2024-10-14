@@ -1,11 +1,4 @@
 = turbo_stream.remove @memory
 = turbo_stream.update 'flash', partial: 'layouts/flash'
 - if @memories_count&.zero?
-  = turbo_stream.update 'memories' do
-    .text-left.sm:text-center.m-6.font-normal.text-base.sm:text-lg#no-memories-message
-      p
-        | 思い出がまだ登録されていません。
-      p
-        | 画面右下の
-        i.fa-solid.fa-plus
-        | をクリックして思い出を登録してみましょう。
+  = turbo_stream.update 'memories', partial: 'no_memories_message'
