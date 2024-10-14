@@ -82,4 +82,20 @@ RSpec.describe 'Memories', type: :system do
       expect(page).not_to have_content '嬉しかったこと'
     end
   end
+
+  describe '#destroy_with_memories' do
+    it 'カテゴリーと紐づく思い出を削除できる' do
+      category = create(:category, user: confirm_user)
+      create(:memory, content: 'カテゴリーと削除する思い出', user: confirm_user, category:)
+      visit category_memories_path(category.id)
+      click_link 'このカテゴリーと、紐づく思い出を全て手放す（削除する）'
+      expect(page.accept_confirm).to eq "カテゴリー「嬉しかったこと」と、\n紐づく思い出をすべて手放しますか？\n手放した思い出は一覧から削除されます。"
+      expect(page).to have_content 'カテゴリーと、カテゴリーに紐づく思い出一覧を手放しました。'
+      expect(current_path).to eq(memories_path)
+      expect(page).not_to have_content 'カテゴリーと削除する思い出'
+
+      visit categories_path
+      expect(page).not_to have_content '嬉しかったこと'
+    end
+  end
 end
