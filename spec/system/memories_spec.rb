@@ -188,7 +188,7 @@ RSpec.describe 'Memories', type: :system do
         end
       end
 
-      context 'カテゴリー別思い出表示ページでの登録' do
+      context 'カテゴリー別思い出表示ページでの削除' do
         it '削除した思い出は表示されず、件数から除かれる' do
           memory = create(:memory, content: 'カテゴリー別思い出一覧ページで削除する思い出', user: confirm_user, category:)
           visit category_memories_path(category.id)
