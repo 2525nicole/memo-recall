@@ -21,7 +21,7 @@
         span data-controller="modal"
           i.fa-regular.fa-circle-question.ml-2.text-gray-500.hover:text-gray-900.text-sm.sm:text-base.cursor-pointer data-action='click->modal#open'
           .hidden.fixed.w-full.h-screen.top-0.left-0.bg-gray-700/50 data-modal-target='modal' data-action='click->modal#close'
-            .absolute.top-0.sm:top-1/2.left-1/2.-translate-x-1/2.sm:-translate-y-1/2.bg-white.rounded-md.w-full.sm:max-w-md.font-normal data-action='click->modal#stay'
+            .absolute.top-0.sm:top-1/2.left-1/2.-translate-x-1/2.sm:-translate-y-1/2.bg-white.rounded-md.w-full.sm:max-w-md.font-normal.text-gray-500 data-action='click->modal#stay'
               = render 'categories/category_description'
       - if @categories.present?
         .flex.flex-col.w-full.mx-auto.justify-center.mt-2.mb-4.text-center.gap-2
