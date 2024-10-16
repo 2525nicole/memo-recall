@@ -9,10 +9,14 @@ Rails.application.routes.draw do
     resources :memories, only: [:index], controller: 'category_memories'
   end
 
+  namespace :memories do
+    resource :random, only: [:show]
+  end
+
   resources :memories, except: [:show]
 
   authenticated :user do
-    root 'memories#random', as: :authenticated_root
+    root 'memories/random#show', as: :authenticated_root
   end
 
   root 'welcome#index'
