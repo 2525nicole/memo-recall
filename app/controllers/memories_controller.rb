@@ -7,10 +7,6 @@ class MemoriesController < ApplicationController
   before_action :set_categories, only: %i[new create edit update]
   before_action :initialize_category_errors, only: %i[new create edit update]
 
-  def random
-    @memory = current_user.memories.order('RANDOM()').first
-  end
-
   def index
     @q = current_user.memories.ransack(params[:q])
     @q.sorts = 'id desc' if @q.sorts.blank?
