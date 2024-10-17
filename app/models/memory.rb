@@ -17,12 +17,10 @@ class Memory < ApplicationRecord
   end
 
   def assign_category(params, user)
-    new_category_created = false
     category_errors = []
 
     if params[:new_category_name].present?
       category = user.categories.find_or_initialize_by(name: params[:new_category_name])
-      new_category_created = category.new_record?
 
       unless category.valid?
         category.errors.full_messages.each do |message|
@@ -34,6 +32,6 @@ class Memory < ApplicationRecord
     end
 
     self.category = category if category
-    [new_category_created, category, category_errors]
+    [category, category_errors]
   end
 end

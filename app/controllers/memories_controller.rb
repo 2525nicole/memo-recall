@@ -25,7 +25,7 @@ class MemoriesController < ApplicationController
     ActiveRecord::Base.transaction do
       @memory = current_user.memories.build(memory_params.except(:new_category_name))
 
-      new_category_created, @category, @category_errors = @memory.assign_category(memory_params, current_user)
+      @category, @category_errors = @memory.assign_category(memory_params, current_user)
 
       raise ActiveRecord::Rollback unless @memory.valid? && @memory.valid_category?
 
@@ -47,7 +47,7 @@ class MemoriesController < ApplicationController
     ActiveRecord::Base.transaction do
       @memory.assign_attributes(memory_params.except(:new_category_name))
 
-      new_category_created, @category, @category_errors = @memory.assign_category(memory_params, current_user)
+      @category, @category_errors = @memory.assign_category(memory_params, current_user)
 
       raise ActiveRecord::Rollback unless @memory.valid? && @memory.valid_category?
 
