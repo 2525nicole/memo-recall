@@ -26,7 +26,7 @@ class MemoriesController < ApplicationController
       @memory = current_user.memories.build(memory_params.except(:new_category_name))
       save_category_of_memory
 
-      raise ActiveRecord::Rollback unless @memory.valid? && valid_category?
+      raise ActiveRecord::Rollback unless @memory.valid? && @memory.valid_category?
 
       @memory.save!
       determine_flash_messages(@memory, @category)
@@ -47,7 +47,7 @@ class MemoriesController < ApplicationController
       @memory.assign_attributes(memory_params.except(:new_category_name))
       save_category_of_memory
 
-      raise ActiveRecord::Rollback unless @memory.valid? && valid_category?
+      raise ActiveRecord::Rollback unless @memory.valid? && @memory.valid_category?
 
       @memory.save!
       handle_update_flash_and_render(old_category_id)
@@ -103,10 +103,6 @@ class MemoriesController < ApplicationController
     end
     @memory.category = @category if @category
     new_category_created
-  end
-
-  def valid_category?
-    @memory.category.nil? || @memory.category&.valid?
   end
 
   def handle_update_flash_and_render(old_category_id)
