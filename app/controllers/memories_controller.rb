@@ -24,7 +24,8 @@ class MemoriesController < ApplicationController
 
     ActiveRecord::Base.transaction do
       @memory = current_user.memories.build(memory_params.except(:new_category_name))
-      save_category_of_memory
+
+      new_category_created, @category, @category_errors = @memory.assign_category(memory_params, current_user)
 
       raise ActiveRecord::Rollback unless @memory.valid? && @memory.valid_category?
 
@@ -45,7 +46,8 @@ class MemoriesController < ApplicationController
 
     ActiveRecord::Base.transaction do
       @memory.assign_attributes(memory_params.except(:new_category_name))
-      save_category_of_memory
+
+      new_category_created, @category, @category_errors = @memory.assign_category(memory_params, current_user)
 
       raise ActiveRecord::Rollback unless @memory.valid? && @memory.valid_category?
 
@@ -90,19 +92,6 @@ class MemoriesController < ApplicationController
 
   def memory_params
     params.require(:memory).permit(:content, :category_id, :new_category_name)
-  end
-
-  def save_category_of_memory
-    new_category_created = false
-    if params[:memory][:new_category_name].present?
-      @category = current_user.categories.find_or_initialize_by(name: params[:memory][:new_category_name])
-      new_category_created = @category.new_record?
-      @category.errors.full_messages.each { |msg| @category_errors << msg } unless @category.save
-    elsif params[:memory][:category_id].present?
-      @category = current_user.categories.find(params[:memory][:category_id])
-    end
-    @memory.category = @category if @category
-    new_category_created
   end
 
   def handle_update_flash_and_render(old_category_id)
