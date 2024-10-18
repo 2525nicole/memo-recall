@@ -11,4 +11,27 @@ class Memory < ApplicationRecord
   def self.ransackable_attributes(_auth_object = nil)
     ['id']
   end
+
+  def valid_category?
+    category.nil? || category&.valid?
+  end
+
+  def assign_category(params, user)
+    category_errors = []
+
+    if params[:new_category_name].present?
+      category = user.categories.find_or_initialize_by(name: params[:new_category_name])
+
+      unless category.valid?
+        category.errors.full_messages.each do |message|
+          category_errors << message
+        end
+      end
+    elsif params[:category_id].present?
+      category = user.categories.find(params[:category_id])
+    end
+
+    self.category = category if category
+    [category, category_errors]
+  end
 end

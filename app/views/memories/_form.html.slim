@@ -1,46 +1,48 @@
 - placeholder_text = "例：一時帰国中の●●と会った。\n相変わらず元気でパワフルで、たくさんの刺激をもらった！目標に向かって頑張る人はかっこいい！\n私も何かチャレンジしたい気持ちになった。キックボクシングの体験教室行ってみようかな〜"
 = form_with(model: memory, class: 'w-full', data: { controller: 'character-counter' }) do |form|
-  - if @memory.errors.any? || @category_errors.any?
+  - if @memory.errors.any?
     ul.flex.flex-col.items-center
-      - memory.errors.full_messages.each do |message|
+      - @memory.errors.full_messages.each do |message|
         li.text-red-500.font-normal.text-sm.sm:text-base.mb-2.block = message
+  - if @category_errors.any?
+    ul.flex.flex-col.items-center
       - @category_errors.each do |message|
         li.text-red-500.font-normal.text-sm.sm:text-base.mb-2.block = message
   .sm:px-6
-    .flex.flex-col.w-full.mx-auto.mb-4.sm:mb-6.text-center.gap-2
-      h2.text-base.sm:text-lg
-        | 思い出を入力してください。
-      = form.label :content, '思い出の本文', class: 'text-sky-600 bg-sky-100 border-l-8 pl-2 border-sky-400 font-bold text-base sm:text-lg text-left my-2'
-      = form.text_area :content, id: 'memory_content', placeholder: placeholder_text,
-        class: 'w-full h-48 font-normal sm:h-72 resize-none rounded', data: { character_counter_target: 'input', action: 'input->character-counter#updateCounter', max_length: 300 }
-      .text-xs.sm:text-sm.text-gray-500.font-normal.text-right
-        span data-character-counter-target='counter' data-counter-for='memory_content' 現在 0/300 文字入力しています
-    .flex.flex-col.w-full.mx-auto.mb-2.text-center
-      h2.font-bold.text-gray-600.text-left.text-base.sm:text-lg.text-sky-600.bg-sky-100.border-l-8.pl-2.border-sky-400.my-2
-        | カテゴリーの設定
-        span data-controller="modal"
-          i.fa-regular.fa-circle-question.ml-2.text-gray-500.hover:text-gray-900.text-sm.sm:text-base.cursor-pointer data-action='click->modal#open'
-          .hidden.fixed.w-full.h-screen.top-0.left-0.bg-gray-700/50 data-modal-target='modal' data-action='click->modal#close'
-            .absolute.top-0.sm:top-1/2.left-1/2.-translate-x-1/2.sm:-translate-y-1/2.bg-white.rounded-md.w-full.sm:max-w-md.font-normal.text-gray-500 data-action='click->modal#stay'
-              = render 'categories/category_description'
-      - if @categories.present?
-        .flex.flex-col.w-full.mx-auto.justify-center.mt-2.mb-4.text-center.gap-2
-          = form.label :category_id, '登録済みのカテゴリーから選ぶ', class: 'font-normal text-sm sm:text-base text-left'
-          = form.collection_select :category_id, @categories, :id, :name, include_blank: 'カテゴリーなし', class: 'w-full font-normal mt-2'
-      - else
-        .text-left.m-5.ml-0.font-normal.text-base.w-full
-          | ※まだカテゴリーの登録がありません。
-      .flex.flex-col.w-full.mx-auto.justify-center.mt-2.mb-6.text-center.gap-2
-        = form.label :category_id, '新しいカテゴリーを登録する', class: 'font-normal text-sm sm:text-base text-left'
-        = form.text_field :new_category_name, id: 'new_category_name', placeholder: '例：嬉しかった出来事', class: 'w-full text-base font-normal sm:px-4 rounded',
-          data: { character_counter_target: 'input', action: 'input->character-counter#updateCounter', max_length: 15 }
-        p.text-xs.sm:text-sm.text-gray-500.font-normal.text-right
-          span data-character-counter-target='counter' data-counter-for='new_category_name' 現在 0/15 文字入力しています
-      .flex.justify-center.w-full
-        = form.submit '保存する', class: 'primary-btn py-2 px-4 w-full'
+  .flex.flex-col.w-full.mx-auto.mb-4.sm:mb-6.text-center.gap-2
+    h2.text-base.sm:text-lg
+      | 思い出を入力してください。
+    = form.label :content, '思い出の本文', class: 'text-sky-600 bg-sky-100 border-l-8 pl-2 border-sky-400 font-bold text-base sm:text-lg text-left my-2'
+    = form.text_area :content, id: 'memory_content', placeholder: placeholder_text,
+      class: 'w-full h-48 font-normal sm:h-72 resize-none rounded', data: { character_counter_target: 'input', action: 'input->character-counter#updateCounter', max_length: 300 }
+    .text-xs.sm:text-sm.text-gray-500.font-normal.text-right
+      span data-character-counter-target='counter' data-counter-for='memory_content' 現在 0/300 文字入力しています
+  .flex.flex-col.w-full.mx-auto.mb-2.text-center
+    h2.font-bold.text-gray-600.text-left.text-base.sm:text-lg.text-sky-600.bg-sky-100.border-l-8.pl-2.border-sky-400.my-2
+      | カテゴリーの設定
+      span data-controller="modal"
+        i.fa-regular.fa-circle-question.ml-2.text-gray-500.hover:text-gray-900.text-sm.sm:text-base.cursor-pointer data-action='click->modal#open'
+        .hidden.fixed.w-full.h-screen.top-0.left-0.bg-gray-700/50 data-modal-target='modal' data-action='click->modal#close'
+          .absolute.top-0.sm:top-1/2.left-1/2.-translate-x-1/2.sm:-translate-y-1/2.bg-white.rounded-md.w-full.sm:max-w-md.font-normal.text-gray-500 data-action='click->modal#stay'
+            = render 'categories/category_description'
+    - if @categories.present?
+      .flex.flex-col.w-full.mx-auto.justify-center.mt-2.mb-4.text-center.gap-2
+        = form.label :category_id, '登録済みのカテゴリーから選ぶ', class: 'font-normal text-sm sm:text-base text-left'
+        = form.collection_select :category_id, @categories, :id, :name, include_blank: 'カテゴリーなし', class: 'w-full font-normal mt-2'
+    - else
+      .text-left.m-5.ml-0.font-normal.text-base.w-full
+        | ※まだカテゴリーの登録がありません。
+    .flex.flex-col.w-full.mx-auto.justify-center.mt-2.mb-6.text-center.gap-2
+      = form.label :category_id, '新しいカテゴリーを登録する', class: 'font-normal text-sm sm:text-base text-left'
+      = form.text_field :new_category_name, id: 'new_category_name', placeholder: '例：嬉しかった出来事', class: 'w-full text-base font-normal sm:px-4 rounded',
+        data: { character_counter_target: 'input', action: 'input->character-counter#updateCounter', max_length: 15 }
+      p.text-xs.sm:text-sm.text-gray-500.font-normal.text-right
+        span data-character-counter-target='counter' data-counter-for='new_category_name' 現在 0/15 文字入力しています
+    .flex.justify-center.w-full
+      = form.submit '保存する', class: 'primary-btn py-2 px-4 w-full'
 
-      - if memory.persisted?
-        .mt-6.sm:mt-8.text-sm.sm:text-base.text-center
-          = link_to t('activerecord.action.destroy.memory'),
-            memory, data: { turbo_method: :delete, turbo_confirm: sanitize("この思い出を手放しますか？\n手放した思い出は一覧から削除されます。") },
-            class: 'link-with-underline font-normal'
+    - if memory.persisted?
+      .mt-6.sm:mt-8.text-sm.sm:text-base.text-center
+        = link_to t('activerecord.action.destroy.memory'),
+          memory, data: { turbo_method: :delete, turbo_confirm: sanitize("この思い出を手放しますか？\n手放した思い出は一覧から削除されます。") },
+          class: 'link-with-underline font-normal'
