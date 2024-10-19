@@ -31,7 +31,7 @@ module MemoriesHelper
     if request_referer(authenticated_root_path)
       render turbo_stream:
         [
-          turbo_stream.replace('first-memory', partial: 'memory_with_more_link', locals: { memory: }),
+          turbo_stream.replace('first-memory', partial: 'memories/random/memory_with_more_link', locals: { memory: }),
           turbo_stream.remove('no-memories-message'),
           turbo_stream.update('flash', partial: 'layouts/flash')
         ]
