@@ -4,9 +4,9 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i[edit update destroy]
 
   def index
-    @q = current_user.categories.ransack(params[:q])
-    @q.sorts = 'id desc' if @q.sorts.blank?
-    @categories = @q.result.page(params[:page])
+    @query = current_user.categories.ransack(params[:q])
+    @query.sorts = 'id desc' if @query.sorts.blank?
+    @categories = @query.result.page(params[:page])
   end
 
   def new
