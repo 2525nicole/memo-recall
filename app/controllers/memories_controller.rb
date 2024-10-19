@@ -30,7 +30,7 @@ class MemoriesController < ApplicationController
       raise ActiveRecord::Rollback unless @memory.valid? && @memory.valid_category?
 
       @memory.save!
-      determine_flash_messages(@memory, @category)
+      set_flash_and_update_page(@memory, @category)
       success = true
     end
 
@@ -70,7 +70,7 @@ class MemoriesController < ApplicationController
     @memories_count = current_user.memories.count
     flash.now[:after_destroy] = t('notice.destroy.memory')
 
-    return unless memory_category_id && request_referer(category_memories_path(memory_category_id))
+    return unless memory_category_id && referer_matches_path?(category_memories_path(memory_category_id))
 
     exclude_memory_from_page(memory_category_id, @memory)
   end
@@ -95,7 +95,7 @@ class MemoriesController < ApplicationController
 
   def handle_update_flash_and_render(old_category_id)
     flash.now.notice = t('notice.update', model: Memory.model_name.human)
-    return unless old_category_id && old_category_id != @memory.category_id && request_referer(category_memories_path(old_category_id))
+    return unless old_category_id && old_category_id != @memory.category_id && referer_matches_path?(category_memories_path(old_category_id))
 
     exclude_memory_from_page(old_category_id, @memory)
   end

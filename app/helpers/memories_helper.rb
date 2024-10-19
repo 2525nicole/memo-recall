@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module MemoriesHelper
-  def determine_flash_messages(memory, category)
-    if request_referer(memories_path)
-      flash.now[:after_create] = t('notice.create.memory')
+  def set_flash_and_update_page(memory, category)
+    if referer_matches_path?(memories_path)
+      set_flash_message(:after_create, t('notice.create.memory'))
     else
-      flash.now[:after_create_with_link] = view_context.link_to('思い出を記録しました。（思い出の一覧を見る）', memories_path)
+      set_flash_message(:after_create_with_link, view_context.link_to('思い出を記録しました。（思い出の一覧を見る）', memories_path))
       add_memory_to_page(memory, category)
     end
   end
@@ -27,42 +27,31 @@ module MemoriesHelper
 
   private
 
+  def set_flash_message(type, message)
+    flash.now[type] = message
+  end
+
   def add_memory_to_page(memory, category)
-    if request_referer(authenticated_root_path)
-      render turbo_stream:
-        [
-          turbo_stream.replace('first-memory', partial: 'memories/random/memory_with_more_link', locals: { memory: }),
-          turbo_stream.remove('no-memories-message'),
-          turbo_stream.update('flash', partial: 'layouts/flash')
-        ]
+    turbo_streams = []
 
-    elsif memory.category_id && request_referer(category_memories_path(memory.category_id))
-      render turbo_stream: (
-        add_to_category_memories_page(memory, category) +
-        [
-          turbo_stream.remove('no-memories-message'),
-          turbo_stream.update('flash', partial: 'layouts/flash')
-        ]
-      )
-    else
-      render_flash_message
+    if referer_matches_path?(authenticated_root_path)
+      turbo_streams += [
+        turbo_stream.replace('first-memory', partial: 'memories/random/memory_with_more_link', locals: { memory: }),
+        turbo_stream.remove('no-memories-message')
+      ]
+    elsif memory.category_id && referer_matches_path?(category_memories_path(memory.category_id))
+      turbo_streams += [
+        turbo_stream.prepend('memories', partial: 'memory', locals: { memory: }),
+        turbo_stream.update("memories-count-#{memory.category_id}", partial: 'category_memories/memories-count', locals: { category: }),
+        turbo_stream.remove('no-memories-message')
+      ]
     end
+
+    turbo_streams << turbo_stream.update('flash', partial: 'layouts/flash')
+    render turbo_stream: turbo_streams
   end
 
-  def add_to_category_memories_page(memory, category)
-    [
-      turbo_stream.prepend('memories', partial: 'memory', locals: { memory: }),
-      turbo_stream.update("memories-count-#{memory.category_id}", partial: 'category_memories/memories-count', locals: { category: })
-    ]
-  end
-
-  def render_flash_message
-    render turbo_stream: [
-      turbo_stream.update('flash', partial: 'layouts/flash')
-    ]
-  end
-
-  def request_referer(path)
+  def referer_matches_path?(path)
     request.referer && URI(request.referer).path == path
   end
 end
