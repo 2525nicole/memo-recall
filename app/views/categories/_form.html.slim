@@ -7,10 +7,7 @@
           .absolute.-top-16.left-1/2.-translate-x-1/2.bg-white.rounded-md.w-full.sm:max-w-md.max-h-80vh.overflow-y-scroll data-action='click->modal#stay'
             = render 'categories/category_description'
   = form_with(model: category, class: 'w-full text-base', data: { controller: 'character-counter' }) do |form|
-    - if category.errors.any?
-      ul.flex.flex-col.items-center
-        - category.errors.full_messages.each do |message|
-          li.text-red-500.mb-2.block = message
+    = render 'shared/error_messages', errors: @category.errors.full_messages if @category.errors.any?
     .w-full.max-w-2xl.mx-auto.justify-center
       = form.text_field :name, id: 'category_name', placeholder: '例：嬉しかった出来事', class: 'w-full mx-auto text-lg rounded', data: { character_counter_target: 'input', action: 'input->character-counter#updateCounter', max_length: 15 }
     .text-gray-500.mt-2.text-right

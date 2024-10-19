@@ -1,0 +1,4 @@
+- if errors.any?
+  ul.flex.flex-col.items-center
+    - errors.each do |message|
+      li.text-red-500.font-normal.text-sm.sm:text-base.mb-2.block = message
