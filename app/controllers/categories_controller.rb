@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
   def create
     @category = current_user.categories.build(category_params)
     if @category.save
-      flash.now.notice = t('notice.create.category')
+      set_flash_message(:notice, t('notice.create.category'))
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,21 +26,21 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      flash.now.notice = t('notice.update', model: Category.model_name.human)
+      set_flash_message(:notice, t('notice.update', model: Category.model_name.human))
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    if params[:with_memories] == 'true'
+    if destroy_with_memories?
       @category.memories.destroy_all
       @category.destroy
       redirect_to memories_path, notice: t('notice.destroy.category_with_memories')
     else
       @category.destroy
       @category_count = current_user.categories.count
-      flash.now.notice = t('notice.destroy.category')
+      set_flash_message(:notice, t('notice.destroy.category'))
     end
   end
 
@@ -52,5 +52,13 @@ class CategoriesController < ApplicationController
 
   def category_params
     params.require(:category).permit(:name)
+  end
+
+  def destroy_with_memories?
+    params[:with_memories] == 'true'
+  end
+
+  def set_flash_message(type, message)
+    flash.now[type] = message
   end
 end
