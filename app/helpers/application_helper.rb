@@ -33,4 +33,8 @@ module ApplicationHelper
       }
     }
   end
+
+  def count_character(id, max_length)
+    content_tag(:span, "現在 0/#{max_length} 文字入力しています", data: { 'character-counter-target': 'counter', 'counter-for': id })
+  end
 end

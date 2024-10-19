@@ -16,7 +16,7 @@
     = form.text_area :content, id: 'memory_content', placeholder: placeholder_text,
       class: 'w-full h-48 font-normal sm:h-72 resize-none rounded', data: { character_counter_target: 'input', action: 'input->character-counter#updateCounter', max_length: 300 }
     .text-xs.sm:text-sm.text-gray-500.font-normal.text-right
-      span data-character-counter-target='counter' data-counter-for='memory_content' 現在 0/300 文字入力しています
+      = count_character('memory_content', 300)
   .flex.flex-col.w-full.mx-auto.mb-2.text-center
     h2.font-bold.text-gray-600.text-left.text-base.sm:text-lg.text-sky-600.bg-sky-100.border-l-8.pl-2.border-sky-400.my-2
       | カテゴリーの設定
@@ -37,7 +37,7 @@
       = form.text_field :new_category_name, id: 'new_category_name', placeholder: '例：嬉しかった出来事', class: 'w-full text-base font-normal sm:px-4 rounded',
         data: { character_counter_target: 'input', action: 'input->character-counter#updateCounter', max_length: 15 }
       p.text-xs.sm:text-sm.text-gray-500.font-normal.text-right
-        span data-character-counter-target='counter' data-counter-for='new_category_name' 現在 0/15 文字入力しています
+        = count_character('new_category_name', 15)
     .flex.justify-center.w-full
       = form.submit '保存する', class: 'primary-btn py-2 px-4 w-full'
 
