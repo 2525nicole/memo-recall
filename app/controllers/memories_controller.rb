@@ -64,16 +64,15 @@ class MemoriesController < ApplicationController
   end
 
   def destroy
-    memory_category_id = @memory.category.id if @memory.category
+    memory_category_id = @memory.category&.id
 
     @memory.destroy
     @memories_count = current_user.memories.count
-    if @memory.category && request_referer(category_memories_path(memory_category_id))
-      flash.now[:after_destroy] = t('notice.destroy.memory')
-      exclude_memory_from_page(memory_category_id, @memory)
-    else
-      flash.now[:after_destroy] = t('notice.destroy.memory')
-    end
+    flash.now[:after_destroy] = t('notice.destroy.memory')
+
+    return unless memory_category_id && request_referer(category_memories_path(memory_category_id))
+
+    exclude_memory_from_page(memory_category_id, @memory)
   end
 
   private
