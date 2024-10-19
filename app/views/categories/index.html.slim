@@ -11,7 +11,7 @@ h1.text-2xl.font-bold.text-center.py-4
 
 .px-4.sm:px-8
   .text-base.sm:text-lg.font-normal.link-with-underline.mb-2.flex.justify-end
-    = sort_link(@q, :id, '投稿順')
+    = sort_link(@query, :id, '投稿順')
 
   #categories
     = turbo_frame_tag "categories-page-#{@categories.current_page}" do

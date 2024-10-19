@@ -4,9 +4,9 @@ class CategoryMemoriesController < ApplicationController
   before_action :set_category
 
   def index
-    @q = @category.memories.ransack(params[:q])
-    @q.sorts = 'id desc' if @q.sorts.blank?
-    @memories = @q.result.page(params[:page]).per(20)
+    @query = @category.memories.ransack(params[:q])
+    @query.sorts = 'id desc' if @query.sorts.blank?
+    @memories = @query.result.page(params[:page]).per(20)
   end
 
   private

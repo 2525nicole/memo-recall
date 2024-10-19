@@ -13,7 +13,7 @@
       category_path(@category, with_memories: true), method: :delete, data: { turbo_method: :delete, turbo_confirm: sanitize("カテゴリー「#{@category.name}」と、\n紐づく思い出をすべて手放しますか？\n手放した思い出は一覧から削除されます。") },
       class: 'link-with-underline font-normal text-sm sm:text-base justify-start my-2'
     .flex.justify-end.text-base.sm:text-lg.link-with-underline.mb-2
-      = sort_link(@q, :id, '投稿順')
+      = sort_link(@query, :id, '投稿順')
 
     #memories
     = turbo_frame_tag "memories-page-#{@memories.current_page}"

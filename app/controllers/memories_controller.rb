@@ -8,9 +8,9 @@ class MemoriesController < ApplicationController
   before_action :initialize_category_errors, only: %i[new create edit update]
 
   def index
-    @q = current_user.memories.ransack(params[:q])
-    @q.sorts = 'id desc' if @q.sorts.blank?
-    @memories = @q.result.page(params[:page])
+    @query = current_user.memories.ransack(params[:q])
+    @query.sorts = 'id desc' if @query.sorts.blank?
+    @memories = @query.result.page(params[:page])
   end
 
   def new
