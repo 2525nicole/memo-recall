@@ -6,10 +6,10 @@
       = simple_format memory.content, class: 'text-left'
       - if memory.category
         .text-sm.link-with-underline.sm:text-base.flex.justify-start
-          = link_to "カテゴリー: #{memory.category.name}", category_memories_path(memory.category.id), data: { turbo: false }
+          = link_to "カテゴリー: #{memory.category.name}", category_memories_path(memory.category), data: { turbo: false }
 
       .flex.flex-row.justify-between.items-center.text-sm.sm:text-base
-        .text-gray-600.text-sm.sm:text-base
+        .text-gray-600
           | 投稿日: #{l(memory.created_at, format: :date_only)}
         div data-controller='modal'
           .flex.flex-row
