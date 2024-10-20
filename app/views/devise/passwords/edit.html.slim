@@ -14,7 +14,6 @@
           = f.label :password, t('.new_password')
           - if @minimum_password_length
             = t('devise.shared.minimum_password_length', count: @minimum_password_length)
-          br
           = f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'w-full text-lg mb-2 rounded'
         .field.text-left
           = f.label :password_confirmation, t('.confirm_new_password')
