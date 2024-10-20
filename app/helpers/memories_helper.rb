@@ -17,7 +17,7 @@ module MemoriesHelper
     turbo_streams = [
       turbo_stream.remove(memory),
       turbo_stream.update("memories-count-#{memory_category_id}", partial: 'category_memories/memories-count', locals: { category: category.reload }),
-      turbo_stream.update('flash', partial: 'layouts/flash')
+      turbo_stream.update('flash', partial: 'shared/flash')
     ]
 
     turbo_streams << turbo_stream.update('memories', partial: 'category_memories/no_category_memories_message') if memories_count.zero?
@@ -47,7 +47,7 @@ module MemoriesHelper
       ]
     end
 
-    turbo_streams << turbo_stream.update('flash', partial: 'layouts/flash')
+    turbo_streams << turbo_stream.update('flash', partial: 'shared/flash')
     render turbo_stream: turbo_streams
   end
 

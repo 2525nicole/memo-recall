@@ -19,7 +19,7 @@ html.bg-slate-200
 
     main.container.flex-grow[class=container_padding_class]
       #flash
-        = render 'layouts/flash'
+        = render 'shared/flash'
       = yield
 
     - if user_signed_in? && (current_page?(authenticated_root_path) || current_page?(memories_path) || (params[:category_id].present? && current_page?(category_memories_path(category_id: params[:category_id]))))
