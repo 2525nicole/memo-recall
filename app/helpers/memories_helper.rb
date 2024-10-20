@@ -36,7 +36,7 @@ module MemoriesHelper
 
     if referer_matches_path?(authenticated_root_path)
       turbo_streams += [
-        turbo_stream.replace('first-memory', partial: 'memories/random/memory_with_more_link', locals: { memory: }),
+        turbo_stream.replace('memories', partial: 'memories/random/memory_with_more_link', locals: { memory: }),
         turbo_stream.remove('no-memories-message')
       ]
     elsif memory.category_id && referer_matches_path?(category_memories_path(memory.category_id))
