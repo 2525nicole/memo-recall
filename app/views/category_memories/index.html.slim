@@ -14,7 +14,6 @@
       class: 'link-with-underline font-normal text-sm sm:text-base justify-start my-2'
     .flex.justify-end.text-base.sm:text-lg.link-with-underline.mb-2
       = sort_link(@query, :id, '投稿順')
-
     #memories
     = turbo_frame_tag "memories-page-#{@memories.current_page}"
       = render @memories
