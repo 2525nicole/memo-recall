@@ -9,7 +9,7 @@
       = t('.resend_confirmation_instructions')
     = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
       .w-full.max-w-sm.mx-auto.mt-8.mb-6.text-left
-        = f.label :email, class: 'text-lg font-normal mb-2'
+        = f.label :email, class: 'text-lg font-normal'
         = f.email_field :email,
           autofocus: true,
           autocomplete: 'email',
