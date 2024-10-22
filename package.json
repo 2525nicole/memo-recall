@@ -1,7 +1,7 @@
 {
   "name": "memo-recall",
   "version": "1.0.0",
-  "description": "MemoRecall (メモリコール)は、思い出記録サービスです。",
+  "description": "Memo Recall (メモリコール)は、思い出記録サービスです。",
   "main": "index.js",
   "directories": {
     "lib": "lib"
