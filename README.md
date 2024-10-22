@@ -1,10 +1,10 @@
-# MemoRecall
+# Memo Recall
 
 ![README用のロゴ](https://github.com/user-attachments/assets/78e0f8e2-1ef7-47b3-be10-9e535d24fe19)
 
 ## 概要
 
-MemoRecallは、思い出記録サービスです。<br>
+Memo Recallは、思い出記録サービスです。<br>
 いつでも簡単に思い出を記録したり、振り返ることができます。
 
 思い出はカテゴリーと紐づけて登録できます。<br>
@@ -12,7 +12,7 @@ MemoRecallは、思い出記録サービスです。<br>
 いつでも前向きに過去を振り返ることができます。
 
 トップページでは、登録済みの思い出がランダムに表示されます。<br>
-MemoRecallを使えば日々の忙しさで忘れかけていた大切な思い出と
+Memo Recallを使えば日々の忙しさで忘れかけていた大切な思い出と
 思わぬ再会ができるかもしれません。
 
 ## URL
