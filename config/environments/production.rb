@@ -100,4 +100,5 @@ Rails.application.configure do
   }
 
   config.action_mailer.default_url_options = { host: 'memo-recall.fly.dev/', protocol: 'https' }
+  config.action_mailer.default_options = { from: 'memo-recall <memorecall.2024@gmail.com>' }
 end
