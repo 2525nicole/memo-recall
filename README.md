@@ -25,7 +25,7 @@ https://memo-recall.fly.dev/
 
 メールアドレスと任意のパスワードを設定し、登録してください。
 
-<img width="50%" alt="アカウント登録" src="https://github.com/user-attachments/assets/fb050c07-291c-4d1c-ba85-32346fe39c3e">
+<img width="50%" alt="アカウント登録" src="https://github.com/user-attachments/assets/ccf7f47a-7e85-40dd-8a9e-27a3ae47676d">
 
 ### 思い出の登録
 
