@@ -41,39 +41,35 @@ RSpec.describe Memory, type: :model do
       it 'カテゴリーが作成され、思い出に紐づけられる' do
         memory = build(:memory, user: confirm_user)
 
-        category, category_errors = memory.assign_category({ new_category_name: '新しいカテゴリー' }, confirm_user)
+        category = memory.assign_category({ new_category_name: '新しいカテゴリー' }, confirm_user)
 
         expect(category.name).to eq('新しいカテゴリー')
         expect(memory.category).to eq(category)
-        expect(category_errors).to be_empty
       end
 
       it 'カテゴリーが invalid の場合、エラーが返される' do
         memory = build(:memory, user: confirm_user)
-        _category, category_errors = memory.assign_category({ new_category_name: 'x' * 20 }, confirm_user)
+        category = memory.assign_category({ new_category_name: 'x' * 20 }, confirm_user)
 
-        expect(category_errors).not_to be_empty
-        expect(category_errors).to include('カテゴリー名は15文字以内で入力してください')
+        expect(category.errors.full_messages).to include('カテゴリー名は15文字以内で入力してください')
       end
     end
 
     context '登録済みのカテゴリーIDが渡された場合' do
       it '登録済みのカテゴリーが思い出に紐づけられる' do
         memory = build(:memory, user: confirm_user)
-        _category, category_errors = memory.assign_category({ category_id: valid_category.id }, confirm_user)
+        _category = memory.assign_category({ category_id: valid_category.id }, confirm_user)
 
         expect(memory.category).to eq(valid_category)
-        expect(category_errors).to be_empty
       end
     end
 
     context '新しいカテゴリー名も登録済みのカテゴリーIDも渡されない場合' do
       it 'カテゴリーは思い出に紐づけられない' do
         memory = build(:memory, user: confirm_user)
-        _category, category_errors = memory.assign_category({}, confirm_user)
+        _category = memory.assign_category({}, confirm_user)
 
         expect(memory.category).to be_nil
-        expect(category_errors).to be_empty
       end
     end
   end
