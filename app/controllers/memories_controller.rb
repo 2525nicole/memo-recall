@@ -5,7 +5,6 @@ class MemoriesController < ApplicationController
 
   before_action :set_memory, only: %i[edit update destroy]
   before_action :set_categories, only: %i[new create edit update]
-  before_action :initialize_category_errors, only: %i[new create edit update]
 
   def index
     @query = current_user.memories.ransack(params[:q])
@@ -25,7 +24,7 @@ class MemoriesController < ApplicationController
     ActiveRecord::Base.transaction do
       @memory = current_user.memories.build(memory_params.except(:new_category_name))
 
-      @category, @category_errors = @memory.assign_category(memory_params, current_user)
+      @category = @memory.assign_category(memory_params, current_user)
 
       raise ActiveRecord::Rollback unless @memory.valid? && @memory.valid_category?
 
@@ -47,7 +46,7 @@ class MemoriesController < ApplicationController
     ActiveRecord::Base.transaction do
       @memory.assign_attributes(memory_params.except(:new_category_name))
 
-      @category, @category_errors = @memory.assign_category(memory_params, current_user)
+      @category = @memory.assign_category(memory_params, current_user)
 
       raise ActiveRecord::Rollback unless @memory.valid? && @memory.valid_category?
 
@@ -83,10 +82,6 @@ class MemoriesController < ApplicationController
 
   def set_categories
     @categories = current_user.categories.all
-  end
-
-  def initialize_category_errors
-    @category_errors = []
   end
 
   def memory_params

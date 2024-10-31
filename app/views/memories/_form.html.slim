@@ -1,7 +1,7 @@
 - placeholder_text = "例：一時帰国中の●●と会った。\n相変わらず元気でパワフルで、たくさんの刺激をもらった！目標に向かって頑張る人はかっこいい！\n私も何かチャレンジしたい気持ちになった。キックボクシングの体験教室行ってみようかな〜"
 = form_with(model: memory, class: 'w-full', data: { controller: 'character-counter' }) do |form|
   = render 'shared/error_messages', errors: @memory.errors.full_messages if @memory.errors.any?
-  = render 'shared/error_messages', errors: @category_errors if @category_errors.any?
+  = render 'shared/error_messages', errors: @category.errors.full_messages if @category&.errors&.any?
   .sm:px-6
   .flex.flex-col.w-full.mx-auto.mb-4.sm:mb-6.text-center.gap-2
     h2.text-base.sm:text-lg
