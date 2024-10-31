@@ -39,7 +39,6 @@ class CategoriesController < ApplicationController
       redirect_to memories_path, notice: t('notice.destroy.category_with_memories')
     else
       @category.destroy
-      @category_count = current_user.categories.count
       set_flash_message(:notice, t('notice.destroy.category'))
     end
   end
