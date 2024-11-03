@@ -34,14 +34,21 @@ class CategoriesController < ApplicationController
 
   def destroy
     if destroy_with_memories?
-      @category.memories.destroy_all
-      @category.destroy
-      redirect_to memories_path, notice: t('notice.destroy.category_with_memories')
+      ActiveRecord::Base.transaction do
+        @category.memories.each(&:destroy!)
+        @category.destroy!
+      end
+      redirect_to memories_path, notice: t('notice.destroy.category_with_memories') and return
     else
-      @category.destroy
+      @category.destroy!
       @category_count = current_user.categories.count
       set_flash_message(:notice, t('notice.destroy.category'))
     end
+  rescue ActiveRecord::RecordNotDestroyed, ActiveRecord::Rollback
+    flash.now[:alert] = t('notice.destroy_failed')
+    response.set_header('Turbo-Frame', '_top')
+    # 対象の Category または Category と Memories を表示したままにしておくため、update テンプレートを使用する
+    render :update, status: :unprocessable_entity
   end
 
   private
