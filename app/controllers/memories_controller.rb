@@ -5,7 +5,6 @@ class MemoriesController < ApplicationController
 
   before_action :set_memory, only: %i[edit update destroy]
   before_action :set_categories, only: %i[new create edit update]
-  before_action :initialize_category_errors, only: %i[new create edit update]
 
   def index
     @query = current_user.memories.ransack(params[:q])
@@ -61,10 +60,6 @@ class MemoriesController < ApplicationController
 
   def set_categories
     @categories = current_user.categories.all
-  end
-
-  def initialize_category_errors
-    @category_errors = []
   end
 
   def memory_params
