@@ -60,7 +60,7 @@ https://memo-recall.fly.dev/
 
 ## 開発環境
 
-- Ruby 3.3.0
+- Ruby 3.3.5
 - Ruby on Rails 7.1.3.3
 - Hotwire
 
