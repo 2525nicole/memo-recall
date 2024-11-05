@@ -66,16 +66,9 @@ class MemoriesController < ApplicationController
   def destroy
     memory_category_id = @memory.category&.id
 
-    begin
-      @memory.destroy!
-      flash.now[:after_destroy] = t('notice.destroy.memory')
-      exclude_memory_from_page(memory_category_id, @memory) if memory_category_id && referer_matches_path?(category_memories_path(memory_category_id))
-    rescue ActiveRecord::RecordNotDestroyed
-      flash.now[:alert] = t('notice.destroy_failed')
-      response.set_header('Turbo-Frame', '_top')
-      # 対象の Memory を表示したままにしておくため、update テンプレートを使用する
-      render :update, status: :unprocessable_entity
-    end
+    @memory.destroy!
+    flash.now[:after_destroy] = t('notice.destroy.memory')
+    exclude_memory_from_page(memory_category_id, @memory) if memory_category_id && referer_matches_path?(category_memories_path(memory_category_id))
   end
 
   private

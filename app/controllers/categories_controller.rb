@@ -43,11 +43,6 @@ class CategoriesController < ApplicationController
       @category.destroy!
       set_flash_message(:notice, t('notice.destroy.category'))
     end
-  rescue ActiveRecord::RecordNotDestroyed, ActiveRecord::Rollback
-    flash.now[:alert] = t('notice.destroy_failed')
-    response.set_header('Turbo-Frame', '_top')
-    # 対象の Category または Category と Memories を表示したままにしておくため、update テンプレートを使用する
-    render :update, status: :unprocessable_entity
   end
 
   private
