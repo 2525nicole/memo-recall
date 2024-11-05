@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
   let(:email) { 'test@example.com' }
-  let(:password) { 'test12' }
+  let(:password) { 'test1234' }
   let!(:confirm_user) { create(:user, confirmed_at: Time.current) }
   let!(:not_confirm_user) { create(:user, email: 'not_confirm@example.com') }
 
