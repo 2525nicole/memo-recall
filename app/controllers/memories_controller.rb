@@ -68,9 +68,7 @@ class MemoriesController < ApplicationController
 
     begin
       @memory.destroy!
-      @memories_count = current_user.memories.count
       flash.now[:after_destroy] = t('notice.destroy.memory')
-
       exclude_memory_from_page(memory_category_id, @memory) if memory_category_id && referer_matches_path?(category_memories_path(memory_category_id))
     rescue ActiveRecord::RecordNotDestroyed
       flash.now[:alert] = t('notice.destroy_failed')

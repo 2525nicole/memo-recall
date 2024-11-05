@@ -1,4 +1,4 @@
 = turbo_stream.remove @memory
 = turbo_stream.update 'flash', partial: 'shared/flash'
-- if @memories_count&.zero?
+- unless current_user.memories.exists?
   = turbo_stream.update 'memories', partial: 'no_memories_message'

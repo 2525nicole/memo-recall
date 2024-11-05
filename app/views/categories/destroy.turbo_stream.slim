@@ -1,4 +1,4 @@
 = turbo_stream.remove @category
 = turbo_stream.update 'flash', partial: 'shared/flash'
-- if @category_count&.zero?
+- unless current_user.categories.exists?
   = turbo_stream.update 'categories', partial: 'no_categories_message'
