@@ -67,7 +67,6 @@ class MemoriesController < ApplicationController
     memory_category_id = @memory.category&.id
 
     @memory.destroy
-    @memories_count = current_user.memories.count
     flash.now[:after_destroy] = t('notice.destroy.memory')
 
     return unless memory_category_id && referer_matches_path?(category_memories_path(memory_category_id))
