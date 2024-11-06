@@ -38,4 +38,5 @@ ja:
       category: "カテゴリーを削除しました。"
       memory: "思い出を手放しました。"
       category_with_memories: "カテゴリーと、カテゴリーに紐づく思い出一覧を手放しました。"
+    destroy_failed: "削除に失敗しました。"
     update: "%{model}を更新しました。"

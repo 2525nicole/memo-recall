@@ -43,12 +43,9 @@ class MemoriesController < ApplicationController
   def destroy
     memory_category_id = @memory.category&.id
 
-    @memory.destroy
+    @memory.destroy!
     flash.now[:after_destroy] = t('notice.destroy.memory')
-
-    return unless memory_category_id && referer_matches_path?(category_memories_path(memory_category_id))
-
-    exclude_memory_from_page(memory_category_id, @memory)
+    exclude_memory_from_page(memory_category_id, @memory) if memory_category_id && referer_matches_path?(category_memories_path(memory_category_id))
   end
 
   private

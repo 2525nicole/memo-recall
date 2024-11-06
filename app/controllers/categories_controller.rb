@@ -34,11 +34,13 @@ class CategoriesController < ApplicationController
 
   def destroy
     if destroy_with_memories?
-      @category.memories.destroy_all
-      @category.destroy
-      redirect_to memories_path, notice: t('notice.destroy.category_with_memories')
+      ActiveRecord::Base.transaction do
+        @category.memories.each(&:destroy!)
+        @category.destroy!
+      end
+      redirect_to memories_path, notice: t('notice.destroy.category_with_memories') and return
     else
-      @category.destroy
+      @category.destroy!
       set_flash_message(:notice, t('notice.destroy.category'))
     end
   end
