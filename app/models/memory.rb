@@ -5,6 +5,11 @@ class Memory < ApplicationRecord
   belongs_to :category, optional: true
 
   validates :content, presence: true, length: { maximum: 300 }
+  validate :validate_associated_category
+
+  before_validation :assign_category
+
+  attr_accessor :new_category_name
 
   paginates_per 20
 
@@ -12,26 +17,17 @@ class Memory < ApplicationRecord
     ['id']
   end
 
-  def valid_category?
-    category.nil? || category&.valid?
+  def assign_category
+    return if new_category_name.blank?
+
+    self.category = user.categories.find_or_initialize_by(name: new_category_name)
   end
 
-  def assign_category(params, user)
-    category_errors = []
+  def validate_associated_category
+    return if category.nil? || category.valid?
 
-    if params[:new_category_name].present?
-      category = user.categories.find_or_initialize_by(name: params[:new_category_name])
-
-      unless category.valid?
-        category.errors.full_messages.each do |message|
-          category_errors << message
-        end
-      end
-    elsif params[:category_id].present?
-      category = user.categories.find(params[:category_id])
+    category.errors.full_messages.each do |message|
+      errors.add(:base, message)
     end
-
-    self.category = category if category
-    [category, category_errors]
   end
 end
