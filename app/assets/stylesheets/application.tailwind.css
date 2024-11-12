@@ -19,6 +19,12 @@
     @apply text-gray-700 hover:text-gray-500 underline hover:no-underline;
   }
 
+  @media (hover: none) and (pointer: coarse) {
+    .more-link:hover {
+      @apply bg-sky-100 scale-95;
+    }
+  }
+
   select {
     @apply rounded;
     appearance: none !important;
