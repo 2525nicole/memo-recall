@@ -1,4 +1,6 @@
 = turbo_frame_tag memory do
   = render @memory
 .flex.justify-center.items-center.my-10
-  = link_to 'もっと見る', authenticated_root_path, data: { turbo: false }, class: 'block relative bg-white hover:bg-sky-100 text-sky-400 border-sky-400 border-2 font-bold rounded py-3 px-8 text-center mx-auto text-lg w-52 z-20'
+  = link_to '他の思い出を見る', authenticated_root_path,
+    data: { turbo: false, touchstart: 'void(0);' },
+    class: 'more-link block relative bg-white text-sky-400 border-sky-400 border-2 font-bold rounded py-3 px-2 text-center mx-auto text-lg w-52 z-20 hover:bg-sky-100 transition-all duration-200 ease-out'
