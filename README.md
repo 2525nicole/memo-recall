@@ -46,17 +46,20 @@ https://memo-recall.fly.dev/
 
 - ログイン後のトップページでは、思い出がランダムで表示されます。
 - 「他の思い出を見る」を押して、さらに他の思い出を呼び出すこともできます。
-  <img width="50%" alt="トップページ" src="https://github.com/user-attachments/assets/bd739016-e5a2-4161-81d9-edab4caaf501">
+
+<img width="50%" alt="トップページ" src="https://github.com/user-attachments/assets/bd739016-e5a2-4161-81d9-edab4caaf501">
 
 #### 思い出一覧ページ
 
 - 思い出一覧ページでは、すべての思い出が表示されます。
-  <img width="50%" alt="思い出一覧ページ" src="https://github.com/user-attachments/assets/b3210095-3e55-4138-9925-2c8786ce4c0b">
+
+<img width="50%" alt="思い出一覧ページ" src="https://github.com/user-attachments/assets/b3210095-3e55-4138-9925-2c8786ce4c0b">
 
 #### カテゴリー別の思い出一覧ページ
 
 - カテゴリー別の思い出一覧ページでは、特定のカテゴリーに紐づく思い出が表示されます。
-  <img width="50%" alt="カテゴリー別思い出一覧ページ" src="https://github.com/user-attachments/assets/149c3246-835d-4eca-a119-2d0a401845a4">
+
+<img width="50%" alt="カテゴリー別思い出一覧ページ" src="https://github.com/user-attachments/assets/149c3246-835d-4eca-a119-2d0a401845a4">
 
 ## 開発環境
 
