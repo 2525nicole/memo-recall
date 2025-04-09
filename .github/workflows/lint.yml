@@ -1,9 +1,9 @@
-name: "Lint"
+name: Lint
 on:
   push:
-    branches: ["main"]
+    branches: [main]
   pull_request:
-    branches: ["main"]
+    branches: [main]
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -19,13 +19,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
-          cache: "npm"
+          node-version-file: .node-version
+          cache: npm
 
-      - name: Install dependencies
-        run: |
-          npm install
-          bundle install
+      - name: Install JavaScript dependencies
+        run: npm install
 
       - name: rubocop
         run: bundle exec rubocop
