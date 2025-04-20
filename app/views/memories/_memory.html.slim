@@ -3,7 +3,7 @@
     .border-t
   .w-full.mx-auto.font-normal.text-black.my-6
     .flex.flex-col.justify-start.text-base.sm:text-lg.gap-4.sm:gap-6
-      = simple_format memory.content, class: 'text-left'
+      = simple_format h(memory.content), class: 'text-left'
       - if memory.category
         .text-sm.link-with-underline.sm:text-base.flex.justify-start
           = link_to "カテゴリー: #{memory.category.name}", category_memories_path(memory.category), data: { turbo: false }
